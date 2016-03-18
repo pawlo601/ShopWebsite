@@ -18,12 +18,16 @@ namespace ShopWebsite.Model.Entities
         [ForeignKey("RESIDENTIAL_ADDRESS")]
         public Address ResidentialAddress { get; set; }
         [Column("MAIL_1")]
+        [EmailAddress(ErrorMessage ="Wrong email")]
         public string Mail1 { get; set; }
         [Column("PHONE_1")]
+        [Phone(ErrorMessage = "Wrong phone number")]
         public string Phone1 { get; set; }
         [Column("MAIL_2")]
+        [EmailAddress(ErrorMessage = "Wrong email")]
         public string Mail2 { get; set; }
         [Column("PHONE_2")]
+        [Phone(ErrorMessage = "Wrong phone number")]
         public string Phone2 { get; set; }
         public IList<Order> Orders { get; set; }
     }
