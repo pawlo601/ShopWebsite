@@ -5,14 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopWebsite.Model.Entities
 {
+    [Table("ORDERS")]
     public class Order
     {
         [Key]
+        [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrderID { get; set; }
+        [Column("DATE_OF_SUBMISSION")]
         public DateTime DateOfSubmission { get; set; }
-        public string Status { get; set; }
-        public Customer Client { get; set; }
+        [Column("STATUS_OF_ORDER")]
+        public string StatusOfOrder { get; set; }
+        [Column("VALUE_OF_ORDER")]
+        public decimal Value { get; set; }
         public List<PositionInTheOrder> OrderedItems { get; set; }
     }
 }
