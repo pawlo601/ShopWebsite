@@ -1,9 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopWebsite.Model.Entities
 {
     [Table("POSITIONS_IN_THE_ORDERS")]
-    public class PositionInTheOrder
+    public class PositionInTheOrder : IValidatableObject
     {
         [Column("PRODUCT_ID")]
         public int ProductID { get; set; }
@@ -16,6 +19,11 @@ namespace ShopWebsite.Model.Entities
             ProductID = productID;
             CustomerID = customerID;
             Quantity = quantity;
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            throw new NotImplementedException();
         }
     }
 }

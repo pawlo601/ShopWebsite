@@ -12,19 +12,23 @@ namespace ShopWebsite.Model.Entities
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ProductID { get; set; }
+
         [Column("NAME_OF_PRODUCT")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty product name.")]
         [MinLength(5, ErrorMessage = "Product name lenght should be greater than 4.")]
         [MaxLength(30, ErrorMessage = "Product name lenght should be less than 31.")]
         public string ProductName { get; set; }
+
         [Column("DESCRIPTION_OF_PRODUCT")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty product description.")]
         [MinLength(5, ErrorMessage = "Product description lenght should be greater than 4.")]
         [MaxLength(50, ErrorMessage = "Product description lenght should be less than 51.")]
         public string ProductDescription { get; set; }
+
         [Column("QUANTITY_PER_UNIT")]
         [Required(ErrorMessage = "Empty quantity of product.")]
         public decimal? QuantityPerUnit { get; set; }
+
         [Column("PRICE_PER_UNIT")]
         [Required(ErrorMessage = "Empty price of product.")]
         public decimal? PricePerUnit { get; set; }
