@@ -27,11 +27,11 @@ namespace ShopWebsite.Model.Entities
 
         [Column("QUANTITY_PER_UNIT")]
         [Required(ErrorMessage = "Empty quantity of product.")]
-        public decimal? QuantityPerUnit { get; set; }
+        public decimal QuantityPerUnit { get; set; }
 
         [Column("PRICE_PER_UNIT")]
         [Required(ErrorMessage = "Empty price of product.")]
-        public decimal? PricePerUnit { get; set; }
+        public decimal PricePerUnit { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

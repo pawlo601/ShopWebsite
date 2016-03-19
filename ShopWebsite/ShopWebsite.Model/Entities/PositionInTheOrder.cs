@@ -10,10 +10,13 @@ namespace ShopWebsite.Model.Entities
     {
         [Column("PRODUCT_ID")]
         public int ProductID { get; set; }
+
         [Column("CUSTOMER_ID")]
         public int CustomerID { get; set; }
+
         [Column("QUANTITY")]
         public int Quantity { get; set; }
+
         public PositionInTheOrder(int productID, int customerID, int quantity)
         {
             ProductID = productID;
@@ -23,7 +26,12 @@ namespace ShopWebsite.Model.Entities
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            throw new NotImplementedException();
+            var results = new List<ValidationResult>();
+            if (Quantity <= 0)
+            {
+                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new string[] { "Quantity" }));
+            }
+            return results;
         }
     }
 }

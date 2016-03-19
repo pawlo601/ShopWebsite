@@ -63,5 +63,20 @@ namespace ShopWebsite.Model.Entities
                 results);
             return results;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+            Address p = (Address)obj;
+            return p.City.Equals(City) && 
+                   p.Country.Equals(Country) && 
+                   p.NumberOfBuilding.Equals(NumberOfBuilding) && 
+                   p.PostalCode.Equals(PostalCode) && 
+                   p.Street.Equals(Street);
+        }
+        public override int GetHashCode()
+        {
+            return AddressID;
+        }
     }
 }

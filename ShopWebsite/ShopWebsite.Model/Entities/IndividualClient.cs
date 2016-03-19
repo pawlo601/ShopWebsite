@@ -21,12 +21,13 @@ namespace ShopWebsite.Model.Entities
 
         [Column("BIRTHDAY")]
         [DataType(DataType.Date, ErrorMessage = "Birthday should be a date.")]
+        [Required(ErrorMessage ="Birthday shouldn't be empty.")]
         public DateTime Birthday { get; set; }
 
         [Column("PESEL_NUMBER")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty pesel number.")]
-        [MinLength(9, ErrorMessage = "Client surname lenght should be greater than 8.")]
-        [MaxLength(10, ErrorMessage = "Client surname lenght should be less than 11.")]
+        [MinLength(9, ErrorMessage = "Client pesel lenght should be greater than 8.")]
+        [MaxLength(10, ErrorMessage = "Client pesel lenght should be less than 11.")]
         public string PeselNumber { get; set; }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -51,7 +52,7 @@ namespace ShopWebsite.Model.Entities
             }
             if (Birthday >= new DateTime(2017,12,31))
             {
-                results.Add(new ValidationResult("Birthday should be ealier than 1.1.1990", new string[] { "Birthday" }));
+                results.Add(new ValidationResult("Birthday should be ealier than 31.12.2017", new string[] { "Birthday" }));
             }
             return results;
         }

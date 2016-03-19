@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,8 +14,8 @@ namespace ShopWebsite.Model.Entities
 
         [Column("TITLE_CONACT")]
         [Required(AllowEmptyStrings = true)]
-        [MinLength(1, ErrorMessage = "Product name lenght should be greater than 0.")]
-        [MaxLength(10, ErrorMessage = "Product name lenght should be less than 11.")]
+        [MinLength(1, ErrorMessage = "Contact title lenght should be greater than 0.")]
+        [MaxLength(10, ErrorMessage = "Contact title lenght should be less than 11.")]
         public string ContactTitle { get; set; }
 
         [ForeignKey("CONTACT_ADDRESS")]
@@ -73,6 +72,14 @@ namespace ShopWebsite.Model.Entities
             Validator.TryValidateProperty(Phone2,
                 new ValidationContext(this, null, null) { MemberName = "Phone2" },
                 results);
+            if (Phone1.Equals(Phone2))
+            {
+                results.Add(new ValidationResult("Number of phone1 is the sama as number of phone2.", new string[] { "Phone1", "Phone2" }));
+            }
+            if (Mail1.Equals(Mail2))
+            {
+                results.Add(new ValidationResult("Mail1 is the sama as mail2.", new string[] { "Mail1", "Mail2" }));
+            }
             return results;
         }
     }
