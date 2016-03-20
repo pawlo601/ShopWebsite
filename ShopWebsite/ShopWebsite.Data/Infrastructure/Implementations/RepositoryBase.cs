@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ShopWebsite.Model.Entities;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using ShopWebsite.Data.Common;
 
 namespace ShopWebsite.Data.Infrastructure.Implementations
 {
@@ -38,10 +39,11 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                     results,
                     validateAllProperties);
                 dbSet.Add(entity);
+                Validation.TransformValidationResultsToTransactionalInformation(results, out transaction);
             }
             catch (Exception exc)
             {
-
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
             return entity;
         }

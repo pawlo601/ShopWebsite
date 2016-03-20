@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListOfProducts>
+  <Product id="1" name="Produkt 1" description="Opis produktu numer 1" quantity="122.8" price="1.5"/>
+  <Product id="2" name="Produkt 2" description="Opis produktu numer 2" quantity="52.6" price="14.79"/>
+  <Product id="3" name="Produkt 3" description="Opis produktu numer 3" quantity="3.456" price="31.9"/>
+  <Product id="4" name="Produkt 4" description="Opis produktu numer 4" quantity="14.33" price="3.6"/>
+  <Product id="5" name="Produkt 5" description="Opis produktu numer 5" quantity="1245.46" price="1533.7"/>
+</ListOfProducts>

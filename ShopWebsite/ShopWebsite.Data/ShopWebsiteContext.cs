@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace ShopWebsite.Data
 {
+    [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext: DbContext
     {
-        public ShopWebsiteContext() : base() { }
+        private static string cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat13;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public ShopWebsiteContext() : base(cs) { }
 
         public DbSet<Product> Products { get; set; }
 
