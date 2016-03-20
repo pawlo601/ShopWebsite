@@ -29,6 +29,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 validateAllProperties);
             Assert.AreEqual(results.Count, 0);
         }
+
         [TestMethod]
         public void AddressValidationStreetIsWrong1()
         {
@@ -50,6 +51,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Street name lenght should be greater than 4."));
         }
+
         [TestMethod]
         public void AddressValidationtStreetIsWrong2()
         {
@@ -71,6 +73,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Street name lenght should be less than 21."));
         }
+
         [TestMethod]
         public void AddressValidationtStreetIsWrong3()
         {
@@ -92,6 +95,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty street name."));
         }
+
         [TestMethod]
         public void AddressValidationNumberOfBuildingIsWrong1()
         {
@@ -113,6 +117,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Number of building lenght should be greater than 0."));
         }
+
         [TestMethod]
         public void AddressValidationtNumberOfBuildingIsWrong2()
         {
@@ -134,6 +139,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Number of building  lenght should be less than 11."));
         }
+
         [TestMethod]
         public void AddressValidationCityIsWrong1()
         {
@@ -155,6 +161,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty city name."));
         }
+
         [TestMethod]
         public void AddressValidationtCityIsWrong2()
         {
@@ -176,6 +183,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("City name lenght should be greater than 4."));
         }
+
         [TestMethod]
         public void AddressValidationtCityIsWrong3()
         {
@@ -197,6 +205,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("City name lenght should be less than 21."));
         }
+
         [TestMethod]
         public void AddressValidationPostalCodeIsWrong1()
         {
@@ -218,6 +227,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty postalcode."));
         }
+
         [TestMethod]
         public void AddressValidationtPostalCodeIsWrong2()
         {
@@ -239,6 +249,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Postal code lenght should be greater than 4."));
         }
+
         [TestMethod]
         public void AddressValidationtPostalCodeIsWrong3()
         {
@@ -260,6 +271,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Postal code lenght should be less than 11."));
         }
+
         [TestMethod]
         public void AddressValidationCountryIsWrong1()
         {
@@ -281,6 +293,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty country name."));
         }
+
         [TestMethod]
         public void AddressValidationtCountryIsWrong2()
         {
@@ -302,6 +315,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Country name lenght should be greater than 4."));
         }
+
         [TestMethod]
         public void AddressValidationtCountryIsWrong3()
         {

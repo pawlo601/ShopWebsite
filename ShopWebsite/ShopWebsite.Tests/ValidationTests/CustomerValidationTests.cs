@@ -34,6 +34,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 validateAllProperties);
             Assert.AreEqual(results.Count, 0);
         }
+
         [TestMethod]
         public void CustomerValidationContactTitleIsWrong1()
         {
@@ -61,6 +62,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Contact title lenght should be greater than 0."));
         }
+
         [TestMethod]
         public void CustomerValidationContactTitleIsWrong2()
         {
@@ -88,6 +90,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Contact title lenght should be less than 11."));
         }
+
         [TestMethod]
         public void CustomerValidationContactAddressIsWrong()
         {
@@ -114,6 +117,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Contact address shouldn't be empty."));
         }
+
         [TestMethod]
         public void CustomerValidationResidentialAddressIsWrong()
         {
@@ -140,6 +144,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Residential address shouldn't be empty."));
         }
+
         [TestMethod]
         public void CustomerValidationMail1IsTheSameAsMail2()
         {
@@ -167,6 +172,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Mail1 is the sama as mail2."));
         }
+
         [TestMethod]
         public void CustomerValidationPhone1IsTheSameAsPhone2()
         {
@@ -194,6 +200,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Number of phone1 is the sama as number of phone2."));
         }
+
         [TestMethod]
         public void CustomerValidationMail1IsWrong1()
         {
@@ -221,6 +228,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Wrong email"));
         }
+
         [TestMethod]
         public void CustomerValidationMail1IsWrong2()
         {
@@ -248,6 +256,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("First email shouldn't be empty."));
         }
+
         [TestMethod]
         public void CustomerValidationMail2IsWrong1()
         {
@@ -275,6 +284,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Wrong email"));
         }
+
         [TestMethod]
         public void CustomerValidationMail2IsWrong2()
         {
@@ -302,6 +312,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Second mail shouldn't be empty."));
         }
+
         [TestMethod]
         public void CustomerValidationPhone1IsWrong1()
         {
@@ -329,6 +340,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Wrong phone number"));
         }
+
         [TestMethod]
         public void CustomerValidationPhone1IsWrong2()
         {
@@ -356,6 +368,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("First phone number shouldn't be empty."));
         }
+
         [TestMethod]
         public void CustomerValidationPhone2IsWrong1()
         {
@@ -383,6 +396,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Wrong phone number"));
         }
+
         [TestMethod]
         public void CustomerValidationPhone2IsWrong2()
         {

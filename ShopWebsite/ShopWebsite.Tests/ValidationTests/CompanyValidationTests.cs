@@ -34,6 +34,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 validateAllProperties);
             Assert.AreEqual(results.Count, 0);
         }
+
         [TestMethod]
         public void CompanyValidationCompanyNameIsWrong1()
         {
@@ -61,6 +62,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Company name lenght should be greater than 4."));
         }
+
         [TestMethod]
         public void CompanyValidationCompanyNameIsWrong2()
         {
@@ -88,6 +90,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Company name lenght should be less than 21."));
         }
+
         [TestMethod]
         public void CompanyValidationCompanyNameIsWrong3()
         {
@@ -115,6 +118,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty company name."));
         }
+
         [TestMethod]
         public void CompanyValidationREGONIsWrong1()
         {
@@ -142,6 +146,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("No empty REGON."));
         }
+
         [TestMethod]
         public void CompanyValidationREGONIsWrong2()
         {
@@ -169,6 +174,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("REGON lenght should be greater than 7."));
         }
+
         [TestMethod]
         public void CompanyValidationREGONIsWrong3()
         {
@@ -196,6 +202,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("REGON lenght should be less than 11."));
         }
+
         [TestMethod]
         public void CompanyValidationTaxIDIsWrong1()
         {
@@ -223,6 +230,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("TaxID lenght should be less than 11."));
         }
+
         [TestMethod]
         public void CompanyValidationTaxIDIsWrong2()
         {
@@ -250,6 +258,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("TaxID lenght should be greater than 7."));
         }
+
         [TestMethod]
         public void CompanyValidationTaxIDIsWrong3()
         {
@@ -279,4 +288,3 @@ namespace ShopWebsite.Tests.ValidationTests
         }
     }
 }
-

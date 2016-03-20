@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -63,6 +62,7 @@ namespace ShopWebsite.Model.Entities
                 results);
             return results;
         }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -74,6 +74,7 @@ namespace ShopWebsite.Model.Entities
                    p.PostalCode.Equals(PostalCode) && 
                    p.Street.Equals(Street);
         }
+
         public override int GetHashCode()
         {
             return AddressID;

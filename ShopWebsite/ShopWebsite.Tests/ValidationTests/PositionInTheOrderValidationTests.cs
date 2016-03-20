@@ -22,6 +22,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 validateAllProperties);
             Assert.AreEqual(results.Count, 0);
         }
+
         [TestMethod]
         public void PositionInTheOrderValidationQuantityIsWrong()
         {

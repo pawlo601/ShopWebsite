@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -22,7 +21,7 @@ namespace ShopWebsite.Model.Entities
         [Column("DESCRIPTION_OF_PRODUCT")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty product description.")]
         [MinLength(5, ErrorMessage = "Product description lenght should be greater than 4.")]
-        [MaxLength(50, ErrorMessage = "Product description lenght should be less than 51.")]
+        [MaxLength(100, ErrorMessage = "Product description lenght should be less than 101.")]
         public string ProductDescription { get; set; }
 
         [Column("QUANTITY_PER_UNIT")]
