@@ -1,10 +1,11 @@
 ﻿using ShopWebsite.Data.Common;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace ShopWebsite.Data
 {
-    public class MyInitizlizer : DropCreateDatabaseAlways<ShopWebsiteContext>
+    public class MyInitizlizer : DropCreateDatabaseIfModelChanges<ShopWebsiteContext>
     {
         protected override void Seed(ShopWebsiteContext context)
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -56,6 +57,11 @@ namespace ShopWebsite.Model.Entities
                 results.Add(new ValidationResult("Price of product should be greater than 0.0", new string[] { "PricePerUnit" }));
             }
             return results;
+        }
+
+        public int GetMyId()
+        {
+            return ProductID;
         }
     }
 }

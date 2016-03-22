@@ -14,7 +14,9 @@ namespace ShopWebsite.Data.Infrastructure.Interfaces
         void DeleteEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
         T GetById(int id, out TransactionalInformation transaction);
         T GetIf(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
-        IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction);
-        IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, int>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, string>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, decimal>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction);
+
     }
 }

@@ -7,6 +7,7 @@ using ShopWebsite.Model.Entities;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using ShopWebsite.Data.Common;
+using ShopWebsite.Model;
 
 namespace ShopWebsite.Data.Infrastructure.Implementations
 {
@@ -77,35 +78,62 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             }
         }
 
-        public virtual IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction)
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, int>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
         {
             totalRows = 0;
-            sortExpression = sortExpression + " " + sortDirection;
             transaction = new TransactionalInformation();
-            totalRows = dbSet.Count();
             try
             {
-                //List<T> items = dbSet.OrderBy<T,int>(a=>1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                List<T> items = dbSet.ToList();
+                List<T> items;
+                if (ifDesc)
+                     items = dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                else
+                    items = dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                totalRows = dbSet.Where(where).Count();
                 transaction.ReturnStatus = true;
                 return items;
             }
-            catch(Exception exc)
+            catch (Exception exc)
             {
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
                 return new List<T>();
             }
         }
 
-        public virtual IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction)
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, string>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
         {
             totalRows = 0;
-            sortExpression = sortExpression + " " + sortDirection;
             transaction = new TransactionalInformation();
-            totalRows = dbSet.Count();
             try
             {
-                List<T> items = dbSet.Where(where).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                List<T> items;
+                if (ifDesc)
+                    items = dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                else
+                    items = dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                totalRows = dbSet.Where(where).Count();
+                transaction.ReturnStatus = true;
+                return items;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<T>();
+            }
+        }
+
+        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, decimal>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
+        {
+            totalRows = 0;
+            transaction = new TransactionalInformation();
+            try
+            {
+                List<T> items;
+                if (ifDesc)
+                    items = dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                else
+                    items = dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                totalRows = dbSet.Where(where).Count();
                 transaction.ReturnStatus = true;
                 return items;
             }

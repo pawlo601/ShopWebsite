@@ -15,7 +15,7 @@ namespace ShopWebsite.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
+  
             Bootstrapper.Run();
         }
     }
