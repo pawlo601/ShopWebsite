@@ -1,6 +1,4 @@
 ﻿using ShopWebsite.Data.Common;
-using ShopWebsite.Model.Entities;
-using System;
 using System.Data.Entity;
 using System.Data.SqlClient;
 

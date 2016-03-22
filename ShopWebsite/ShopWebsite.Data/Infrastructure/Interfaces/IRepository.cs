@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopWebsite.Data.Infrastructure.Interfaces
 {
@@ -17,7 +14,7 @@ namespace ShopWebsite.Data.Infrastructure.Interfaces
         void DeleteEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
         T GetById(int id, out TransactionalInformation transaction);
         T GetIf(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
-        IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out TransactionalInformation transaction);
-        IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out TransactionalInformation transaction);
+        IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction);
+        IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction);
     }
 }

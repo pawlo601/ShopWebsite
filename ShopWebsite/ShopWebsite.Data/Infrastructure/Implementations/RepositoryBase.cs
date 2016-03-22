@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShopWebsite.Model.Entities;
 using System.Linq.Expressions;
 using System.Data.Entity;
@@ -21,11 +19,13 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
         {
             get { return dataContext ?? (dataContext = DbFactory.Init()); }
         }
+
         protected RepositoryBase(IDbFactory dbFactory)
         {
             DbFactory = dbFactory;
             dbSet = DbContext.Set<T>();
         }
+
         public virtual T AddNewEntity(T entity, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
@@ -50,37 +50,131 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 
         public virtual void DeleteEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            transaction = new TransactionalInformation();
+            try
+            {
+                IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+                foreach (T obj in objects)
+                    dbSet.Remove(obj);
+            }
+            catch(Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+            }
         }
 
         public virtual void DeleteEntity(T entity, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            transaction = new TransactionalInformation();
+            try
+            {
+                dbSet.Remove(entity);
+                transaction.ReturnStatus = true;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+            }
         }
 
-        public virtual IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out TransactionalInformation transaction)
+        public virtual IEnumerable<T> GetAll(int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            totalRows = 0;
+            sortExpression = sortExpression + " " + sortDirection;
+            transaction = new TransactionalInformation();
+            totalRows = dbSet.Count();
+            try
+            {
+                //List<T> items = dbSet.OrderBy<T,int>(a=>1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                List<T> items = dbSet.ToList();
+                transaction.ReturnStatus = true;
+                return items;
+            }
+            catch(Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<T>();
+            }
         }
 
-        public virtual IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out TransactionalInformation transaction)
+        public virtual IEnumerable<T> GetAllIf(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, string sortExpression, string sortDirection, string filter, out int totalRows, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            totalRows = 0;
+            sortExpression = sortExpression + " " + sortDirection;
+            transaction = new TransactionalInformation();
+            totalRows = dbSet.Count();
+            try
+            {
+                List<T> items = dbSet.Where(where).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                transaction.ReturnStatus = true;
+                return items;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<T>();
+            }
         }
 
         public virtual T GetById(int id, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            transaction = new TransactionalInformation();
+            try
+            {
+                T item = dbSet.Find(id);
+                if (item != null)
+                {
+                    transaction.ReturnStatus = true;
+                }
+                else
+                {
+                    transaction.ReturnStatus = false;
+                }
+                return item;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return null;
+            }
         }
 
         public virtual T GetIf(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            transaction = new TransactionalInformation();
+            try
+            {
+                T item = dbSet.Where(where).FirstOrDefault<T>();
+                if (item != null)
+                {
+                    transaction.ReturnStatus = true;
+                }
+                else
+                {
+                    transaction.ReturnStatus = false;
+                }
+                return item;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return null;
+            }
         }
 
         public virtual void UpdateEntity(T entity, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            transaction = new TransactionalInformation();
+            try
+            {
+                dbSet.Attach(entity);
+                dataContext.Entry(entity).State = EntityState.Modified;
+                transaction.ReturnStatus = true;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+            }
         }
     }
 }

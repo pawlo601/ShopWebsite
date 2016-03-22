@@ -28,7 +28,7 @@ namespace ShopWebsite.Data.Common
                 }
                 return pr;
             }
-            catch (Exception)
+            catch (Exception exc)
             {
                 return new List<Product>();
             }          

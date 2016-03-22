@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShopWebsite.Data;
+using ShopWebsite.Web.App_Start;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,8 @@ namespace ShopWebsite.Web
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Bootstrapper.Run();
         }
     }
 }
