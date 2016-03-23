@@ -16,7 +16,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = DateTime.Now,
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "status"
             };
             bool validateAllProperties = false;
@@ -36,7 +36,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = new DateTime(1700,12,12),
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "status"
             };
             bool validateAllProperties = false;
@@ -57,7 +57,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = new DateTime(2700, 12, 12),
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "status"
             };
             bool validateAllProperties = false;
@@ -78,7 +78,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = DateTime.Now,
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = ""
             };
             bool validateAllProperties = false;
@@ -99,7 +99,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = DateTime.Now,
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "q"
             };
             bool validateAllProperties = false;
@@ -120,7 +120,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = 12.09M,
                 DateOfSubmission = DateTime.Now,
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "qsdfgsdfgsdfgsdfgsdfgsdfgsdfg"
             };
             bool validateAllProperties = false;
@@ -141,7 +141,7 @@ namespace ShopWebsite.Tests.ValidationTests
             {
                 Value = -12.09M,
                 DateOfSubmission = DateTime.Now,
-                OrderedItems = new List<PositionInTheOrderFromXML>(),
+                OrderedItems = new List<PositionInTheOrder>(),
                 StatusOfOrder = "status"
             };
             bool validateAllProperties = false;
