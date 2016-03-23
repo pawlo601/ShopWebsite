@@ -14,24 +14,54 @@ namespace ShopWebsite.Data.Common
     {
         public static List<Product> GetProducts()
         {
-            try
+            string result = string.Empty;
+            var aasd = typeof(GetDataFromXML).Assembly.GetManifestResourceNames();
+            using (Stream stream = typeof(GetDataFromXML).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Products.xml"))
+            {
+                using (StreamReader sr = new StreamReader(stream))
+                {
+                    result = sr.ReadToEnd();
+                }
+            }
+            using (TextReader sr = new StringReader(result))
             {
                 XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
-                TextReader reader = new StreamReader(@"DataInXML/Products.xml");
-                object obj = deserializer.Deserialize(reader);
+                object obj = deserializer.Deserialize(sr);
+
                 ListOfProducts XmlData = (ListOfProducts)obj;
-                reader.Close();
                 List<Product> pr = new List<Product>();
-                foreach(var a in XmlData.productList)
+                foreach (var a in XmlData.productList)
                 {
                     pr.Add(ProductFromXML.GetProductFromProductXML(a));
                 }
                 return pr;
-            }
-            catch (Exception exc)
+            }   
+        }
+
+        public static List<Order> GetOrders()
+        {
+            string result = string.Empty;
+            var aasd = typeof(GetDataFromXML).Assembly.GetManifestResourceNames();
+            using (Stream stream = typeof(GetDataFromXML).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Orders.xml"))
             {
-                return new List<Product>();
-            }          
+                using (StreamReader sr = new StreamReader(stream))
+                {
+                    result = sr.ReadToEnd();
+                }
+            }
+            using (TextReader sr = new StringReader(result))
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof(ListOfOrders));
+                object obj = deserializer.Deserialize(sr);
+
+                ListOfOrders XmlData = (ListOfOrders)obj;
+                List<Order> pr = new List<Order>();
+                foreach (var a in XmlData.orderList)
+                {
+                    pr.Add(OrderFromXML.GetOrderFromOrderXML(a));
+                }
+                return pr;
+            }
         }
     }
 }

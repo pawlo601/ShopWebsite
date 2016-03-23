@@ -7,10 +7,11 @@ namespace ShopWebsite.Data
     [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext: DbContext
     {
-        private static string cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat3;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private static string cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
         public ShopWebsiteContext() : base(cs) { }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public virtual void Commit()
         {

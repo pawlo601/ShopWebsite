@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ListOfOrders>
+  <Order id="1" dateofsubmission="2002-05-30T09:00:00" status="OK" value="1.56">
+    <items>
+      <item id="1" product_id="2" customerid="3" quantity="21"></item>
+      <item id="2" product_id="4" customerid="6" quantity="12"></item>
+      <item id="3" product_id="6" customerid="9" quantity="56"></item>
+      <item id="4" product_id="8" customerid="12" quantity="4"></item>
+    </items>
+  </Order>
+  <Order id="2" dateofsubmission="2012-03-30T01:32:12" status="NotOk" value="134.56">
+    <items>
+      <item id="5" product_id="2" customerid="3" quantity="21"></item>
+      <item id="6" product_id="4" customerid="6" quantity="12"></item>
+    </items>
+  </Order>
+  <Order id="3" dateofsubmission="2016-09-23T12:54:12" status="OK" value="6.17">
+    <items>
+    </items>
+  </Order>
+</ListOfOrders>

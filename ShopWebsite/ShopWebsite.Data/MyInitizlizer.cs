@@ -9,8 +9,9 @@ namespace ShopWebsite.Data
     {
         protected override void Seed(ShopWebsiteContext context)
         {
-            SqlConnection.ClearAllPools();            
+            SqlConnection.ClearAllPools();
             GetDataFromXML.GetProducts().ForEach(a => context.Products.Add(a));
+            GetDataFromXML.GetOrders().ForEach(a => context.Orders.Add(a));
             context.SaveChanges();
         }
     }

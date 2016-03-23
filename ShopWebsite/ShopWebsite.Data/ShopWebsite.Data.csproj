@@ -74,13 +74,20 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataFromXML\Products.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ShopWebsite.Model\ShopWebsite.Model.csproj">
       <Project>{eeb3c584-f30a-4abc-9e2b-15290c338312}</Project>
       <Name>ShopWebsite.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataFromXML\Products.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DataFromXML\Orders.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

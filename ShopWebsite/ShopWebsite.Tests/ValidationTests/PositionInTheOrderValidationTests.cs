@@ -12,7 +12,7 @@ namespace ShopWebsite.Tests.ValidationTests
         [TestMethod]
         public void PositionInTheOrderValidationIsOK()
         {
-            PositionInTheOrder pito = new PositionInTheOrder(1, 1, 12);
+            PositionInTheOrderFromXML pito = new PositionInTheOrderFromXML(1, 1, 12);
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
             bool isValid = Validator.TryValidateObject(
@@ -26,7 +26,7 @@ namespace ShopWebsite.Tests.ValidationTests
         [TestMethod]
         public void PositionInTheOrderValidationQuantityIsWrong()
         {
-            PositionInTheOrder pito = new PositionInTheOrder(1, 1, -89);
+            PositionInTheOrderFromXML pito = new PositionInTheOrderFromXML(1, 1, -89);
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
             bool isValid = Validator.TryValidateObject(

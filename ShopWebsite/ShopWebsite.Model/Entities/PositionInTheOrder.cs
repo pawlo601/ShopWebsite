@@ -7,6 +7,11 @@ namespace ShopWebsite.Model.Entities
     [Table("POSITIONS_IN_THE_ORDERS")]
     public class PositionInTheOrder : IValidatableObject
     {
+        [Key]
+        [Column("ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PositionInTheOrderID { get; set; }
+
         [Column("PRODUCT_ID")]
         public int ProductID { get; set; }
 
@@ -15,9 +20,11 @@ namespace ShopWebsite.Model.Entities
 
         [Column("QUANTITY")]
         public int Quantity { get; set; }
+        public PositionInTheOrder() { }
 
-        public PositionInTheOrder(int productID, int customerID, int quantity)
+        public PositionInTheOrder(int id, int productID, int customerID, int quantity)
         {
+            PositionInTheOrderID = id;
             ProductID = productID;
             CustomerID = customerID;
             Quantity = quantity;
