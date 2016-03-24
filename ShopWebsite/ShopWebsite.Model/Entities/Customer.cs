@@ -51,9 +51,6 @@ namespace ShopWebsite.Model.Entities
             Validator.TryValidateProperty(ContactTitle,
                 new ValidationContext(this, null, null) { MemberName = "ContactTitle" },
                 results);
-            Validator.TryValidateProperty(ContactAddress,
-                new ValidationContext(this, null, null) { MemberName = "ContactAddress" },
-                results);
             Validator.TryValidateProperty(ResidentialAddress,
                 new ValidationContext(this, null, null) { MemberName = "ResidentialAddress" },
                 results);
@@ -69,9 +66,14 @@ namespace ShopWebsite.Model.Entities
             Validator.TryValidateProperty(Phone2,
                 new ValidationContext(this, null, null) { MemberName = "Phone2" },
                 results);
-            if (ContactAddress == null)
+            
+            if (ContactAddress != null)
             {
-                results.Add(new ValidationResult("Contact address shouldn't be empty.", new string[] { "ContactAddress" }));
+                results.AddRange(ContactAddress.Validate(validationContext));
+            }
+            if (ResidentialAddress != null)
+            {
+                results.AddRange(ResidentialAddress.Validate(validationContext));
             }
             if (Phone1.Equals(Phone2))
             {

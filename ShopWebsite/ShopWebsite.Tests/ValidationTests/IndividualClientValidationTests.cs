@@ -18,14 +18,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname="Surname123",
                 Birthday=DateTime.Now,
                 PeselNumber="123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -75,14 +75,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = DateTime.Now,
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -104,14 +104,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = DateTime.Now,
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -162,14 +162,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "123",
                 Birthday = DateTime.Now,
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -191,14 +191,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "5sd1f8sdf1g9sdf1g6sdf45g61sdf54g1",
                 Birthday = DateTime.Now,
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -249,14 +249,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = DateTime.Now,
                 PeselNumber = "456",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -278,14 +278,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = DateTime.Now,
                 PeselNumber = "123456798123456789",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -307,14 +307,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = new DateTime(2100,12,12),
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -336,14 +336,14 @@ namespace ShopWebsite.Tests.ValidationTests
                 Surname = "Surname123",
                 Birthday = new DateTime(1200,12,12),
                 PeselNumber = "123456798",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();

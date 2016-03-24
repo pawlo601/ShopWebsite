@@ -35,7 +35,7 @@ namespace ShopWebsite.Data.Common
                     pr.Add(ProductFromXML.GetProductFromProductXML(a));
                 }
                 return pr;
-            }   
+            }
         }
 
         public static List<Order> GetOrders()

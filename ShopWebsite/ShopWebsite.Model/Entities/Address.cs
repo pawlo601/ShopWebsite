@@ -42,6 +42,19 @@ namespace ShopWebsite.Model.Entities
         [MaxLength(20, ErrorMessage = "Country name lenght should be less than 21.")]
         public string Country { get; set; }
 
+        public Address(bool inizialize = false)
+        {
+            if (inizialize)
+            {
+                AddressID = -1;
+                Street = "street" ;
+                NumberOfBuilding = "123";
+                City = "City123";
+                PostalCode = "123345";
+                Country = "Country";
+            }
+        }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();

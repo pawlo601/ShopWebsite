@@ -14,7 +14,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "name1",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -22,7 +22,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "1234567890",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "w3463456"
             };
             bool validateAllProperties = false;
@@ -41,7 +41,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "nam",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -49,7 +49,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "1234567890",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "w3463456"
             };
             bool validateAllProperties = false;
@@ -69,7 +69,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "namertgv45tgvertvg45vgertgv45gvertg45",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -77,7 +77,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "1234567890",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "w3463456"
             };
             bool validateAllProperties = false;
@@ -153,7 +153,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "company",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -161,7 +161,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "4152",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "w3463456"
             };
             bool validateAllProperties = false;
@@ -181,7 +181,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "company",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -189,7 +189,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "4565464564564564",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "w3463456"
             };
             bool validateAllProperties = false;
@@ -209,7 +209,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "company",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -217,7 +217,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "258147369",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "34563456345634563456"
             };
             bool validateAllProperties = false;
@@ -237,7 +237,7 @@ namespace ShopWebsite.Tests.ValidationTests
             Company company = new Company()
             {
                 CompanyName = "company",
-                ContactAddress = new Address(),
+                ContactAddress = new Address(true),
                 ContactTitle = "Title",
                 Mail1 = "asd@asdf.pl",
                 Mail2 = "sdfg@sdfg.com",
@@ -245,7 +245,7 @@ namespace ShopWebsite.Tests.ValidationTests
                 Phone1 = "123456789",
                 Phone2 = "852741963",
                 REGON = "258147369",
-                ResidentialAddress = new Address(),
+                ResidentialAddress = new Address(true),
                 TaxID = "234"
             };
             bool validateAllProperties = false;
