@@ -18,11 +18,8 @@ namespace ShopWebsite.Model.Entities
         [MaxLength(10, ErrorMessage = "Contact title lenght should be less than 11.")]
         public string ContactTitle { get; set; }
 
-        [ForeignKey("CONTACT_ADDRESS")]
-        [Required(ErrorMessage ="Contact address shouldn't be empty.")]
         public Address ContactAddress { get; set; }
 
-        [ForeignKey("RESIDENTIAL_ADDRESS")]
         [Required(ErrorMessage = "Residential address shouldn't be empty.")]
         public Address ResidentialAddress { get; set; }
 
@@ -72,6 +69,10 @@ namespace ShopWebsite.Model.Entities
             Validator.TryValidateProperty(Phone2,
                 new ValidationContext(this, null, null) { MemberName = "Phone2" },
                 results);
+            if (ContactAddress == null)
+            {
+                results.Add(new ValidationResult("Contact address shouldn't be empty.", new string[] { "ContactAddress" }));
+            }
             if (Phone1.Equals(Phone2))
             {
                 results.Add(new ValidationResult("Number of phone1 is the sama as number of phone2.", new string[] { "Phone1", "Phone2" }));

@@ -47,7 +47,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
             return entity;
-        }
+        }   
 
         public virtual void DeleteEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
