@@ -10,7 +10,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class OrderValidationTests
     {
         [TestMethod]
-        public void OrderValidationIsOK()
+        public void OrderValidationIsOk()
         {
             Order order = new Order()
             {

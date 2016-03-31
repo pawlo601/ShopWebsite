@@ -10,7 +10,7 @@ namespace ShopWebsite.Model.Entities
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         [Column("TITLE_CONACT")]
         [Required(AllowEmptyStrings = true)]
@@ -77,11 +77,11 @@ namespace ShopWebsite.Model.Entities
             }
             if (Phone1.Equals(Phone2))
             {
-                results.Add(new ValidationResult("Number of phone1 is the sama as number of phone2.", new string[] { "Phone1", "Phone2" }));
+                results.Add(new ValidationResult("Number of phone1 is the sama as number of phone2.", new[] { "Phone1", "Phone2" }));
             }
             if (Mail1.Equals(Mail2))
             {
-                results.Add(new ValidationResult("Mail1 is the sama as mail2.", new string[] { "Mail1", "Mail2" }));
+                results.Add(new ValidationResult("Mail1 is the sama as mail2.", new[] { "Mail1", "Mail2" }));
             }
             return results;
         }

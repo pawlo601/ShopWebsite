@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
-using System.IO;
 
 namespace ShopWebsite.Data
 {
@@ -17,8 +16,8 @@ namespace ShopWebsite.Data
             try
             {
                 SqlConnection.ClearAllPools();
-                GetDataFromXML.GetProducts().ForEach(a => context.Products.Add(a));
-                GetDataFromXML.GetOrders().ForEach(a => context.Orders.Add(a));
+                GetDataFromXml.GetProducts().ForEach(a => context.Products.Add(a));
+                GetDataFromXml.GetOrders().ForEach(a => context.Orders.Add(a));
                 ////////////
                 Address ad = new Address()
                 {
@@ -46,9 +45,9 @@ namespace ShopWebsite.Data
                     Orders = new List<Order>(),
                     Phone1 = "123456789",
                     Phone2 = "852741963",
-                    REGON = "1234567890",
+                    Regon = "1234567890",
                     ResidentialAddress = ad2,
-                    TaxID = "w3463456"
+                    TaxId = "w3463456"
                 };
                 context.Customers.Add(company);
                 ////////////
@@ -65,9 +64,8 @@ namespace ShopWebsite.Data
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-            }catch(DbUpdateException e)
+            }catch(DbUpdateException)
             {
-                var g = e.InnerException.Message;
             }
         }
     }

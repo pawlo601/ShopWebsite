@@ -10,7 +10,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class PositionInTheOrderValidationTests
     {
         [TestMethod]
-        public void PositionInTheOrderValidationIsOK()
+        public void PositionInTheOrderValidationIsOk()
         {
             PositionInTheOrder pito = new PositionInTheOrder(2,1, 1, 12);
             bool validateAllProperties = false;

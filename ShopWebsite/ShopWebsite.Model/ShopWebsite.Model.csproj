@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="EntitiesFromXML\ListOfOrders.cs" />
     <Compile Include="EntitiesFromXML\ListOfProducts.cs" />
-    <Compile Include="EntitiesFromXML\OrderFromXML.cs" />
-    <Compile Include="EntitiesFromXML\PositionInTheOrderFromXML.cs" />
-    <Compile Include="EntitiesFromXML\ProductFromXML.cs" />
+    <Compile Include="EntitiesFromXML\OrderInXml.cs" />
+    <Compile Include="EntitiesFromXML\PositionInTheOrderInXml.cs" />
+    <Compile Include="EntitiesFromXML\ProductInXml.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Customer.cs" />

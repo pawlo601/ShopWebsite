@@ -9,7 +9,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class CustomerValidationTests
     {
         [TestMethod]
-        public void CustomerValidationIsOK()
+        public void CustomerValidationIsOk()
         {
             Company company = new Company()
             {
@@ -21,9 +21,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -48,9 +48,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -76,9 +76,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -103,9 +103,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -118,7 +118,7 @@ namespace ShopWebsite.Tests.ValidationTests
         }
 
         [TestMethod]
-        public void CustomerValidationContactAddressIsNotEmptyIsOK()
+        public void CustomerValidationContactAddressIsNotEmptyIsOk()
         {
             Company company = new Company()
             {
@@ -129,10 +129,10 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
                 
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -156,9 +156,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ContactAddress = new Address(),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -184,9 +184,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -212,9 +212,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "123456789",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -240,9 +240,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -268,9 +268,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -296,9 +296,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -324,9 +324,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -352,9 +352,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "sdf",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -380,9 +380,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "",
                 Phone2 = "852741963",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -408,9 +408,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "sdfs",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(true),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
@@ -436,9 +436,9 @@ namespace ShopWebsite.Tests.ValidationTests
                 Orders = new List<Order>(),
                 Phone1 = "123456789",
                 Phone2 = "",
-                REGON = "1234567890",
+                Regon = "1234567890",
                 ResidentialAddress = new Address(),
-                TaxID = "w3463456"
+                TaxId = "w3463456"
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();

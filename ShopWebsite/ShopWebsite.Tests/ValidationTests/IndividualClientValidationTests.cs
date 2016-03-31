@@ -10,7 +10,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class IndividualClientValidationTests
     {
         [TestMethod]
-        public void IndividualClientValidationIsOK()
+        public void IndividualClientValidationIsOk()
         {
             IndividualClient company = new IndividualClient()
             {

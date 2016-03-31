@@ -1,22 +1,18 @@
 ﻿using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.EntitiesFromXML;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Data.Common
 {
-    public static class GetDataFromXML
+    public static class GetDataFromXml
     {
         public static List<Product> GetProducts()
         {
-            string result = string.Empty;
-            var aasd = typeof(GetDataFromXML).Assembly.GetManifestResourceNames();
-            using (Stream stream = typeof(GetDataFromXML).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Products.xml"))
+            string result;
+            //var aasd = typeof(GetDataFromXml).Assembly.GetManifestResourceNames();
+            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Products.xml"))
             {
                 using (StreamReader sr = new StreamReader(stream))
                 {
@@ -28,11 +24,11 @@ namespace ShopWebsite.Data.Common
                 XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
                 object obj = deserializer.Deserialize(sr);
 
-                ListOfProducts XmlData = (ListOfProducts)obj;
+                ListOfProducts xmlData = (ListOfProducts)obj;
                 List<Product> pr = new List<Product>();
-                foreach (var a in XmlData.productList)
+                foreach (var a in xmlData.ProductList)
                 {
-                    pr.Add(ProductFromXML.GetProductFromProductXML(a));
+                    pr.Add(ProductInXml.TransformFromXmlToClass(a));
                 }
                 return pr;
             }
@@ -40,9 +36,9 @@ namespace ShopWebsite.Data.Common
 
         public static List<Order> GetOrders()
         {
-            string result = string.Empty;
-            var aasd = typeof(GetDataFromXML).Assembly.GetManifestResourceNames();
-            using (Stream stream = typeof(GetDataFromXML).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Orders.xml"))
+            string result;
+            var aasd = typeof(GetDataFromXml).Assembly.GetManifestResourceNames();
+            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Orders.xml"))
             {
                 using (StreamReader sr = new StreamReader(stream))
                 {
@@ -54,11 +50,11 @@ namespace ShopWebsite.Data.Common
                 XmlSerializer deserializer = new XmlSerializer(typeof(ListOfOrders));
                 object obj = deserializer.Deserialize(sr);
 
-                ListOfOrders XmlData = (ListOfOrders)obj;
+                ListOfOrders xmlData = (ListOfOrders)obj;
                 List<Order> pr = new List<Order>();
-                foreach (var a in XmlData.orderList)
+                foreach (var a in xmlData.OrderList)
                 {
-                    pr.Add(OrderFromXML.GetOrderFromOrderXML(a));
+                    pr.Add(OrderInXml.TransformFromXmlToClass(a));
                 }
                 return pr;
             }

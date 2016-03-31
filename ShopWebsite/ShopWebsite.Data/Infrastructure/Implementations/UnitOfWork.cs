@@ -1,9 +1,4 @@
 ﻿using ShopWebsite.Data.Infrastructure.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopWebsite.Data.Infrastructure.Implementations
 {
@@ -17,7 +12,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
         }
         public UnitOfWork(IDbFactory dbFactory)
         {
-            this._dbFactory = dbFactory;
+            _dbFactory = dbFactory;
         }
 
         public void Commit()

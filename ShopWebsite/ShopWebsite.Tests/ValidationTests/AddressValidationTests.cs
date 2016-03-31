@@ -10,7 +10,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class AddressValidationTests
     {
         [TestMethod]
-        public void AddressValidationIsOK()
+        public void AddressValidationIsOk()
         {
             Address address = new Address()
             {

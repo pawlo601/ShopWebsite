@@ -3,7 +3,12 @@ namespace ShopWebsite.Data.Common
 {
     public static class Utilities
     {
-        private static Random rand { get; set; }
+        private static Random Rand { get; }
+
+        static Utilities()
+        {
+            Rand = new Random();
+        }
 
         public static int CalculateTotalPages(long numberOfRecords, int pageSize)
         {
@@ -28,7 +33,7 @@ namespace ShopWebsite.Data.Common
                 min = 1;
                 max = 100;
             }
-            return rand.Next(min, max);
+            return Rand.Next(min, max);
         }
 
         public static decimal GetRandomDecimal(decimal min, decimal max)
@@ -38,7 +43,7 @@ namespace ShopWebsite.Data.Common
                 min = 1.0M;
                 max = 100.0M;
             }
-            return ((decimal)rand.NextDouble()) * (max - min) + min;
+            return ((decimal)Rand.NextDouble()) * (max - min) + min;
         }
 
         public static string GetRandomIntAsString(int lenght)

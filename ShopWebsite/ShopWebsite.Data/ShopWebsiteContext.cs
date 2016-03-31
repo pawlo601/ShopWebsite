@@ -7,8 +7,8 @@ namespace ShopWebsite.Data
     [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
-        private static string cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public ShopWebsiteContext() : base(cs) { }
+        private static string _cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        public ShopWebsiteContext() : base(_cs) { }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
@@ -16,7 +16,7 @@ namespace ShopWebsite.Data
 
         public virtual void Commit()
         {
-            base.SaveChanges();
+            SaveChanges();
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

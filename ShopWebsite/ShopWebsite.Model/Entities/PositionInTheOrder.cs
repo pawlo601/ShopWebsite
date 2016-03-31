@@ -10,23 +10,23 @@ namespace ShopWebsite.Model.Entities
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PositionInTheOrderID { get; set; }
+        public int PositionInTheOrderId { get; set; }
 
         [Column("PRODUCT_ID")]
-        public int ProductID { get; set; }
+        public int ProductId { get; set; }
 
         [Column("CUSTOMER_ID")]
-        public int CustomerID { get; set; }
+        public int CustomerId { get; set; }
 
         [Column("QUANTITY")]
         public int Quantity { get; set; }
         public PositionInTheOrder() { }
 
-        public PositionInTheOrder(int id, int productID, int customerID, int quantity)
+        public PositionInTheOrder(int id, int productId, int customerId, int quantity)
         {
-            PositionInTheOrderID = id;
-            ProductID = productID;
-            CustomerID = customerID;
+            PositionInTheOrderId = id;
+            ProductId = productId;
+            CustomerId = customerId;
             Quantity = quantity;
         }
 
@@ -35,7 +35,7 @@ namespace ShopWebsite.Model.Entities
             var results = new List<ValidationResult>();
             if (Quantity <= 0)
             {
-                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new string[] { "Quantity" }));
+                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new[] { "Quantity" }));
             }
             return results;
         }

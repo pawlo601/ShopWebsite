@@ -4,16 +4,15 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 {
     public class DbFactory : Disposable, IDbFactory
     {
-        ShopWebsiteContext dbContext;
+        ShopWebsiteContext _dbContext;
         public ShopWebsiteContext Init()
         {
-            return dbContext ?? (dbContext = new ShopWebsiteContext());
+            return _dbContext ?? (_dbContext = new ShopWebsiteContext());
         }
 
         protected override void DisposeCore()
         {
-            if (dbContext != null)
-                dbContext.Dispose();
+            _dbContext?.Dispose();
         }
     }
 }

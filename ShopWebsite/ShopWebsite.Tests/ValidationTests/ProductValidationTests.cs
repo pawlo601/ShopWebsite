@@ -9,7 +9,7 @@ namespace ShopWebsite.Tests.ValidationTests
     public class ProductValidationTests
     {
         [TestMethod]
-        public void ProductValidationIsOK()
+        public void ProductValidationIsOk()
         {
             Product product = new Product()
             {

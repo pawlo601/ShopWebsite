@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+// ReSharper disable All
 
 namespace ShopWebsite.Model.Entities
 {
@@ -10,7 +11,7 @@ namespace ShopWebsite.Model.Entities
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AddressID { get; set; }
+        public int AddressId { get; set; }
 
         [Column("STREET")]
         [Required(AllowEmptyStrings =false, ErrorMessage ="No empty street name.")]
@@ -46,7 +47,7 @@ namespace ShopWebsite.Model.Entities
         {
             if (inizialize)
             {
-                AddressID = -1;
+                AddressId = -1;
                 Street = "street" ;
                 NumberOfBuilding = "123";
                 City = "City123";
@@ -90,7 +91,7 @@ namespace ShopWebsite.Model.Entities
 
         public override int GetHashCode()
         {
-            return AddressID;
+            return AddressId;
         }
     }
 }

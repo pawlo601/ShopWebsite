@@ -4,7 +4,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 {
     public class Disposable : IDisposable
     {
-        private bool isDisposed;
+        private bool _isDisposed;
 
         ~Disposable()
         {
@@ -18,12 +18,12 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
         }
         private void Dispose(bool disposing)
         {
-            if (!isDisposed && disposing)
+            if (!_isDisposed && disposing)
             {
                 DisposeCore();
             }
 
-            isDisposed = true;
+            _isDisposed = true;
         }
         protected virtual void DisposeCore(){}
     }

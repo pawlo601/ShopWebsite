@@ -11,7 +11,7 @@ namespace ShopWebsite.Model.Entities
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int OrderID { get; set; }
+        public int OrderId { get; set; }
 
         [Column("DATE_OF_SUBMISSION")]
         [DataType(DataType.Date, ErrorMessage = "Date of submission should be a date.")]
@@ -44,15 +44,15 @@ namespace ShopWebsite.Model.Entities
                 results);
             if (DateOfSubmission < new DateTime(1900, 1, 1))
             {
-                results.Add(new ValidationResult("Date of submission should be later than 1.1.1990", new string[] { "DateOfSubmission" }));
+                results.Add(new ValidationResult("Date of submission should be later than 1.1.1990", new[] { "DateOfSubmission" }));
             }
             if (DateOfSubmission > new DateTime(2017, 12, 31))
             {
-                results.Add(new ValidationResult("Date of submission should be ealier than 31.12.2017", new string[] { "DateOfSubmission" }));
+                results.Add(new ValidationResult("Date of submission should be ealier than 31.12.2017", new[] { "DateOfSubmission" }));
             }
             if (Value < 0.0M)
             {
-                results.Add(new ValidationResult("Value of order shouldn't be less than 0.0.", new string[] { "Value" }));
+                results.Add(new ValidationResult("Value of order shouldn't be less than 0.0.", new[] { "Value" }));
             }
             return results;
         }

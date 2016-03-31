@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -11,7 +10,7 @@ namespace ShopWebsite.Model.Entities
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ProductID { get; set; }
+        public int ProductId { get; set; }
 
         [Column("NAME_OF_PRODUCT")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty product name.")]
@@ -50,18 +49,18 @@ namespace ShopWebsite.Model.Entities
                 results);
             if (QuantityPerUnit <= 0)
             {
-                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new string[] { "QuantityPerUnit" }));
+                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new[] { "QuantityPerUnit" }));
             }
             if (PricePerUnit <= 0)
             {
-                results.Add(new ValidationResult("Price of product should be greater than 0.0", new string[] { "PricePerUnit" }));
+                results.Add(new ValidationResult("Price of product should be greater than 0.0", new[] { "PricePerUnit" }));
             }
             return results;
         }
 
         public int GetMyId()
         {
-            return ProductID;
+            return ProductId;
         }
     }
 }

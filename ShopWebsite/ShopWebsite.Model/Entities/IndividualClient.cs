@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ShopWebsite.Model.Entities
 {
-    public class IndividualClient : Customer, IValidatableObject
+    public class IndividualClient : Customer
     {
         [Column("NAME")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty client name.")]
@@ -48,11 +48,11 @@ namespace ShopWebsite.Model.Entities
                 results);
             if (Birthday <= new DateTime(1900,1,1))
             {
-                results.Add(new ValidationResult("Birthday should be later than 1.1.1990", new string[] { "Birthday" }));
+                results.Add(new ValidationResult("Birthday should be later than 1.1.1990", new[] { "Birthday" }));
             }
             if (Birthday >= new DateTime(2017,12,31))
             {
-                results.Add(new ValidationResult("Birthday should be ealier than 31.12.2017", new string[] { "Birthday" }));
+                results.Add(new ValidationResult("Birthday should be ealier than 31.12.2017", new[] { "Birthday" }));
             }
             return results;
         }
