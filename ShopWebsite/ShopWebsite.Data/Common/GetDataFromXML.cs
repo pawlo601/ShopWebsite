@@ -25,20 +25,19 @@ namespace ShopWebsite.Data.Common
                 object obj = deserializer.Deserialize(sr);
 
                 ListOfProducts xmlData = (ListOfProducts)obj;
-                List<Product> pr = new List<Product>();
+                List<Product> list = new List<Product>();
                 foreach (var a in xmlData.ProductList)
                 {
-                    pr.Add(ProductInXml.TransformFromXmlToClass(a));
+                    list.Add(ProductInXml.TransformFromXmlToClass(a));
                 }
-                return pr;
+                return list;
             }
         }
 
-        public static List<Order> GetOrders()
+        public static List<Company> GetCompanies()
         {
             string result;
-            var aasd = typeof(GetDataFromXml).Assembly.GetManifestResourceNames();
-            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Orders.xml"))
+            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Companies.xml"))
             {
                 using (StreamReader sr = new StreamReader(stream))
                 {
@@ -47,17 +46,42 @@ namespace ShopWebsite.Data.Common
             }
             using (TextReader sr = new StringReader(result))
             {
-                XmlSerializer deserializer = new XmlSerializer(typeof(ListOfOrders));
+                XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
                 object obj = deserializer.Deserialize(sr);
 
-                ListOfOrders xmlData = (ListOfOrders)obj;
-                List<Order> pr = new List<Order>();
-                foreach (var a in xmlData.OrderList)
+                ListOfCompanies xmlData = (ListOfCompanies)obj;
+                List<Company> list = new List<Company>();
+                foreach (var a in xmlData.CompanyList)
                 {
-                    pr.Add(OrderInXml.TransformFromXmlToClass(a));
+                    list.Add(CompanyInXml.TransformFromXmlToClass(a));
                 }
-                return pr;
+                return list;
             }
         }
+
+        public static List<IndividualClient> GetIndividualsClients()
+        {
+            string result;
+            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.IndividualClients.xml"))
+            {
+                using (StreamReader sr = new StreamReader(stream))
+                {
+                    result = sr.ReadToEnd();
+                }
+            }
+            using (TextReader sr = new StringReader(result))
+            {
+                XmlSerializer deserializer = new XmlSerializer(typeof (ListOfProducts));
+                object obj = deserializer.Deserialize(sr);
+
+                ListOfIndividualClients xmlData = (ListOfIndividualClients) obj;
+                List<IndividualClient> list = new List<IndividualClient>();
+                foreach (var a in xmlData.IndividualClientList)
+                {
+                    list.Add(IndividualClientInXml.TransformFromXmlToClass(a));
+                }
+                return list;
+            }
+        } 
     }
 }

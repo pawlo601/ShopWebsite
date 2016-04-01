@@ -45,6 +45,8 @@
     <Compile Include="EntitiesFromXML\CompanyInXml.cs" />
     <Compile Include="EntitiesFromXML\CustomerInXml.cs" />
     <Compile Include="EntitiesFromXML\IndividualClientInXml.cs" />
+    <Compile Include="EntitiesFromXML\ListOfCompanies.cs" />
+    <Compile Include="EntitiesFromXML\ListOfIndividualClients.cs" />
     <Compile Include="EntitiesFromXML\ListOfOrders.cs" />
     <Compile Include="EntitiesFromXML\ListOfProducts.cs" />
     <Compile Include="EntitiesFromXML\OrderInXml.cs" />
