@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace ShopWebsite.Data
 {
-    public class MyInitizlizer : DropCreateDatabaseIfModelChanges<ShopWebsiteContext>
+    public class MyInitizlizer : DropCreateDatabaseAlways<ShopWebsiteContext>
     {
         protected override void Seed(ShopWebsiteContext context)
         {

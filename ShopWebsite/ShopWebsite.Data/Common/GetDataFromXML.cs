@@ -1,7 +1,10 @@
-﻿using ShopWebsite.Model.Entities;
+﻿using System;
+using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.EntitiesFromXML;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Data.Common
@@ -10,78 +13,97 @@ namespace ShopWebsite.Data.Common
     {
         public static List<Product> GetProducts()
         {
-            string result;
-            //var aasd = typeof(GetDataFromXml).Assembly.GetManifestResourceNames();
-            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Products.xml"))
+            using (Stream stream =
+                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
+                    "ShopWebsite.Data.DataFromXML.Products.xml"))
+            using (StreamReader sr = new StreamReader(stream))
             {
-                using (StreamReader sr = new StreamReader(stream))
+                string result = sr.ReadToEnd();
+                using (TextReader tr = new StringReader(result))
                 {
-                    result = sr.ReadToEnd();
+                    XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
+                    var obj = deserializer.Deserialize(tr);
+                    ListOfProducts xmlData = (ListOfProducts)obj;
+                    return xmlData.ProductList.Select(ProductInXml.TransformFromXmlToClass).ToList();
                 }
-            }
-            using (TextReader sr = new StringReader(result))
-            {
-                XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
-                object obj = deserializer.Deserialize(sr);
-
-                ListOfProducts xmlData = (ListOfProducts)obj;
-                List<Product> list = new List<Product>();
-                foreach (var a in xmlData.ProductList)
-                {
-                    list.Add(ProductInXml.TransformFromXmlToClass(a));
-                }
-                return list;
             }
         }
-
         public static List<Company> GetCompanies()
         {
-            string result;
-            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.Companies.xml"))
+            using (Stream stream =
+                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
+                    "ShopWebsite.Data.DataFromXML.Companies.xml"))
+            using (StreamReader sr = new StreamReader(stream))
             {
-                using (StreamReader sr = new StreamReader(stream))
+                string result = sr.ReadToEnd();
+                using (TextReader tr = new StringReader(result))
                 {
-                    result = sr.ReadToEnd();
+                    XmlSerializer deserializer = new XmlSerializer(typeof(ListOfCompanies));
+                    var obj = deserializer.Deserialize(tr);
+                    ListOfCompanies xmlData = (ListOfCompanies)obj;
+                    return xmlData.CompanyList.Select(CompanyInXml.TransformFromXmlToClass).ToList();
                 }
             }
-            using (TextReader sr = new StringReader(result))
-            {
-                XmlSerializer deserializer = new XmlSerializer(typeof(ListOfProducts));
-                object obj = deserializer.Deserialize(sr);
 
-                ListOfCompanies xmlData = (ListOfCompanies)obj;
-                List<Company> list = new List<Company>();
-                foreach (var a in xmlData.CompanyList)
+        }
+        public static List<IndividualClient> GetIndividualsClients()
+        {
+            using (Stream stream =
+                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
+                    "ShopWebsite.Data.DataFromXML.IndividualClients.xml"))
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                string result = sr.ReadToEnd();
+                using (TextReader tr = new StringReader(result))
                 {
-                    list.Add(CompanyInXml.TransformFromXmlToClass(a));
+                    XmlSerializer deserializer = new XmlSerializer(typeof(ListOfIndividualClients));
+                    var obj = deserializer.Deserialize(tr);
+                    ListOfIndividualClients xmlData = (ListOfIndividualClients)obj;
+                    return xmlData.IndividualClientList.Select(IndividualClientInXml.TransformFromXmlToClass).ToList();
                 }
-                return list;
             }
         }
 
-        public static List<IndividualClient> GetIndividualsClients()
+        public static string GetConnectionString()
         {
-            string result;
-            using (Stream stream = typeof(GetDataFromXml).Assembly.GetManifestResourceStream("ShopWebsite.Data.DataFromXML.IndividualClients.xml"))
-            {
-                using (StreamReader sr = new StreamReader(stream))
-                {
-                    result = sr.ReadToEnd();
-                }
-            }
-            using (TextReader sr = new StringReader(result))
-            {
-                XmlSerializer deserializer = new XmlSerializer(typeof (ListOfProducts));
-                object obj = deserializer.Deserialize(sr);
 
-                ListOfIndividualClients xmlData = (ListOfIndividualClients) obj;
-                List<IndividualClient> list = new List<IndividualClient>();
-                foreach (var a in xmlData.IndividualClientList)
+            using (Stream stream =
+                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
+                    "ShopWebsite.Data.ConfigFile.xml"))
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                var xmlString = sr.ReadToEnd();
+                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
                 {
-                    list.Add(IndividualClientInXml.TransformFromXmlToClass(a));
+                    reader.ReadToFollowing("connectionString");
+                    reader.MoveToAttribute("value");
+                    string cs = reader.Value;
+                    return cs;
                 }
-                return list;
             }
-        } 
+
+        }
+        public static bool GetReloadDatabase()
+        {
+            using (Stream stream =
+                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(name: "ShopWebsite.Data.ConfigFile.xml"))
+            using (StreamReader sr = new StreamReader(stream))
+            {
+                var xmlString = sr.ReadToEnd();
+                using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
+                {
+                    reader.ReadToFollowing("reloadDatabase");
+                    reader.MoveToAttribute("value");
+                    string cs = reader.Value;
+                    switch (cs)
+                    {
+                        case "true":
+                            return true;
+                        default:
+                            return false;
+                    }
+                }
+            }
+        }
     }
 }

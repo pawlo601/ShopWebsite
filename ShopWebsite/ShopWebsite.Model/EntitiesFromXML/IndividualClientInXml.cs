@@ -26,7 +26,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
             }
             return new IndividualClient()
             {
-                ContactAddress = a.ContactAddress,
+                ContactAddress = AddressInXml.TransformFromXmlToClass(a.ContactAddress),
                 ContactTitle = a.ContactTitle,
                 CustomerId = a.CustomerId,
                 Mail1 = a.Mail1,
@@ -34,7 +34,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
                 Orders = orders,
                 Phone1 = a.Phone1,
                 Phone2 = a.Phon2,
-                ResidentialAddress = a.ResidentialAddress,
+                ResidentialAddress = AddressInXml.TransformFromXmlToClass(a.ResidentialAddress),
                 Birthday = a.Birthday,
                 Name = a.Name,
                 PeselNumber = a.PeselNumber,

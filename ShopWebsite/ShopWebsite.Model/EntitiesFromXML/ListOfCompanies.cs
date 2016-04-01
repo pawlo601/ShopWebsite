@@ -9,7 +9,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
 {
     public class ListOfCompanies
     {
-        [XmlElement("IndividualClient")]
+        [XmlElement("Company")]
         public List<CompanyInXml> CompanyList = new List<CompanyInXml>();
     }
 }

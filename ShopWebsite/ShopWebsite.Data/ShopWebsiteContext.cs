@@ -1,14 +1,18 @@
 ﻿using ShopWebsite.Model.Entities;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using ShopWebsite.Data.Common;
 
 namespace ShopWebsite.Data
 {
     [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
-        private static string _cs = @"Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-        public ShopWebsiteContext() : base(_cs) { }
+        public ShopWebsiteContext() : base(GetDataFromXml.GetConnectionString())
+        {
+            if(GetDataFromXml.GetReloadDatabase())
+                Database.Initialize(true); //is to innitialize every time app runs
+        }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }

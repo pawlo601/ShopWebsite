@@ -23,7 +23,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
             }
             return new Company()
             {
-                ContactAddress = a.ContactAddress,
+                ContactAddress = AddressInXml.TransformFromXmlToClass(a.ContactAddress),
                 CompanyName = a.CompanyName,
                 ContactTitle = a.ContactTitle,
                 CustomerId = a.CustomerId,
@@ -33,7 +33,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
                 Phone1 = a.Phone1,
                 Phone2 = a.Phon2,
                 Regon = a.Regon,
-                ResidentialAddress = a.ResidentialAddress,
+                ResidentialAddress = AddressInXml.TransformFromXmlToClass(a.ResidentialAddress),
                 TaxId = a.TaxId
             };
         }

@@ -11,9 +11,9 @@ namespace ShopWebsite.Model.EntitiesFromXML
         [XmlAttribute("contact_title")]
         public string ContactTitle { get; set; }
         [XmlElement(ElementName = "contact_address")]
-        public Address ContactAddress { get; set; }
+        public AddressInXml ContactAddress { get; set; }
         [XmlElement(ElementName = "residential_address")]
-        public Address ResidentialAddress { get; set; }
+        public AddressInXml ResidentialAddress { get; set; }
         [XmlAttribute("first_mail")]
         public string Mail1 { get; set; }
         [XmlAttribute("second_mail")]
@@ -23,7 +23,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
         [XmlAttribute("second_phone_number")]
         public string Phon2 { get; set; }
         [XmlArray(ElementName = "oreders")]
-        [XmlArrayItem("order", Type = typeof(Order))]
+        [XmlArrayItem("order", Type = typeof(OrderInXml))]
         public List<OrderInXml> Orders { get; set; }
     }
 }
