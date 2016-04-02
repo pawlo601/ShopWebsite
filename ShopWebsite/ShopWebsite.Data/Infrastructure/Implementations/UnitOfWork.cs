@@ -6,10 +6,8 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
     {
         private readonly IDbFactory _dbFactory;
         private ShopWebsiteContext _dbContext;
-        public ShopWebsiteContext DbContext
-        {
-            get { return _dbContext ?? (_dbContext = _dbFactory.Init()); }
-        }
+        public ShopWebsiteContext DbContext => _dbContext ?? (_dbContext = _dbFactory.Init());
+
         public UnitOfWork(IDbFactory dbFactory)
         {
             _dbFactory = dbFactory;

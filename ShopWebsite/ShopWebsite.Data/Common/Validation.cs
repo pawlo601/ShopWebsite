@@ -9,14 +9,12 @@ namespace ShopWebsite.Data.Common
     {
         public static void TransformValidationResultsToTransactionalInformation(List<ValidationResult> results, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
-            transaction.ReturnStatus = results.Capacity == 0;
+            transaction = new TransactionalInformation {ReturnStatus = results.Capacity == 0};
         }
 
         public static void BuildTransactionalInformationFromException(Exception exc, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
-            transaction.ReturnStatus = false;
+            transaction = new TransactionalInformation {ReturnStatus = false};
         }
     }
 }

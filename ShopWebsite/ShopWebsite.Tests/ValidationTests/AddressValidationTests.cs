@@ -1,8 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShopWebsite.Model.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using static System.ComponentModel.DataAnnotations.Validator;
 
 namespace ShopWebsite.Tests.ValidationTests
 {
@@ -20,13 +20,12 @@ namespace ShopWebsite.Tests.ValidationTests
                 PostalCode = "23-456",
                 Country = "Poland"
             };
-            bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
-                validateAllProperties);
+                true);
             Assert.AreEqual(results.Count, 0);
         }
 
@@ -41,13 +40,12 @@ namespace ShopWebsite.Tests.ValidationTests
                 PostalCode = "23-456",
                 Country = "Poland"
             };
-            bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
-                validateAllProperties);
+                true);
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Street name lenght should be greater than 4."));
         }
@@ -63,13 +61,12 @@ namespace ShopWebsite.Tests.ValidationTests
                 PostalCode = "23-456",
                 Country = "Poland"
             };
-            bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
-                validateAllProperties);
+                true);
             Assert.AreEqual(results.Count, 1);
             Assert.IsTrue(results[0].ErrorMessage.Equals("Street name lenght should be less than 21."));
         }
@@ -87,7 +84,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -109,7 +106,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -131,7 +128,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -153,7 +150,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -175,7 +172,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -197,7 +194,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -219,7 +216,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -241,7 +238,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -263,7 +260,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -285,7 +282,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -307,7 +304,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,
@@ -329,7 +326,7 @@ namespace ShopWebsite.Tests.ValidationTests
             };
             bool validateAllProperties = false;
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(
+            bool isValid = TryValidateObject(
                 address,
                 new ValidationContext(address, null, null),
                 results,

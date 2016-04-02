@@ -8,9 +8,9 @@ namespace ShopWebsite.Data
     [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
-        public ShopWebsiteContext() : base(GetDataFromXml.GetConnectionString())
+        public ShopWebsiteContext() : base(GetDataFromXml.ConnectionString)
         {
-            if(GetDataFromXml.GetReloadDatabase())
+            if(GetDataFromXml.ReloadDatabase)
                 Database.Initialize(true); //is to innitialize every time app runs
         }
 

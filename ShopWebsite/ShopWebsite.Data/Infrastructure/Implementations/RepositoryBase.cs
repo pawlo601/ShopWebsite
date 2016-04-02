@@ -14,11 +14,8 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
     {
         private ShopWebsiteContext _dataContext;
         private readonly IDbSet<T> _dbSet;
-        protected IDbFactory DbFactory { get; private set; }
-        protected ShopWebsiteContext DbContext
-        {
-            get { return _dataContext ?? (_dataContext = DbFactory.Init()); }
-        }
+        protected IDbFactory DbFactory { get; }
+        protected ShopWebsiteContext DbContext => _dataContext ?? (_dataContext = DbFactory.Init());
 
         protected RepositoryBase(IDbFactory dbFactory)
         {
@@ -28,16 +25,14 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 
         public virtual T AddNewEntity(T entity, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
             try
             {
-                bool validateAllProperties = false;
                 var results = new List<ValidationResult>();
-                bool isValid = Validator.TryValidateObject(
+                Validator.TryValidateObject(
                     entity,
                     new ValidationContext(entity, null, null),
                     results,
-                    validateAllProperties);
+                    true);
                 _dbSet.Add(entity);
                 Validation.TransformValidationResultsToTransactionalInformation(results, out transaction);
             }
@@ -53,7 +48,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             transaction = new TransactionalInformation();
             try
             {
-                IEnumerable<T> objects = _dbSet.Where<T>(where).AsEnumerable();
+                IEnumerable<T> objects = _dbSet.Where(where).AsEnumerable();
                 foreach (T obj in objects)
                     _dbSet.Remove(obj);
             }
@@ -83,11 +78,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             transaction = new TransactionalInformation();
             try
             {
-                List<T> items;
-                if (ifDesc)
-                     items = _dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                else
-                    items = _dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
                 totalRows = _dbSet.Where(where).Count();
                 transaction.ReturnStatus = true;
                 return items;
@@ -105,11 +96,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             transaction = new TransactionalInformation();
             try
             {
-                List<T> items;
-                if (ifDesc)
-                    items = _dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                else
-                    items = _dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
                 totalRows = _dbSet.Where(where).Count();
                 transaction.ReturnStatus = true;
                 return items;
@@ -127,11 +114,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             transaction = new TransactionalInformation();
             try
             {
-                List<T> items;
-                if (ifDesc)
-                    items = _dbSet.Where(where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                else
-                    items = _dbSet.Where(where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
                 totalRows = _dbSet.Where(where).Count();
                 transaction.ReturnStatus = true;
                 return items;
@@ -149,14 +132,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             try
             {
                 T item = _dbSet.Find(id);
-                if (item != null)
-                {
-                    transaction.ReturnStatus = true;
-                }
-                else
-                {
-                    transaction.ReturnStatus = false;
-                }
+                transaction.ReturnStatus = item != null;
                 return item;
             }
             catch (Exception exc)
@@ -171,15 +147,8 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             transaction = new TransactionalInformation();
             try
             {
-                T item = _dbSet.Where(where).FirstOrDefault<T>();
-                if (item != null)
-                {
-                    transaction.ReturnStatus = true;
-                }
-                else
-                {
-                    transaction.ReturnStatus = false;
-                }
+                T item = _dbSet.Where(where).FirstOrDefault();
+                transaction.ReturnStatus = item != null;
                 return item;
             }
             catch (Exception exc)

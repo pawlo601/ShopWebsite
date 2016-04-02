@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShopWebsite.Data.Repositories.Implementations;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Model.Entities;
@@ -21,7 +20,7 @@ namespace ShopWebsite.Tests.RepositoryTests
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
-            TransactionalInformation tr = new TransactionalInformation();
+            TransactionalInformation tr;
             pr.AddNewEntity(product, out tr);
             Assert.IsTrue(tr.ReturnStatus);
         }
