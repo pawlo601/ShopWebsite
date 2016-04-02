@@ -3,7 +3,7 @@ using ShopWebsite.Model.Entities;
 
 namespace ShopWebsite.Data.Repositories.Interfaces
 {
-    public interface IOrderRepository : IRepository<Order>
+    public interface ICompanyReposioty : IRepository<Company>
     {
     }
 }

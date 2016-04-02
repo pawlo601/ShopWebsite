@@ -8,14 +8,12 @@ namespace ShopWebsite.Data.Services.Implementations
     public class DatabaseService: IDatabaseService
     {
         private readonly IProductRepository _productRepository;
-        private readonly IOrderRepository _orderRepository;
         public readonly IUnitOfWork UnitOfWork;
 
-        public DatabaseService(IUnitOfWork unitOfWork, IProductRepository productRepository, IOrderRepository orderRepository)
+        public DatabaseService(IUnitOfWork unitOfWork, IProductRepository productRepository)
         {
             UnitOfWork = unitOfWork;
             _productRepository = productRepository;
-            _orderRepository = orderRepository;
         }
 
         public void SavaAllProductsToXml()

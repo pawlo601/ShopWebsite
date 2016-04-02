@@ -2,4 +2,10 @@
 <config-info>
   <connectionString value="Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"/>
   <reloadDatabase value="true"/>
+  <placeToSaveProductsInXml value="D:\"/>
+  <fileNameToSaveProductsInXml value="Products.xml"/>
+  <placeToSaveCompaniesInXml value="D:\"/>
+  <fileNameToSaveCompaniesInXml value="Companies.xml"/>
+  <placeToSaveIndividualClientsInXml value="D:\"/>
+  <fileNameToSaveIndividualClientsInXml value="IndividualClients.xml"/>
 </config-info>
