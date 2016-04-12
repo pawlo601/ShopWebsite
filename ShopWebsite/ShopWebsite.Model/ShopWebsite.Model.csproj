@@ -60,8 +60,15 @@
     <Compile Include="Entities\Customer\Company.cs" />
     <Compile Include="Entities\Customer\Customer.cs" />
     <Compile Include="Entities\Customer\IndividualClient.cs" />
+    <Compile Include="Entities\Discount\ConstantDiscount.cs" />
+    <Compile Include="Entities\Discount\Discount.cs" />
+    <Compile Include="Entities\Discount\OrderDiscount.cs" />
+    <Compile Include="Entities\Discount\PercantageDiscount.cs" />
+    <Compile Include="Entities\Discount\ProductDiscount.cs" />
     <Compile Include="Entities\Order\Order.cs" />
-    <Compile Include="Entities\Order\PositionInTheOrder.cs" />
+    <Compile Include="Entities\Order\ItemInOrder.cs" />
+    <Compile Include="Entities\Order\Status.cs" />
+    <Compile Include="Entities\Order\StatusOrder.cs" />
     <Compile Include="Entities\Product\Cost.cs" />
     <Compile Include="Entities\Product\Currency.cs" />
     <Compile Include="Entities\Product\Price.cs" />

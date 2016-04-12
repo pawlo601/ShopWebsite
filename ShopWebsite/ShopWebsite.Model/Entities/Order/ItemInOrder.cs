@@ -5,30 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ShopWebsite.Model.Entities.Order
 {
     [Table("POSITIONS_IN_THE_ORDERS")]
-    public class PositionInTheOrder : IValidatableObject
+    public class ItemInOrder : IValidatableObject
     {
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PositionInTheOrderId { get; set; }
+        public int Id { get; set; }
 
         [Column("PRODUCT_ID")]
         public int ProductId { get; set; }
 
-        [Column("CUSTOMER_ID")]
-        public int CustomerId { get; set; }
-
         [Column("QUANTITY")]
         public int Quantity { get; set; }
-        public PositionInTheOrder() { }
-
-        public PositionInTheOrder(int id, int productId, int customerId, int quantity)
-        {
-            PositionInTheOrderId = id;
-            ProductId = productId;
-            CustomerId = customerId;
-            Quantity = quantity;
-        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

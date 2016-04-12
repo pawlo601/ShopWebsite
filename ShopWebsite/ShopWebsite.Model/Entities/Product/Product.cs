@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ShopWebsite.Model.Entities.Discount;
 
 namespace ShopWebsite.Model.Entities.Product
 {
@@ -33,6 +34,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         [Required(ErrorMessage = "Quantity of product has to be given.")]
         public Quantity Quantity { get; set; }
+        public IList<ProductDiscount> ProductDiscounts { get; set; } 
         #endregion
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
