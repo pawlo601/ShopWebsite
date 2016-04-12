@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ShopWebsite.Model.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ShopWebsite.Model.Entities.Order;
 
 namespace ShopWebsite.Tests.ValidationTests
 {

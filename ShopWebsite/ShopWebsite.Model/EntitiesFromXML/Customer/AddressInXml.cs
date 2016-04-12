@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
-using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Customer;
 
-namespace ShopWebsite.Model.EntitiesFromXML
+namespace ShopWebsite.Model.EntitiesFromXML.Customer
 {
     public class AddressInXml
     {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Customer
 {
     [Table("CUSTOMERS")]
     public abstract class Customer : IValidatableObject
@@ -43,7 +43,7 @@ namespace ShopWebsite.Model.Entities
         [Required(AllowEmptyStrings = false, ErrorMessage = "Second phone number shouldn't be empty.")]
         public string Phone2 { get; set; }
 
-        public IList<Order> Orders { get; set; }
+        public IList<Order.Order> Orders { get; set; }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

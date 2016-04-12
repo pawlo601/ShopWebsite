@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Order
 {
     [Table("POSITIONS_IN_THE_ORDERS")]
     public class PositionInTheOrder : IValidatableObject

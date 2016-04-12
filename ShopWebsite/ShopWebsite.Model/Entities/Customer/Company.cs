@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Customer
 {
     public class Company : Customer
     {

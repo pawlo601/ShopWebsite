@@ -1,9 +1,10 @@
-﻿using ShopWebsite.Model.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Order;
 
-namespace ShopWebsite.Model.EntitiesFromXML
+namespace ShopWebsite.Model.EntitiesFromXML.Order
 {
     public class OrderInXml
     {
@@ -18,14 +19,10 @@ namespace ShopWebsite.Model.EntitiesFromXML
         [XmlArray(ElementName = "items")]
         [XmlArrayItem("item", Type = typeof(PositionInTheOrderInXml))]
         public List<PositionInTheOrderInXml> OrderedItems { get; set; }
-        public static Order TransformFromXmlToClass(OrderInXml a)
+        public static Entities.Order.Order TransformFromXmlToClass(OrderInXml a)
         {
-            List<PositionInTheOrder> b = new List<PositionInTheOrder>();
-            foreach (var f in a.OrderedItems)
-            {
-                b.Add(PositionInTheOrderInXml.TransformFromXmlToClass(f));
-            }
-            return new Order()
+            List<PositionInTheOrder> b = a.OrderedItems.Select(f => PositionInTheOrderInXml.TransformFromXmlToClass(f)).ToList();
+            return new Entities.Order.Order()
             {
                 OrderId = a.Id,
                 DateOfSubmission = a.DateOfSubmission,

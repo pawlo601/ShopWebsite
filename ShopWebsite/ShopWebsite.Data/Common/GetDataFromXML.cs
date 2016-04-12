@@ -1,12 +1,12 @@
 ﻿using System;
-using ShopWebsite.Model.Entities;
-using ShopWebsite.Model.EntitiesFromXML;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Customer;
 using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.EntitiesFromXML.Customer;
 using ShopWebsite.Model.EntitiesFromXML.Product;
 
 namespace ShopWebsite.Data.Common

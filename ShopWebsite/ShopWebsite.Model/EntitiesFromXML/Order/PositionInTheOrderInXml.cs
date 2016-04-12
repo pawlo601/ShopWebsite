@@ -1,7 +1,7 @@
-﻿using ShopWebsite.Model.Entities;
-using System.Xml.Serialization;
+﻿using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Order;
 
-namespace ShopWebsite.Model.EntitiesFromXML
+namespace ShopWebsite.Model.EntitiesFromXML.Order
 {
     public class PositionInTheOrderInXml
     {

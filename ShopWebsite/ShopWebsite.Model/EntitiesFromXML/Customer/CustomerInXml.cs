@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
+using ShopWebsite.Model.EntitiesFromXML.Order;
 
-namespace ShopWebsite.Model.EntitiesFromXML
+namespace ShopWebsite.Model.EntitiesFromXML.Customer
 {
     public abstract class CustomerInXml
     {

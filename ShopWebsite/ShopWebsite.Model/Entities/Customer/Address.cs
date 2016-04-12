@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-// ReSharper disable All
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Customer
 {
     [Table("ADDRESSES")]
     public class Address: IValidatableObject

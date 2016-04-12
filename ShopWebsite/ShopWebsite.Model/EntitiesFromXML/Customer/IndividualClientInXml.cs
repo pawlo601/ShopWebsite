@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Customer;
+using ShopWebsite.Model.EntitiesFromXML.Order;
 
-namespace ShopWebsite.Model.EntitiesFromXML
+namespace ShopWebsite.Model.EntitiesFromXML.Customer
 {
     public class IndividualClientInXml:CustomerInXml
     {
@@ -19,11 +22,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
         public static IndividualClient TransformFromXmlToClass(IndividualClientInXml a)
         {
             var list = a.Orders;
-            List<Order> orders = new List<Order>();
-            foreach (OrderInXml orderInXml in list)
-            {
-                orders.Add(OrderInXml.TransformFromXmlToClass(orderInXml));
-            }
+            List<Entities.Order.Order> orders = list.Select(orderInXml => OrderInXml.TransformFromXmlToClass(orderInXml)).ToList();
             return new IndividualClient()
             {
                 ContactAddress = AddressInXml.TransformFromXmlToClass(a.ContactAddress),
