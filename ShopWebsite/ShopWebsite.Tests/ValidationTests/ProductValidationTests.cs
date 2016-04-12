@@ -2,6 +2,7 @@
 using ShopWebsite.Model.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Tests.ValidationTests
 {
@@ -13,8 +14,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "234wertsd435",
+                Name = "name123",
+                Description = "234wertsd435",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -33,8 +34,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "",
-                ProductDescription = "234wertsd435",
+                Name = "",
+                Description = "234wertsd435",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -54,8 +55,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "123",
-                ProductDescription = "234wertsd435",
+                Name = "123",
+                Description = "234wertsd435",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -75,8 +76,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "sodfhgfigutgyenrt gir gbuergtvnertigvenrtgiuetrnrtugytrbgie",
-                ProductDescription = "234wertsd435",
+                Name = "sodfhgfigutgyenrt gir gbuergtvnertigvenrtgiuetrnrtugytrbgie",
+                Description = "234wertsd435",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -96,8 +97,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "",
+                Name = "name123",
+                Description = "",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -117,8 +118,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "23",
+                Name = "name123",
+                Description = "23",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -138,8 +139,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "012301234567894567012345678989010123456789234567890123012345678945670123456789890101234567892345678954664654",
+                Name = "name123",
+                Description = "012301234567894567012345678989010123456789234567890123012345678945670123456789890101234567892345678954664654",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -160,8 +161,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "sdfgsdfg",
+                Name = "name123",
+                Description = "sdfgsdfg",
                 PricePerUnit = -123.45M,
                 QuantityPerUnit = 12.45M
             };
@@ -181,8 +182,8 @@ namespace ShopWebsite.Tests.ValidationTests
         {
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "2sdfg3",
+                Name = "name123",
+                Description = "2sdfg3",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = -12.45M
             };

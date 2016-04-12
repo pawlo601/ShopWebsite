@@ -2,6 +2,7 @@
 using ShopWebsite.Data.Repositories.Implementations;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Tests.RepositoryTests
 {
@@ -15,8 +16,8 @@ namespace ShopWebsite.Tests.RepositoryTests
             ProductRepository pr = new ProductRepository(dbf);
             Product product = new Product()
             {
-                ProductName = "name123",
-                ProductDescription = "234wertsd435",
+                Name = "name123",
+                Description = "234wertsd435",
                 PricePerUnit = 123.45M,
                 QuantityPerUnit = 12.45M
             };

@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.EntitiesFromXML.Product;
 
 namespace ShopWebsite.Data.Common
 {
