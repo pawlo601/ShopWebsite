@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Product
 {
@@ -9,22 +12,57 @@ namespace ShopWebsite.Model.Entities.Product
     {
         #region variables
         [Key]
-        [Column("Id")]
+        [Column("id")]
+        [XmlAttribute("id")]//for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("Name_of_unit")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "No empty unit name.")]
-        [MinLength(3, ErrorMessage = "Unit name lenght should be greater than 2.")]
-        [MaxLength(10, ErrorMessage = "Unit name lenght should be less than 11.")]
+        [Column("unit_name")]
+        [XmlAttribute("unit_name")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Unit name cannot be empty.")]
+        [MinLength(3, ErrorMessage = "Length of unit name should be greater than or equal to 3.")]
+        [MaxLength(10, ErrorMessage = "Length of unit name should be less than or equal to 10.")]
         public string Name { get; set; }
 
-        [Column("Shortcut_of_unit")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "No unit shortcut.")]
-        [MinLength(1, ErrorMessage = "Unit lenght should be greater than 0.")]
-        [MaxLength(5, ErrorMessage = "Unit lenght should be less than 6.")]
-        public string ShortCut { get; set; }
+        [Column("unit_shortcut")]
+        [XmlAttribute("unit_name")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Unit shortcut cannot be empty.")]
+        [MinLength(1, ErrorMessage = "Length of unit shortcut should be greater than or equal to 1.")]
+        [MaxLength(5, ErrorMessage = "Length of unit shortcut should be less than or equal to 5.")]
+        public string Shortcut { get; set; }
         #endregion
+
+        private static Unit[] _tableUnits { get; set; }
+
+        private Unit() { }
+
+        public static Unit GetOneUnit()
+        {
+            Random rand = new Random();
+            int r = rand.Next()%4;
+            if (_tableUnits != null)
+                return _tableUnits[r];
+            _tableUnits=new Unit[4];
+            _tableUnits[0] = new Unit() {Id = -1, Name = "Kilogram", Shortcut = "KG"};
+            _tableUnits[1] = new Unit() { Id = -1, Name = "Sztuka", Shortcut = "SZT" };
+            _tableUnits[2] = new Unit() { Id = -1, Name = "Litr", Shortcut = "L" };
+            _tableUnits[3] = new Unit() { Id = -1, Name = "Para", Shortcut = "Para" };
+            return _tableUnits[r];
+        }
+
+        public static Unit GetOneUnit(int id)
+        {
+            if (_tableUnits == null)
+                return GetOneUnit();
+            foreach (Unit unit in _tableUnits.Where(unit => unit.Id == id))
+                return unit;
+            return GetOneUnit();
+        }
+
+        public static void SetTableUnits(Unit[] table)
+        {
+            _tableUnits = table;
+        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -32,8 +70,8 @@ namespace ShopWebsite.Model.Entities.Product
             Validator.TryValidateProperty(Name,
                 new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
-            Validator.TryValidateProperty(ShortCut,
-                new ValidationContext(this, null, null) { MemberName = "ShortCut" },
+            Validator.TryValidateProperty(Shortcut,
+                new ValidationContext(this, null, null) { MemberName = "Shortcut" },
                 results);
             return results;
         }

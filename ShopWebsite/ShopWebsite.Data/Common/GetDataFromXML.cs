@@ -6,8 +6,8 @@ using System.Xml;
 using System.Xml.Serialization;
 using ShopWebsite.Model.Entities.Customer;
 using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.EntitiesFromXML;
 using ShopWebsite.Model.EntitiesFromXML.Customer;
-using ShopWebsite.Model.EntitiesFromXML.Product;
 
 namespace ShopWebsite.Data.Common
 {

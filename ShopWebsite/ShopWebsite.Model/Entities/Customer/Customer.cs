@@ -24,7 +24,6 @@ namespace ShopWebsite.Model.Entities.Customer
             Validator.TryValidateProperty(ResidentialAddress,
                 new ValidationContext(this, null, null) { MemberName = "ResidentialAddress" },
                 results);
-            
             if (ContactAddress != null)
             {
                 results.AddRange(ContactAddress.Validate(validationContext));

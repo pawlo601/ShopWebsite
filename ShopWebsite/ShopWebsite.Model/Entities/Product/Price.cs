@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Product
 {
@@ -9,17 +11,35 @@ namespace ShopWebsite.Model.Entities.Product
     {
         #region variables
         [Key]
-        [Column("Id")]
+        [Column("id")]
+        [XmlAttribute("id")]//for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("Value_of_price")]
+        [Column("value_of_price")]
+        [XmlAttribute("id")]//for xml
         [Required(ErrorMessage = "Value should be given.")]
         public decimal Value { get; set; }
 
+        [XmlElement(ElementName = "currency")]//for xml
         [Required(ErrorMessage = "Currency should be given.")]
         public Currency Currency { get; set; }
         #endregion
+
+        public Price()
+        {
+            Random rand = new Random();
+            Id = -1;
+            Value = rand.Next()%10000/100;
+            Currency = Currency.GetOneCurrency();
+        }
+
+        public Price(int id, decimal value, Currency currency)
+        {
+            Id = id;
+            Value = value;
+            Currency = currency;
+        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
