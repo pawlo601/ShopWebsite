@@ -10,7 +10,7 @@ namespace ShopWebsite.Model.Entities.Customer
         [Key]
         [Column("ID")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AddressId { get; set; }
+        public int Id { get; set; }
 
         [Column("STREET")]
         [Required(AllowEmptyStrings =false, ErrorMessage ="No empty street name.")]
@@ -46,7 +46,7 @@ namespace ShopWebsite.Model.Entities.Customer
         {
             if (inizialize)
             {
-                AddressId = -1;
+                Id = -1;
                 Street = "street" ;
                 NumberOfBuilding = "123";
                 City = "City123";
@@ -90,7 +90,7 @@ namespace ShopWebsite.Model.Entities.Customer
 
         public override int GetHashCode()
         {
-            return AddressId;
+            return Id;
         }
     }
 }

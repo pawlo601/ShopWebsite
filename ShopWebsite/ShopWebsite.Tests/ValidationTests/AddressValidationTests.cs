@@ -2,6 +2,7 @@
 using ShopWebsite.Model.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using ShopWebsite.Model.Entities.Customer;
 using static System.ComponentModel.DataAnnotations.Validator;
 
 namespace ShopWebsite.Tests.ValidationTests

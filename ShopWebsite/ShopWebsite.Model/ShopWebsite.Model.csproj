@@ -58,8 +58,15 @@
     <Compile Include="EntitiesFromXML\Product\UnitInXml.cs" />
     <Compile Include="Entities\Customer\Address.cs" />
     <Compile Include="Entities\Customer\Company.cs" />
+    <Compile Include="Entities\Customer\CompanyInformation.cs" />
     <Compile Include="Entities\Customer\Customer.cs" />
+    <Compile Include="Entities\Customer\Employee.cs" />
     <Compile Include="Entities\Customer\IndividualClient.cs" />
+    <Compile Include="Entities\Customer\Password.cs" />
+    <Compile Include="Entities\Customer\PersonalInformation.cs" />
+    <Compile Include="Entities\Customer\Role.cs" />
+    <Compile Include="Entities\Customer\User.cs" />
+    <Compile Include="Entities\Customer\UserHasRole.cs" />
     <Compile Include="Entities\Discount\ConstantDiscount.cs" />
     <Compile Include="Entities\Discount\Discount.cs" />
     <Compile Include="Entities\Discount\OrderDiscount.cs" />
