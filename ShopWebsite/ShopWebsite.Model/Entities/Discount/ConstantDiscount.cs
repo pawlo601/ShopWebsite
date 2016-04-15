@@ -26,28 +26,36 @@ namespace ShopWebsite.Model.Entities.Discount
                 Id = -1,
                 Name = "ConstD1",
                 Value = 10.45M,
-                IsForProduct = true
+                IsForProduct = true, 
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(10)
             };
             _tableConstantDiscounts[1] = new ConstantDiscount()
             {
                 Id = -1,
                 Name = "ConstD2",
                 Value = 0.34M,
-                IsForProduct = true
+                IsForProduct = true,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(2)
             };
             _tableConstantDiscounts[2] = new ConstantDiscount()
             {
                 Id = -1,
                 Name = "ConstD3",
                 Value = 45.09M,
-                IsForProduct = false
+                IsForProduct = false,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(5)
             };
             _tableConstantDiscounts[3] = new ConstantDiscount()
             {
                 Id = -1,
                 Name = "ConstD4",
                 Value = 0.99M,
-                IsForProduct = false
+                IsForProduct = false,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(14)
             };
         }
 

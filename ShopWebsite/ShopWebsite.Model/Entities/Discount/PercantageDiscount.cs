@@ -26,28 +26,36 @@ namespace ShopWebsite.Model.Entities.Discount
                 Id = -1,
                 Name = "PercentD1",
                 Percent = 0.45M,
-                IsForProduct = true
+                IsForProduct = true,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(14)
             };
             _tablePercantageDiscounts[1] = new PercantageDiscount()
             {
                 Id = -1,
                 Name = "PercentD2",
                 Percent = 0.34M,
-                IsForProduct = false
+                IsForProduct = false,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(2)
             };
             _tablePercantageDiscounts[2] = new PercantageDiscount()
             {
                 Id = -1,
                 Name = "PercentD3",
                 Percent = 0.09M,
-                IsForProduct = true
+                IsForProduct = true,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(7)
             };
             _tablePercantageDiscounts[3] = new PercantageDiscount()
             {
                 Id = -1,
                 Name = "PercentD4",
                 Percent = 0.99M,
-                IsForProduct = false
+                IsForProduct = false,
+                StartDiscount = DateTime.Now,
+                EndDisscount = DateTime.Now.AddDays(31)
             };
         }
 

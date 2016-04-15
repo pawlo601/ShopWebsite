@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
+    [Table("Discounts",Schema = "Discount")]
     public abstract class Discount : IValidatableObject
     {
         [Key]
@@ -24,6 +26,16 @@ namespace ShopWebsite.Model.Entities.Discount
         [XmlAttribute("is_for_product")]//for xml
         [Required(ErrorMessage = "IsForProduct cannot be empty.")]
         public bool IsForProduct { get; set; }
+        
+        [Column("start_discount")]
+        [XmlAttribute("start_discount")]
+        [Required(ErrorMessage = "Time of start of discount cannot be empty.")]
+        public DateTime StartDiscount { get; set; }
+
+        [Column("end_discount")]
+        [XmlAttribute("end_discount")]
+        [Required(ErrorMessage = "Time of end of discount cannot be empty.")]
+        public DateTime EndDisscount { get; set; }
 
         public abstract decimal CountDiscount(decimal value);
 
@@ -36,6 +48,10 @@ namespace ShopWebsite.Model.Entities.Discount
             Validator.TryValidateProperty(IsForProduct,
                 new ValidationContext(this, null, null) { MemberName = "IsForProduct" },
                 results);
+            if (StartDiscount.CompareTo(EndDisscount) > 0)
+            {
+                results.Add(new ValidationResult("Time of start should be earlier than end.", new[] { "StartDiscount", "EndDisscount" }));
+            }
             return results;
         }
     }
