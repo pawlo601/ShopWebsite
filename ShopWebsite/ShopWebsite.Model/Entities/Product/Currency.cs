@@ -43,9 +43,13 @@ namespace ShopWebsite.Model.Entities.Product
         public static Currency GetOneCurrency()
         {
             Random rand = new Random();
-            int r = rand.Next() % 4;
+            
             if (_tableCurrencies != null)
-                return _tableCurrencies[r];
+            {
+                int r1 = rand.Next() % _tableCurrencies.Length;
+                return _tableCurrencies[r1];
+            }
+            int r = rand.Next() % 4;
             _tableCurrencies = new Currency[4];
             _tableCurrencies[0] = new Currency() { Id = -1, Name = "Zloty", Shortcut = "PLN" };
             _tableCurrencies[1] = new Currency() { Id = -1, Name = "Funt", Shortcut = "GBP" };

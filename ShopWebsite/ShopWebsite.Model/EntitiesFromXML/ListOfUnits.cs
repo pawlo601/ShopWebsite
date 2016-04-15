@@ -6,7 +6,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
 {
     public class ListOfUnits
     {
-        [XmlElement("Product")]
+        [XmlElement("unit")]
         public List<Unit> UnitList = new List<Unit>();
     }
 }

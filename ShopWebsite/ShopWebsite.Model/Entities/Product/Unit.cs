@@ -39,10 +39,14 @@ namespace ShopWebsite.Model.Entities.Product
         public static Unit GetOneUnit()
         {
             Random rand = new Random();
-            int r = rand.Next()%4;
+            
             if (_tableUnits != null)
-                return _tableUnits[r];
-            _tableUnits=new Unit[4];
+            {
+                int r1 = rand.Next() % _tableUnits.Length;
+                return _tableUnits[r1];
+            }
+            int r = rand.Next() % 4;
+            _tableUnits =new Unit[4];
             _tableUnits[0] = new Unit() {Id = -1, Name = "Kilogram", Shortcut = "KG"};
             _tableUnits[1] = new Unit() { Id = -1, Name = "Sztuka", Shortcut = "SZT" };
             _tableUnits[2] = new Unit() { Id = -1, Name = "Litr", Shortcut = "L" };

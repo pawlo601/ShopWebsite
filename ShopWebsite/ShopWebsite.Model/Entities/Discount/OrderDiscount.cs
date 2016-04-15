@@ -1,16 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    public class OrderDiscount
+    public class OrderDiscount : SomeDiscount
     {
-        public int Id { get; set; }
-        public int DiscountId { get; set; }
-        public Discount Discount { get; set; }
-        public int OrderId { get; set; }
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            results.AddRange(base.Validate(validationContext));
+            if (Discount != null)
+            {
+                if (Discount.IsForProduct)
+                {
+                    results.Add(new ValidationResult("This discount is not for order.", new[] { "Discount" }));
+                }
+            }
+            return results;
+        }
     }
 }

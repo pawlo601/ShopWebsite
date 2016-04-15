@@ -16,11 +16,6 @@ namespace ShopWebsite.Model.Entities.Product
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("product_id")]
-        [XmlAttribute("product_id")]//for xml
-        [Required(ErrorMessage = "Product id cannot be empty.")]
-        public int ProductId { get; set; }
-
         [Column("tax")]
         [XmlAttribute("tax")]//for xml
         [Required(ErrorMessage = "Tax cannot be empty.")]
@@ -31,11 +26,10 @@ namespace ShopWebsite.Model.Entities.Product
         public IList<Price> Prices { get; set; }
         #endregion
 
-        public Cost(int productId = -1)
+        public Cost()
         {
             Random rand = new Random();
             Id = -1;
-            ProductId = productId;
             Tax = rand.Next()%1000/1000;
             int p = rand.Next()%5;
             Prices = new List<Price>();
@@ -45,10 +39,9 @@ namespace ShopWebsite.Model.Entities.Product
             }
         }
 
-        public Cost(int id, int productId, double tax, IList<Price> prices)
+        public Cost(int id, double tax, IList<Price> prices)
         {
             Id = id;
-            ProductId = productId;
             Tax = tax;
             Prices = prices;
         }
@@ -56,13 +49,6 @@ namespace ShopWebsite.Model.Entities.Product
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
-            Validator.TryValidateProperty(ProductId,
-                new ValidationContext(this, null, null) {MemberName = "ProductId"},
-                results);
-            if (ProductId < 0)
-            {
-                results.Add(new ValidationResult("Product id must be greater than 0.", new[] {"ProductId"}));
-            }
             Validator.TryValidateProperty(Tax,
                 new ValidationContext(this, null, null) {MemberName = "Tax"},
                 results);

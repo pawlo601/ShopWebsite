@@ -6,7 +6,7 @@ namespace ShopWebsite.Model.EntitiesFromXML
 {
     public class ListOfCurrencies
     {
-        [XmlElement("Product")]
+        [XmlElement("currency")]
         public List<Currency> CurrencyList = new List<Currency>();
     }
 }

@@ -1,15 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    public abstract class Discount
+    public abstract class Discount : IValidatableObject
     {
+        [Key]
+        [Column("id")]
+        [XmlAttribute("id")]//for xml
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Column("name_of_discount")]
+        [XmlAttribute("name_of_discount")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Discount name cannot be empty.")]
+        [MinLength(5, ErrorMessage = "Discount of product name should be greater than or equal to 5.")]
+        [MaxLength(20, ErrorMessage = "Discount of product name should be less than or equal to 20.")]
         public string Name { get; set; }
+
+        [Column("is_for_product")]
+        [XmlAttribute("is_for_product")]//for xml
+        [Required(ErrorMessage = "IsForProduct cannot be empty.")]
+        public bool IsForProduct { get; set; }
+
         public abstract decimal CountDiscount(decimal value);
+
+        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var results = new List<ValidationResult>();
+            Validator.TryValidateProperty(Name,
+                new ValidationContext(this, null, null) { MemberName = "Name" },
+                results);
+            Validator.TryValidateProperty(IsForProduct,
+                new ValidationContext(this, null, null) { MemberName = "IsForProduct" },
+                results);
+            return results;
+        }
     }
 }

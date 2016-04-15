@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using ShopWebsite.Model.Entities.Discount;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Discount;
 
 namespace ShopWebsite.Model.Entities.Product
 {
@@ -45,7 +45,7 @@ namespace ShopWebsite.Model.Entities.Product
         public Quantity Quantity { get; set; }
 
         [XmlArray(ElementName = "product_discounts")]//for xml
-        [XmlArrayItem("discount", Type = typeof(ProductDiscount))]//for xml
+        [XmlArrayItem("discount", Type = typeof(Discount.Discount))]//for xml
         public IList<ProductDiscount> ProductDiscounts { get; set; } 
         #endregion
 
@@ -55,10 +55,14 @@ namespace ShopWebsite.Model.Entities.Product
             Id = productId;
             Name = "Product name " + rand.Next()%100000;
             Description = "Description of product " + rand.Next()%1000000;
-            Cost = new Cost(productId);
+            Cost = new Cost();
             Discount = rand.Next()%100/100;
             Quantity = new Quantity();
+            int p = rand.Next()%5;
             ProductDiscounts = new List<ProductDiscount>();
+            for (int i = 0; i < p; i++)
+                    ProductDiscounts.Add(new ProductDiscount());
+
         }
 
         public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity, IList<ProductDiscount> productDiscounts)
@@ -70,11 +74,6 @@ namespace ShopWebsite.Model.Entities.Product
             Discount = discount;
             Quantity = quantity;
             ProductDiscounts = productDiscounts;
-        }
-
-        public void SetCostGoodProductId()
-        {
-            Cost.ProductId = Id;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -103,9 +102,9 @@ namespace ShopWebsite.Model.Entities.Product
             }
             if (ProductDiscounts != null)
             {
-                foreach (ProductDiscount discount in ProductDiscounts)
+                foreach (ProductDiscount productDiscount in ProductDiscounts)
                 {
-                    results.AddRange(discount.Validate(validationContext));
+                    results.AddRange(productDiscount.Validate(validationContext));
                 }
             }
             return results;

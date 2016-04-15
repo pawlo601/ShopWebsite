@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Customer;
 
-namespace ShopWebsite.Model.EntitiesFromXML.Customer
+namespace ShopWebsite.Model.EntitiesFromXML
 {
     public class ListOfCompanies
     {
         [XmlElement("Company")]
-        public List<CompanyInXml> CompanyList = new List<CompanyInXml>();
+        public List<Company> CompanyList = new List<Company>();
     }
 }

@@ -41,17 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntitiesFromXML\Customer\AddressInXml.cs" />
-    <Compile Include="EntitiesFromXML\Customer\CompanyInXml.cs" />
-    <Compile Include="EntitiesFromXML\Customer\CustomerInXml.cs" />
-    <Compile Include="EntitiesFromXML\Customer\IndividualClientInXml.cs" />
-    <Compile Include="EntitiesFromXML\Customer\ListOfCompanies.cs" />
-    <Compile Include="EntitiesFromXML\Customer\ListOfIndividualClients.cs" />
+    <Compile Include="EntitiesFromXML\ListOfCompanies.cs" />
+    <Compile Include="EntitiesFromXML\ListOfIndividualClients.cs" />
+    <Compile Include="EntitiesFromXML\ListOfConstatntDiscounts.cs" />
     <Compile Include="EntitiesFromXML\ListOfCurrencies.cs" />
+    <Compile Include="EntitiesFromXML\ListOfPercantageDiscounts.cs" />
     <Compile Include="EntitiesFromXML\ListOfProducts.cs" />
     <Compile Include="EntitiesFromXML\ListOfUnits.cs" />
-    <Compile Include="EntitiesFromXML\Order\OrderInXml.cs" />
-    <Compile Include="EntitiesFromXML\Order\PositionInTheOrderInXml.cs" />
     <Compile Include="Entities\Customer\Address.cs" />
     <Compile Include="Entities\Customer\Company.cs" />
     <Compile Include="Entities\Customer\CompanyInformation.cs" />
@@ -68,6 +64,7 @@
     <Compile Include="Entities\Discount\OrderDiscount.cs" />
     <Compile Include="Entities\Discount\PercantageDiscount.cs" />
     <Compile Include="Entities\Discount\ProductDiscount.cs" />
+    <Compile Include="Entities\Discount\SomeDiscount.cs" />
     <Compile Include="Entities\Order\Order.cs" />
     <Compile Include="Entities\Order\ItemInOrder.cs" />
     <Compile Include="Entities\Order\Status.cs" />

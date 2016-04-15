@@ -7,7 +7,6 @@ using System.Xml.Serialization;
 using ShopWebsite.Model.Entities.Customer;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.EntitiesFromXML;
-using ShopWebsite.Model.EntitiesFromXML.Customer;
 
 namespace ShopWebsite.Data.Common
 {
@@ -66,7 +65,7 @@ namespace ShopWebsite.Data.Common
                             XmlSerializer deserializer = new XmlSerializer(typeof (ListOfProducts));
                             var obj = deserializer.Deserialize(tr);
                             ListOfProducts xmlData = (ListOfProducts) obj;
-                            return xmlData.ProductList.Select(ProductInXml.TransformFromXmlToClass).ToList();
+                            return xmlData.ProductList;
                         }
                     }
                 }
@@ -90,7 +89,7 @@ namespace ShopWebsite.Data.Common
                             XmlSerializer deserializer = new XmlSerializer(typeof (ListOfCompanies));
                             var obj = deserializer.Deserialize(tr);
                             ListOfCompanies xmlData = (ListOfCompanies) obj;
-                            return xmlData.CompanyList.Select(CompanyInXml.TransformFromXmlToClass).ToList();
+                            return xmlData.CompanyList;
                         }
                     }
                 }
@@ -114,9 +113,7 @@ namespace ShopWebsite.Data.Common
                             XmlSerializer deserializer = new XmlSerializer(typeof(ListOfIndividualClients));
                             var obj = deserializer.Deserialize(tr);
                             ListOfIndividualClients xmlData = (ListOfIndividualClients)obj;
-                            return
-                                xmlData.IndividualClientList.Select(IndividualClientInXml.TransformFromXmlToClass)
-                                    .ToList();
+                            return xmlData.IndividualClientList;
                         }
                     }
                 }
