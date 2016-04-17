@@ -1,58 +1,76 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Customer
 {
-    [Table("ADDRESSES")]
+    [Table("Addresses", Schema = "User")]
     public class Address: IValidatableObject
     {
+        #region variable
         [Key]
-        [Column("ID")]
+        [Column("id")]
+        [XmlAttribute("id")]//for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("STREET")]
+        [Column("street")]
+        [XmlAttribute("street")]//for xml
         [Required(AllowEmptyStrings =false, ErrorMessage ="No empty street name.")]
         [MinLength(5,ErrorMessage = "Street name lenght should be greater than 4.")]
         [MaxLength(20,ErrorMessage = "Street name lenght should be less than 21.")]
         public string Street { get; set; }
 
-        [Column("NUMBER_OF_BUILDING")]
+        [Column("number_of_building")]
+        [XmlAttribute("number_of_building")]//for xml
         [Required(AllowEmptyStrings = true)]
         [MinLength(1, ErrorMessage = "Number of building lenght should be greater than 0.")]
         [MaxLength(10, ErrorMessage = "Number of building  lenght should be less than 11.")]
         public string NumberOfBuilding { get; set; }
 
-        [Column("CITY")]
+        [Column("city")]
+        [XmlAttribute("city")]//for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty city name.")]
         [MinLength(5, ErrorMessage = "City name lenght should be greater than 4.")]
         [MaxLength(20, ErrorMessage = "City name lenght should be less than 21.")]
         public string City { get; set; }
 
-        [Column("POSTAL_CODE")]
+        [Column("postal_code")]
+        [XmlAttribute("postal_code")]//for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty postalcode.")]
         [MinLength(5, ErrorMessage = "Postal code lenght should be greater than 4.")]
         [MaxLength(10, ErrorMessage = "Postal code lenght should be less than 11.")]
         public string PostalCode { get; set; }
 
-        [Column("COUNTRY")]
+        [Column("country")]
+        [XmlAttribute("country")]//for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "No empty country name.")]
         [MinLength(5, ErrorMessage = "Country name lenght should be greater than 4.")]
         [MaxLength(20, ErrorMessage = "Country name lenght should be less than 21.")]
         public string Country { get; set; }
+        #endregion
 
-        public Address(bool inizialize = false)
+        public Address()
         {
-            if (inizialize)
-            {
-                Id = -1;
-                Street = "street" ;
-                NumberOfBuilding = "123";
-                City = "City123";
-                PostalCode = "123345";
-                Country = "Country";
-            }
+            Random rand = new Random();
+            Id = -1;
+            Street = "Street" + rand.Next()%1000;
+            NumberOfBuilding = "Nr" + rand.Next()*1000;
+            City = "City" + rand.Next()%1000;
+            PostalCode = "PostC" + rand.Next()%1000;
+            Country = "Country" + rand.Next()%1000;
+        }
+
+        public Address(int id, string street, string numberOfBuilding, string city, string postalCode, string country)
+        {
+            Id = id;
+            Street = street;
+            NumberOfBuilding = numberOfBuilding;
+            City = city;
+            PostalCode = postalCode;
+            Country = country;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

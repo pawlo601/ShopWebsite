@@ -1,22 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
 {
-    [Table("POSITIONS_IN_THE_ORDERS")]
+    [Table("Items_in_orders")]
     public class ItemInOrder : IValidatableObject
     {
+        #region variables
         [Key]
-        [Column("ID")]
+        [Column("id")]
+        [XmlElement(ElementName = "id")]//for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("PRODUCT_ID")]
+        [Column("product_id")]
+        [XmlElement(ElementName = "product_id")]//for xml
+        [Required(ErrorMessage = "Product id has to be given")]
         public int ProductId { get; set; }
 
-        [Column("QUANTITY")]
+        [Column("quantity")]
+        [XmlElement(ElementName = "quantity")]//for xml
+        [Required(ErrorMessage = "Quantity has to be given")]
         public int Quantity { get; set; }
+        #endregion
+
+        public ItemInOrder(int productId=-1)
+        {
+            Random rand = new Random();
+            Id = -1;
+            ProductId = productId;
+            Quantity = rand.Next()%100;
+        }
+
+        public ItemInOrder(int id, int productId, int quantity)
+        {
+            Id = id;
+            ProductId = productId;
+            Quantity = quantity;
+        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

@@ -62,7 +62,7 @@ namespace ShopWebsite.Model.Entities.Order
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            var results = new List<ValidationResult>();
+            List<ValidationResult> results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
                 new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);

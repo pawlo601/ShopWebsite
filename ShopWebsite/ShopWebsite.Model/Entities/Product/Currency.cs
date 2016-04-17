@@ -38,12 +38,12 @@ namespace ShopWebsite.Model.Entities.Product
         #endregion
 
         private static Currency[] _tableCurrencies { get; set; }
+
         private Currency() { }
 
         public static Currency GetOneCurrency()
         {
             Random rand = new Random();
-            
             if (_tableCurrencies != null)
             {
                 int r1 = rand.Next() % _tableCurrencies.Length;

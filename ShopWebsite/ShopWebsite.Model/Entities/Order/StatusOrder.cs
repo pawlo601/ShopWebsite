@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
@@ -28,6 +25,21 @@ namespace ShopWebsite.Model.Entities.Order
         [Required(ErrorMessage = "Time of change of status cannot be empty.")]
         public DateTime TimeOfChange { get; set; }
         #endregion
+
+        public StatusOrder()
+        {
+            Id = -1;
+            Status=Status.GetOneStatus();
+            Random rand = new Random();
+            TimeOfChange = DateTime.Now.AddDays(rand.Next()%20);
+        }
+
+        public StatusOrder(int id, Status status, DateTime timeOfChange)
+        {
+            Id = id;
+            Status = status;
+            TimeOfChange = timeOfChange;
+        }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

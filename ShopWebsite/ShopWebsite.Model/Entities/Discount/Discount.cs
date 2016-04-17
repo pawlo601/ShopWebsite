@@ -9,6 +9,7 @@ namespace ShopWebsite.Model.Entities.Discount
     [Table("Discounts",Schema = "Discount")]
     public abstract class Discount : IValidatableObject
     {
+        #region variables
         [Key]
         [Column("id")]
         [XmlAttribute("id")]//for xml
@@ -36,6 +37,7 @@ namespace ShopWebsite.Model.Entities.Discount
         [XmlAttribute("end_discount")]
         [Required(ErrorMessage = "Time of end of discount cannot be empty.")]
         public DateTime EndDisscount { get; set; }
+        #endregion
 
         public abstract decimal CountDiscount(decimal value);
 
