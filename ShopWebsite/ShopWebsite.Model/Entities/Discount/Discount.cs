@@ -7,6 +7,8 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Discount
 {
     [Table("Discounts",Schema = "Discount")]
+    [XmlInclude(typeof(PercantageDiscount))]
+    [XmlInclude(typeof(ConstantDiscount))]
     public abstract class Discount : IValidatableObject
     {
         #region variables

@@ -61,7 +61,7 @@ namespace ShopWebsite.Model.Entities.Discount
 
         public static ConstantDiscount GetOneConstantDiscount()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             if (_tableConstantDiscounts != null)
             {
                 int r = rand.Next() % _tableConstantDiscounts.Length;
@@ -73,7 +73,7 @@ namespace ShopWebsite.Model.Entities.Discount
 
         public static ConstantDiscount GetOneConstantDiscountForProduct()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             if (_tableConstantDiscounts == null)
                 GenerateTable();
             while (true)
@@ -86,7 +86,7 @@ namespace ShopWebsite.Model.Entities.Discount
 
         public static ConstantDiscount GetOneConstantDiscountForOrder()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             if (_tableConstantDiscounts == null)
                 GenerateTable();
             while (true)
@@ -117,6 +117,7 @@ namespace ShopWebsite.Model.Entities.Discount
                 return 0;
             return value-Value;
         }
+
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();

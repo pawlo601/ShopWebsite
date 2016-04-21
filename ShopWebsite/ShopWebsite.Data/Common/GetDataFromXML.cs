@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Xml;
-using System.Xml.Serialization;
-using ShopWebsite.Model.Entities.Customer;
-using ShopWebsite.Model.Entities.Product;
-using ShopWebsite.Model.EntitiesFromXML;
 
 namespace ShopWebsite.Data.Common
 {
@@ -47,80 +41,8 @@ namespace ShopWebsite.Data.Common
                 }
                 else
                 {
-                    throw new Exception("Something is wrong with ConfigFile.xml and GetDataFromXml.");
+                    throw new Exception("Something is wrong with ConfigFile.xml and GetDataFromXml class.");
                 }
         }
-        public static List<Product> GetProducts()
-        {
-            using (Stream stream =
-                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
-                    "ShopWebsite.Data.DataFromXML.Products.xml"))
-                if (stream != null)
-                {
-                    using (StreamReader sr = new StreamReader(stream))
-                    {
-                        string result = sr.ReadToEnd();
-                        using (TextReader tr = new StringReader(result))
-                        {
-                            XmlSerializer deserializer = new XmlSerializer(typeof (ListOfProducts));
-                            var obj = deserializer.Deserialize(tr);
-                            ListOfProducts xmlData = (ListOfProducts) obj;
-                            return xmlData.ProductList;
-                        }
-                    }
-                }
-                else
-                {
-                    return new List<Product>();
-                }
-        }
-        public static List<Company> GetCompanies()
-        {
-            using (Stream stream =
-                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
-                    "ShopWebsite.Data.DataFromXML.Companies.xml"))
-                if (stream != null)
-                {
-                    using (StreamReader sr = new StreamReader(stream))
-                    {
-                        string result = sr.ReadToEnd();
-                        using (TextReader tr = new StringReader(result))
-                        {
-                            XmlSerializer deserializer = new XmlSerializer(typeof (ListOfCompanies));
-                            var obj = deserializer.Deserialize(tr);
-                            ListOfCompanies xmlData = (ListOfCompanies) obj;
-                            return xmlData.CompanyList;
-                        }
-                    }
-                }
-                else
-                {
-                    return new List<Company>();
-                }
-        }
-        public static List<IndividualClient> GetIndividualsClients()
-        {
-            using (Stream stream =
-                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
-                    "ShopWebsite.Data.DataFromXML.IndividualClients.xml"))
-                if (stream != null)
-                {
-                    using (StreamReader sr = new StreamReader(stream))
-                    {
-                        string result = sr.ReadToEnd();
-                        using (TextReader tr = new StringReader(result))
-                        {
-                            XmlSerializer deserializer = new XmlSerializer(typeof(ListOfIndividualClients));
-                            var obj = deserializer.Deserialize(tr);
-                            ListOfIndividualClients xmlData = (ListOfIndividualClients)obj;
-                            return xmlData.IndividualClientList;
-                        }
-                    }
-                }
-                else
-                {
-                    return new List<IndividualClient>();
-                }
-        }      
     }
 }

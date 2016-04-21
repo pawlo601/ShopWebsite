@@ -27,12 +27,16 @@ namespace ShopWebsite.Model.Entities.Order
         public int Quantity { get; set; }
         #endregion
 
-        public ItemInOrder(int productId=-1)
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
+        public ItemInOrder() : this(-1) { }
+
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
+        public ItemInOrder(int productId)
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             Id = -1;
             ProductId = productId;
-            Quantity = rand.Next()%100;
+            Quantity = rand.Next(100);
         }
 
         public ItemInOrder(int id, int productId, int quantity)

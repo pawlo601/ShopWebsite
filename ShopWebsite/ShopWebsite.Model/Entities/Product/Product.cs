@@ -45,27 +45,30 @@ namespace ShopWebsite.Model.Entities.Product
         public Quantity Quantity { get; set; }
 
         [XmlArray(ElementName = "product_discounts")]//for xml
-        [XmlArrayItem("discount", Type = typeof(Discount.Discount))]//for xml
-        public IList<ProductDiscount> ProductDiscounts { get; set; } 
+        [XmlArrayItem("discount", Type = typeof(ProductDiscount))]//for xml
+        public List<ProductDiscount> ProductDiscounts { get; set; }
         #endregion
 
-        public Product(int productId = -1)
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
+        public Product() : this(-1) { }
+
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
+        public Product(int productId)
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             Id = productId;
-            Name = "Product name " + rand.Next()%100000;
-            Description = "Description of product " + rand.Next()%1000000;
+            Name = "Product name " + rand.Next(10000);
+            Description = "Description of product " + rand.Next(10000);
             Cost = new Cost();
-            Discount = rand.Next()%100/100;
+            Discount = rand.Next(100)/100.0M;
             Quantity = new Quantity();
-            int p = rand.Next()%5;
+            int p = rand.Next(1,5);
             ProductDiscounts = new List<ProductDiscount>();
             for (int i = 0; i < p; i++)
                     ProductDiscounts.Add(new ProductDiscount());
-
         }
 
-        public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity, IList<ProductDiscount> productDiscounts)
+        public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity, List<ProductDiscount> productDiscounts)
         {
             Id = id;
             Name = name;

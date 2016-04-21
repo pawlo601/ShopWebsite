@@ -17,8 +17,8 @@ namespace ShopWebsite.Model.Entities.Product
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("unit_name")]
-        [XmlAttribute("unit_name")]//for xml
+        [Column("unit_name1")]
+        [XmlAttribute("unit_name1")]//for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unit name cannot be empty.")]
         [MinLength(3, ErrorMessage = "Length of unit name should be greater than or equal to 3.")]
         [MaxLength(10, ErrorMessage = "Length of unit name should be less than or equal to 10.")]
@@ -38,7 +38,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         public static Unit GetOneUnit()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             if (_tableUnits != null)
             {
                 int r1 = rand.Next()%_tableUnits.Length;
@@ -56,7 +56,7 @@ namespace ShopWebsite.Model.Entities.Product
         public static Unit GetOneUnit(int id)
         {
             if (_tableUnits == null)
-                return GetOneUnit();
+                GetOneUnit();
             foreach (Unit unit in _tableUnits.Where(unit => unit.Id == id))
                 return unit;
             return GetOneUnit();

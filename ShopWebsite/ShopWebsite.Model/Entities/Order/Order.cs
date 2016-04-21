@@ -24,37 +24,38 @@ namespace ShopWebsite.Model.Entities.Order
 
         [XmlArray(ElementName = "items")]//for xml
         [XmlArrayItem("item", Type = typeof(ItemInOrder))]//for xml
-        public IList<ItemInOrder> Items { get; set; }
+        public List<ItemInOrder> Items { get; set; }
 
         [XmlArray(ElementName = "order_discounts")]//for xml
-        [XmlArrayItem("discount", Type = typeof(Discount.Discount))]//for xml
-        public IList<OrderDiscount> OrderDiscounts { get; set; }
+        [XmlArrayItem("discount", Type = typeof(OrderDiscount))]//for xml
+        public List<OrderDiscount> OrderDiscounts { get; set; }
 
         [XmlArray(ElementName = "order_statuses")]//for xml
         [XmlArrayItem("status_order", Type = typeof(StatusOrder))]//for xml
-        public IList<StatusOrder> ListOfStatusOrder { get; set; }
+        public List<StatusOrder> ListOfStatusOrder { get; set; }
         #endregion
 
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
         public Order()
         {
             Id = -1;
-            Random rand = new Random();
-            int nitems = rand.Next()%5;
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int nitems = rand.Next(1,5);
             Items=new List<ItemInOrder>();
             for(int i=0;i<nitems;i++)
                 Items.Add(new ItemInOrder());
-            int norder = rand.Next()%4;
+            int norder = rand.Next(1,4);
             OrderDiscounts=new List<OrderDiscount>();
             for(int i=0;i<norder;i++)
                 OrderDiscounts.Add(new OrderDiscount());
-            int nstatus = rand.Next()%5;
+            int nstatus = rand.Next(1,5);
             ListOfStatusOrder=new List<StatusOrder>();
             for(int i=0;i<nstatus;i++)
                 ListOfStatusOrder.Add(new StatusOrder());
-            Value = rand.Next()%100000/100;
+            Value = rand.Next(1000000)/100.0M;
         }
 
-        public Order(int id, decimal value, IList<ItemInOrder> items, IList<OrderDiscount> orderDiscounts, IList<StatusOrder> listOfStatusOrder)
+        public Order(int id, decimal value, List<ItemInOrder> items, List<OrderDiscount> orderDiscounts, List<StatusOrder> listOfStatusOrder)
         {
             Id = id;
             Value = value;

@@ -41,13 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntitiesFromXML\ListOfCompanies.cs" />
-    <Compile Include="EntitiesFromXML\ListOfIndividualClients.cs" />
-    <Compile Include="EntitiesFromXML\ListOfConstatntDiscounts.cs" />
-    <Compile Include="EntitiesFromXML\ListOfCurrencies.cs" />
-    <Compile Include="EntitiesFromXML\ListOfPercantageDiscounts.cs" />
-    <Compile Include="EntitiesFromXML\ListOfProducts.cs" />
-    <Compile Include="EntitiesFromXML\ListOfUnits.cs" />
     <Compile Include="Entities\Customer\Address.cs" />
     <Compile Include="Entities\Customer\Company.cs" />
     <Compile Include="Entities\Customer\CompanyInformation.cs" />

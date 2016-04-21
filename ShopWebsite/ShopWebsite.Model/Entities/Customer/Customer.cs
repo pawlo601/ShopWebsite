@@ -1,36 +1,39 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Customer
 {
-    [Table("CUSTOMERS")]
-    public abstract class Customer : User, IValidatableObject
+    [Table("Customers", Schema = "Customer")]
+    public abstract class Customer : User
     {
-        [Column("TITLE_CONACT")]
-        [Required(AllowEmptyStrings = true)]
-        [MinLength(1, ErrorMessage = "Contact title lenght should be greater than 0.")]
-        [MaxLength(10, ErrorMessage = "Contact title lenght should be less than 11.")]
+        #region variables
+        [Column("contact_title")]
+        [XmlAttribute("contact_title")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Contact title cannot be empty.")]
+        [MinLength(3, ErrorMessage = "Length of contact title should be greater than or equal to 3.")]
+        [MaxLength(10, ErrorMessage = "Length of contact title should be less than or equal to 10.")]
         public string ContactTitle { get; set; }
 
-        public IList<Order.Order> Orders { get; set; }
+        [XmlArray(ElementName = "orders")]//for xml
+        [XmlArrayItem("order", Type = typeof(Order.Order))]//for xml
+        public List<Order.Order> Orders { get; set; }
+        #endregion
 
-        public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
+            results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(ContactTitle,
                 new ValidationContext(this, null, null) { MemberName = "ContactTitle" },
                 results);
-            Validator.TryValidateProperty(ResidentialAddress,
-                new ValidationContext(this, null, null) { MemberName = "ResidentialAddress" },
-                results);
-            if (ContactAddress != null)
+            if (Orders != null)
             {
-                results.AddRange(ContactAddress.Validate(validationContext));
-            }
-            if (ResidentialAddress != null)
-            {
-                results.AddRange(ResidentialAddress.Validate(validationContext));
+                foreach (Order.Order order in Orders)
+                {
+                    results.AddRange(order.Validate(validationContext));
+                }
             }
             return results;
         }

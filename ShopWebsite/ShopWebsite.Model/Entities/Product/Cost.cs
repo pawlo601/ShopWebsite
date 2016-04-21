@@ -23,15 +23,16 @@ namespace ShopWebsite.Model.Entities.Product
 
         [XmlArray(ElementName = "prices")]//for xml
         [XmlArrayItem("price", Type = typeof(Price))]//for xml
-        public IList<Price> Prices { get; set; }
+        public List<Price> Prices { get; set; }
         #endregion
 
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
         public Cost()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             Id = -1;
-            Tax = rand.Next()%1000/1000;
-            int p = rand.Next()%5;
+            Tax = rand.Next(1000)/1000.0;
+            int p = rand.Next(1,4);
             Prices = new List<Price>();
             for (int i = 0; i < p; i++)
             {
@@ -39,7 +40,7 @@ namespace ShopWebsite.Model.Entities.Product
             }
         }
 
-        public Cost(int id, double tax, IList<Price> prices)
+        public Cost(int id, double tax, List<Price> prices)
         {
             Id = id;
             Tax = tax;

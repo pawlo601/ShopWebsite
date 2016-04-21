@@ -17,7 +17,7 @@ namespace ShopWebsite.Model.Entities.Product
         public int Id { get; set; }
 
         [Column("value_of_price")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("value_of_price")]//for xml
         [Required(ErrorMessage = "Value should be given.")]
         public decimal Value { get; set; }
 
@@ -26,11 +26,12 @@ namespace ShopWebsite.Model.Entities.Product
         public Currency Currency { get; set; }
         #endregion
 
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
         public Price()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             Id = -1;
-            Value = rand.Next()%10000/100;
+            Value = rand.Next(10000)/100.0M;
             Currency = Currency.GetOneCurrency();
         }
 

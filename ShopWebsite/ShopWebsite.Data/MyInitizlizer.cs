@@ -14,9 +14,6 @@ namespace ShopWebsite.Data
             try
             {
                 SqlConnection.ClearAllPools();
-                GetDataFromXml.GetProducts().ForEach(a => context.Products.Add(a));
-                GetDataFromXml.GetCompanies().ForEach(a=>context.Customers.Add((a)));
-                GetDataFromXml.GetIndividualsClients().ForEach(a => context.Customers.Add((a)));
                 context.SaveChanges();
             }catch(DbEntityValidationException e)
             {

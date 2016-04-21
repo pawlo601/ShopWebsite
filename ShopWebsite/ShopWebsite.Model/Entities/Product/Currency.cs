@@ -43,7 +43,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         public static Currency GetOneCurrency()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             if (_tableCurrencies != null)
             {
                 int r1 = rand.Next() % _tableCurrencies.Length;
@@ -51,10 +51,10 @@ namespace ShopWebsite.Model.Entities.Product
             }
             int r = rand.Next() % 4;
             _tableCurrencies = new Currency[4];
-            _tableCurrencies[0] = new Currency() { Id = -1, Name = "Zloty", Shortcut = "PLN" };
-            _tableCurrencies[1] = new Currency() { Id = -1, Name = "Funt", Shortcut = "GBP" };
-            _tableCurrencies[2] = new Currency() { Id = -1, Name = "Euro", Shortcut = "EUR" };
-            _tableCurrencies[3] = new Currency() { Id = -1, Name = "Dolar", Shortcut = "USD" };
+            _tableCurrencies[0] = new Currency() { Id = -1, Name = "Zloty", Shortcut = "PLN", ExchangeToDolar = 3.5M};
+            _tableCurrencies[1] = new Currency() { Id = -1, Name = "Funt", Shortcut = "GBP", ExchangeToDolar = 0.80M };
+            _tableCurrencies[2] = new Currency() { Id = -1, Name = "Euro", Shortcut = "EUR", ExchangeToDolar = 1.1M };
+            _tableCurrencies[3] = new Currency() { Id = -1, Name = "Dolar", Shortcut = "USD", ExchangeToDolar = 1.00M };
             return _tableCurrencies[r];
         }
 

@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Customer
 {
     [Table("Addresses", Schema = "User")]
-    public class Address: IValidatableObject
+    public class Address : IValidatableObject
     {
         #region variable
         [Key]
@@ -18,9 +18,9 @@ namespace ShopWebsite.Model.Entities.Customer
 
         [Column("street")]
         [XmlAttribute("street")]//for xml
-        [Required(AllowEmptyStrings =false, ErrorMessage ="No empty street name.")]
-        [MinLength(5,ErrorMessage = "Street name lenght should be greater than 4.")]
-        [MaxLength(20,ErrorMessage = "Street name lenght should be less than 21.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "No empty street name.")]
+        [MinLength(5, ErrorMessage = "Street name lenght should be greater than 4.")]
+        [MaxLength(20, ErrorMessage = "Street name lenght should be less than 21.")]
         public string Street { get; set; }
 
         [Column("number_of_building")]
@@ -52,15 +52,16 @@ namespace ShopWebsite.Model.Entities.Customer
         public string Country { get; set; }
         #endregion
 
+        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
         public Address()
         {
-            Random rand = new Random();
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
             Id = -1;
-            Street = "Street" + rand.Next()%1000;
-            NumberOfBuilding = "Nr" + rand.Next()*1000;
-            City = "City" + rand.Next()%1000;
-            PostalCode = "PostC" + rand.Next()%1000;
-            Country = "Country" + rand.Next()%1000;
+            Street = "Street" + rand.Next(10000);
+            NumberOfBuilding = "Nr" + rand.Next(1000);
+            City = "City" + rand.Next(10000);
+            PostalCode = "PostC" + rand.Next(1000);
+            Country = "Country" + rand.Next(1000);
         }
 
         public Address(int id, string street, string numberOfBuilding, string city, string postalCode, string country)
@@ -77,7 +78,7 @@ namespace ShopWebsite.Model.Entities.Customer
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Street,
-                new ValidationContext(this,null,null) { MemberName = "Street" },
+                new ValidationContext(this, null, null) { MemberName = "Street" },
                 results);
             Validator.TryValidateProperty(NumberOfBuilding,
                 new ValidationContext(this, null, null) { MemberName = "NumberOfBuilding" },
@@ -99,10 +100,10 @@ namespace ShopWebsite.Model.Entities.Customer
             if (obj == null || GetType() != obj.GetType())
                 return false;
             Address p = (Address)obj;
-            return p.City.Equals(City) && 
-                   p.Country.Equals(Country) && 
-                   p.NumberOfBuilding.Equals(NumberOfBuilding) && 
-                   p.PostalCode.Equals(PostalCode) && 
+            return p.City.Equals(City) &&
+                   p.Country.Equals(Country) &&
+                   p.NumberOfBuilding.Equals(NumberOfBuilding) &&
+                   p.PostalCode.Equals(PostalCode) &&
                    p.Street.Equals(Street);
         }
 
