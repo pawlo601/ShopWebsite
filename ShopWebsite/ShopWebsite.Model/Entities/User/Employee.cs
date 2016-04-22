@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Customer;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
     public class Employee : User
     {

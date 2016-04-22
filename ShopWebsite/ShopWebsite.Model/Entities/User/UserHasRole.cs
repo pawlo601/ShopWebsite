@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
     [Table("user_has_roles", Schema = "Customer")]
     public class UserHasRole : IValidatableObject

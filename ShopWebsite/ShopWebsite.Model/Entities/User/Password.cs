@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
     [Table("Passwords", Schema = "Customer")]
     public class Password : IValidatableObject

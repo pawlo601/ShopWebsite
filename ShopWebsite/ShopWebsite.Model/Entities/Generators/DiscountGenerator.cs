@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ShopWebsite.Model.Entities.Discount;
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Generators
 {
-    public class OrderGenerator
+    public class DiscountGenerator
     {
         public static int NumberOfDiscountsForProducts => 4;
 
@@ -16,7 +11,7 @@ namespace ShopWebsite.Model.Entities
 
         public static int NumberOfDiscountsForCustomers => 4;
 
-        private static OrderGenerator _instance { get; set; }
+        private static DiscountGenerator _instance { get; set; }
         private readonly Discount.Discount[] _discountForProducts;
         private readonly Discount.Discount[] _discountForOrders;
         private readonly Discount.Discount[] _discountForCustomers;
@@ -24,9 +19,9 @@ namespace ShopWebsite.Model.Entities
         private static int DiscountId = 1;
         private static int MainDiscountId = 1;
 
-        public static OrderGenerator Intance => _instance ?? (_instance = new OrderGenerator());
+        public static DiscountGenerator Intance => _instance ?? (_instance = new DiscountGenerator());
 
-        private OrderGenerator()
+        private DiscountGenerator()
         {
             
         }

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
+using ShopWebsite.Model.Entities.Customer;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
-    public class Company : Customer
+    public class IndividualClient : Customer
     {
         #region variables
-        [XmlElement(ElementName = "company_information")]//for xml
+        [XmlElement(ElementName = "personal_information")]//for xml
         [Required(ErrorMessage = "Information has to be given.")]
-        public CompanyInformation Information { get; set; }
+        public PersonalInformation Information { get; set; }
         #endregion
 
-        public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders)
+        public IndividualClient(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, PersonalInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders)
         {
             Id = id;
             Email = email;

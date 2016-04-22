@@ -5,7 +5,7 @@ using System.Linq;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Model.Entities
+namespace ShopWebsite.Model.Entities.Generators
 {
     public class ProductGenerator
     {
@@ -124,7 +124,7 @@ namespace ShopWebsite.Model.Entities
 
         public ProductDiscount GetNextProductDiscount()
         {
-            return OrderGenerator.Intance.GetNextProductDiscount();
+            return DiscountGenerator.Intance.GetNextProductDiscount();
         }
     }
 }
