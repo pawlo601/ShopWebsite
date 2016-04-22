@@ -78,7 +78,7 @@ namespace ShopWebsite.Model.Entities.Generators
             int p = rand.Next(1, 5);
             var ProductDiscounts = new List<ProductDiscount>();
             for (int i = 0; i < p; i++)
-                ProductDiscounts.Add(GetNextProductDiscount());
+                ProductDiscounts.Add(GetNextProductDiscount(Id));
             ProductId++;
             return new Product.Product(Id, Name, Description, Cost, Discount, Quantity, ProductDiscounts);
         }
@@ -122,9 +122,9 @@ namespace ShopWebsite.Model.Entities.Generators
             return new Quantity(Id, Value, Unit);
         }
 
-        public ProductDiscount GetNextProductDiscount()
+        public ProductDiscount GetNextProductDiscount(int productId)
         {
-            return DiscountGenerator.Intance.GetNextProductDiscount();
+            return DiscountGenerator.Intance.GetNextProductDiscount(productId);
         }
     }
 }

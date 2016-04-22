@@ -26,6 +26,8 @@ namespace ShopWebsite.Model.Entities.Product
         public Currency Currency { get; set; }
         #endregion
 
+        public Price() { }
+
         public Price(int id, decimal value, Currency currency)
         {
             Id = id;

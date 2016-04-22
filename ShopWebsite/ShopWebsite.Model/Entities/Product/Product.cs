@@ -48,6 +48,8 @@ namespace ShopWebsite.Model.Entities.Product
         public List<ProductDiscount> ProductDiscounts { get; set; }
         #endregion
 
+        public Product() { }
+
         public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity, List<ProductDiscount> productDiscounts)
         {
             Id = id;
@@ -73,7 +75,7 @@ namespace ShopWebsite.Model.Entities.Product
                 results);
             if (Discount < 0.0M)
             {
-                results.Add(new ValidationResult("Discount should be greater than or equal to 0.", new[] { "Discount" }));    
+                results.Add(new ValidationResult("Discount should be greater than or equal to 0.", new[] { "Discount" }));
             }
             if (Cost != null)
             {

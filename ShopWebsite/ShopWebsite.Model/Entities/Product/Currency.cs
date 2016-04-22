@@ -37,6 +37,8 @@ namespace ShopWebsite.Model.Entities.Product
         public decimal ExchangeToDolar { get; set; }
         #endregion
 
+        public Currency() { }
+
         public Currency(int id, string name, string shortcut, decimal exchangeToDolar)
         {
             Id = id;

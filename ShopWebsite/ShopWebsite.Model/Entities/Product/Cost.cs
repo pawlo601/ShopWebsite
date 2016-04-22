@@ -26,6 +26,8 @@ namespace ShopWebsite.Model.Entities.Product
         public List<Price> Prices { get; set; }
         #endregion
 
+        public Cost() { }
+
         public Cost(int id, decimal tax, List<Price> prices)
         {
             Id = id;
@@ -37,11 +39,11 @@ namespace ShopWebsite.Model.Entities.Product
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Tax,
-                new ValidationContext(this, null, null) {MemberName = "Tax"},
+                new ValidationContext(this, null, null) { MemberName = "Tax" },
                 results);
             if (Tax < 0.0M)
             {
-                results.Add(new ValidationResult("Tax must be greater than or equal 0%.", new[] {"Tax"}));
+                results.Add(new ValidationResult("Tax must be greater than or equal 0%.", new[] { "Tax" }));
             }
             if (Tax > 1.0M)
             {

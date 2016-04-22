@@ -26,6 +26,8 @@ namespace ShopWebsite.Model.Entities.Product
         public Unit Unit { get; set; }
         #endregion
 
+        public Quantity() { }
+
         public Quantity(int id, decimal value, Unit unit)
         {
             Id = id;

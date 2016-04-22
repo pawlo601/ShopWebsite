@@ -59,8 +59,20 @@ namespace ShopWebsite.Model.Entities.Discount
         public DateTime EndDisscount { get; set; }
         #endregion
 
+        public Discount() { }
+
         public Discount(int id, string name, bool isForProduct, bool isForCustomer, bool isForOrder, bool isPercentage, double value, DateTime startDiscount, DateTime endDisscount)
         {
+            if (isForProduct && isForCustomer && isForOrder)
+                throw new Exception();
+            if (!(isForProduct || isForCustomer || isForOrder))
+                throw new Exception();
+            if (isForCustomer && isForOrder)
+                throw new Exception();
+            if (isForProduct && isForOrder)
+                throw new Exception();
+            if (isForProduct && isForCustomer)
+                throw new Exception();
             Id = id;
             Name = name;
             IsForProduct = isForProduct;

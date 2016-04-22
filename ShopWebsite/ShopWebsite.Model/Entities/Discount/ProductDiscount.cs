@@ -14,6 +14,8 @@ namespace ShopWebsite.Model.Entities.Discount
         public int ProductId { get; set; }
         #endregion
 
+        public ProductDiscount() { }
+
         public ProductDiscount(int id, int productId, Discount discount)
         {
             Id = id;

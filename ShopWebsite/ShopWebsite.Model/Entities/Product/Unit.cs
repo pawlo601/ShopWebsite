@@ -32,6 +32,8 @@ namespace ShopWebsite.Model.Entities.Product
         public string Shortcut { get; set; }
         #endregion
 
+        public Unit() { }
+
         public Unit(int id, string name, string shortcut)
         {
             Id = id;
