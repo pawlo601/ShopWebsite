@@ -14,6 +14,8 @@ namespace ShopWebsite.Model.Entities.User
         public CompanyInformation Information { get; set; }
         #endregion
 
+        public Company() { }
+
         public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders)
         {
             Id = id;

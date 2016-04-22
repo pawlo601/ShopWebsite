@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
     [Table("Personal_Information", Schema = "Customer")]
     public class PersonalInformation : IValidatableObject
@@ -35,6 +35,8 @@ namespace ShopWebsite.Model.Entities.Customer
         [Required(ErrorMessage = "Birthday cannot be empty.")]
         public DateTime Birthday { get; set; }
         #endregion
+
+        public PersonalInformation() { }
 
         public PersonalInformation(int id, string name, string surname, DateTime birthday)
         {

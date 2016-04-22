@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Order
 {
     [Table("StatusOrder", Schema = "Order")]
-    public class StatusOrder: IValidatableObject
+    public class StatusOrder : IValidatableObject
     {
         #region variables
         [Key]
@@ -25,6 +25,8 @@ namespace ShopWebsite.Model.Entities.Order
         [Required(ErrorMessage = "Time of change of status cannot be empty.")]
         public DateTime TimeOfChange { get; set; }
         #endregion
+
+        public StatusOrder() { }
 
         public StatusOrder(int id, Status status, DateTime timeOfChange)
         {

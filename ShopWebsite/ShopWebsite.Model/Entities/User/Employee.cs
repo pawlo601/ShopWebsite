@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
-using ShopWebsite.Model.Entities.Customer;
 
 namespace ShopWebsite.Model.Entities.User
 {
@@ -21,6 +20,8 @@ namespace ShopWebsite.Model.Entities.User
         [Required(ErrorMessage = "Information has to be given.")]
         public PersonalInformation Information { get; set; }
         #endregion
+
+        public Employee() { }
 
         public Employee(int id, string email, string position, PersonalInformation information, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, List<Password> passwords, List<UserHasRole> userRoles)
         {

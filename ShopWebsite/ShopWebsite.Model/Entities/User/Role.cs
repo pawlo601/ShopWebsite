@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
     [Table("Roles", Schema = "Customer")]
     public class Role : IValidatableObject
@@ -22,6 +22,8 @@ namespace ShopWebsite.Model.Entities.Customer
         [MaxLength(15, ErrorMessage = "Length of name of role should be less than or equal to 15.")]
         public string Name { get; set; }
         #endregion
+
+        public Role() { }
 
         public Role(int id, string name)
         {

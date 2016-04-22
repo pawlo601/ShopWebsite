@@ -51,6 +51,8 @@ namespace ShopWebsite.Model.Entities.User
         public string Country { get; set; }
         #endregion
 
+        public Address() { }
+
         public Address(int id, string street, string numberOfBuilding, string city, string postalCode, string country)
         {
             Id = id;

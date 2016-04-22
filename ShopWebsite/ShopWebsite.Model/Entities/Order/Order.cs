@@ -34,6 +34,8 @@ namespace ShopWebsite.Model.Entities.Order
         public List<StatusOrder> ListOfStatusOrder { get; set; }
         #endregion
 
+        public Order() { }
+
         public Order(int id, decimal value, List<ItemInOrder> items, List<OrderDiscount> orderDiscounts, List<StatusOrder> listOfStatusOrder)
         {
             Id = id;

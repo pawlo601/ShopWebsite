@@ -37,15 +37,7 @@ namespace ShopWebsite.Model.Entities.User
         public DateTime CreateTime { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Password(int userId, string hashedPassword, string passwordSalt, DateTime createTime)
-        {
-            Id = -1;
-            UserId = userId;
-            HashedPassword = hashedPassword;
-            PasswordSalt = passwordSalt;
-            CreateTime = createTime;
-        }
+        public Password() { }
 
         public Password(int id, int userId, string hashedPassword, string passwordSalt, DateTime createTime)
         {

@@ -26,6 +26,8 @@ namespace ShopWebsite.Model.Entities.Order
         public int Quantity { get; set; }
         #endregion
 
+        public ItemInOrder() { }
+
         public ItemInOrder(int id, int productId, int quantity)
         {
             Id = id;

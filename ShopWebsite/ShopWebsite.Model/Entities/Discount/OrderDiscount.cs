@@ -14,6 +14,8 @@ namespace ShopWebsite.Model.Entities.Discount
         public int OrderId { get; set; }
         #endregion
 
+        public OrderDiscount() { }
+
         public OrderDiscount(int id, int orderId, Discount discount)
         {
             Id = id;
@@ -27,7 +29,7 @@ namespace ShopWebsite.Model.Entities.Discount
             results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(OrderId,
                 new ValidationContext(this, null, null) { MemberName = "OrderId" },
-                results); 
+                results);
             return results;
         }
     }

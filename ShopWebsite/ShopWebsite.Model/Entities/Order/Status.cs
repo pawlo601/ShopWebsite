@@ -23,6 +23,8 @@ namespace ShopWebsite.Model.Entities.Order
         public string Name { get; set; }
         #endregion
 
+        public Status() { }
+
         public Status(int id, string name)
         {
             Id = id;

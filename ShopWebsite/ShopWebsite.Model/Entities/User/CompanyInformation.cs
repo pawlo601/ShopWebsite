@@ -37,6 +37,8 @@ namespace ShopWebsite.Model.Entities.Customer
         public string TaxId { get; set; }
         #endregion
 
+        public CompanyInformation() { }
+
         public CompanyInformation(int id, string companyName, string regon, string taxId)
         {
             Id = id;

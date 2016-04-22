@@ -26,6 +26,8 @@ namespace ShopWebsite.Model.Entities.User
         public int RoleId { get; set; }
         #endregion
 
+        public UserHasRole() { }
+
         public UserHasRole(int id, int userId, int roleId)
         {
             Id = id;

@@ -9,7 +9,7 @@ namespace ShopWebsite.Model.Entities.Generators
 {
     public class ProductGenerator
     {
-        private static int ProductId = 1;
+        public static int ProductId = 1;
         private static int UnitId = 1;
         private static int CurrencyId = 1;
         private static int CostId = 1;

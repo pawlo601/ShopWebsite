@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
-using ShopWebsite.Model.Entities.Customer;
 
 namespace ShopWebsite.Model.Entities.User
 {
@@ -13,6 +12,8 @@ namespace ShopWebsite.Model.Entities.User
         [Required(ErrorMessage = "Information has to be given.")]
         public PersonalInformation Information { get; set; }
         #endregion
+
+        public IndividualClient() { }
 
         public IndividualClient(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, PersonalInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders)
         {
