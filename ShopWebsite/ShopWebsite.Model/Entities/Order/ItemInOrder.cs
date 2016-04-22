@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
@@ -26,18 +25,6 @@ namespace ShopWebsite.Model.Entities.Order
         [Required(ErrorMessage = "Quantity has to be given")]
         public int Quantity { get; set; }
         #endregion
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public ItemInOrder() : this(-1) { }
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public ItemInOrder(int productId)
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            ProductId = productId;
-            Quantity = rand.Next(100);
-        }
 
         public ItemInOrder(int id, int productId, int quantity)
         {

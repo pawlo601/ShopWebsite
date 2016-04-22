@@ -26,15 +26,6 @@ namespace ShopWebsite.Model.Entities.Order
         public DateTime TimeOfChange { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public StatusOrder()
-        {
-            Id = -1;
-            Status=Status.GetOneStatus();
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            TimeOfChange = DateTime.Now.AddDays(rand.Next(20));
-        }
-
         public StatusOrder(int id, Status status, DateTime timeOfChange)
         {
             Id = id;

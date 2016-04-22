@@ -37,34 +37,12 @@ namespace ShopWebsite.Model.Entities.Product
         public decimal ExchangeToDolar { get; set; }
         #endregion
 
-        private static Currency[] _tableCurrencies { get; set; }
-
-        private Currency() { }
-
-        public static Currency GetOneCurrency()
+        public Currency(int id, string name, string shortcut, decimal exchangeToDolar)
         {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            if (_tableCurrencies != null)
-            {
-                int r1 = rand.Next() % _tableCurrencies.Length;
-                return _tableCurrencies[r1];
-            }
-            int r = rand.Next() % 4;
-            _tableCurrencies = new Currency[4];
-            _tableCurrencies[0] = new Currency() { Id = -1, Name = "Zloty", Shortcut = "PLN", ExchangeToDolar = 3.5M};
-            _tableCurrencies[1] = new Currency() { Id = -1, Name = "Funt", Shortcut = "GBP", ExchangeToDolar = 0.80M };
-            _tableCurrencies[2] = new Currency() { Id = -1, Name = "Euro", Shortcut = "EUR", ExchangeToDolar = 1.1M };
-            _tableCurrencies[3] = new Currency() { Id = -1, Name = "Dolar", Shortcut = "USD", ExchangeToDolar = 1.00M };
-            return _tableCurrencies[r];
-        }
-
-        public static Currency GetOneCurrency(int id)
-        {
-            if (_tableCurrencies == null)
-                return GetOneCurrency();
-            foreach (Currency currency in _tableCurrencies.Where(currency => currency.Id == id))
-                return currency;
-            return GetOneCurrency();
+            Id = id;
+            Name = name;
+            Shortcut = shortcut;
+            ExchangeToDolar = exchangeToDolar;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

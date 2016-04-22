@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
@@ -48,25 +47,6 @@ namespace ShopWebsite.Model.Entities.Product
         [XmlArrayItem("discount", Type = typeof(ProductDiscount))]//for xml
         public List<ProductDiscount> ProductDiscounts { get; set; }
         #endregion
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Product() : this(-1) { }
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Product(int productId)
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = productId;
-            Name = "Product name " + rand.Next(10000);
-            Description = "Description of product " + rand.Next(10000);
-            Cost = new Cost();
-            Discount = rand.Next(100)/100.0M;
-            Quantity = new Quantity();
-            int p = rand.Next(1,5);
-            ProductDiscounts = new List<ProductDiscount>();
-            for (int i = 0; i < p; i++)
-                    ProductDiscounts.Add(new ProductDiscount());
-        }
 
         public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity, List<ProductDiscount> productDiscounts)
         {

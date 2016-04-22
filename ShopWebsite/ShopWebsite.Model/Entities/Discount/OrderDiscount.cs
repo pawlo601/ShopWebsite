@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    public class OrderDiscount : SomeDiscount
+    public class OrderDiscount : MainDiscount
     {
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public OrderDiscount()
-        {
-            Id = -1;
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            if (rand.Next(1000) % 2 == 0)
-                Discount = ConstantDiscount.GetOneConstantDiscountForProduct();
-            else
-                Discount = PercantageDiscount.GetOneConstantDiscountForProduct();
-        }
+        #region variables
+        [Column("order_id")]
+        [XmlAttribute("order_id")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Order id cannot be empty.")]
+        public int OrderId { get; set; }
+        #endregion
 
-        public OrderDiscount(int id, Discount discount)
+        public OrderDiscount(int id, int orderId, Discount discount)
         {
             Id = id;
+            OrderId = orderId;
             Discount = discount;
         }
 
@@ -27,13 +25,9 @@ namespace ShopWebsite.Model.Entities.Discount
         {
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
-            if (Discount != null)
-            {
-                if (Discount.IsForProduct)
-                {
-                    results.Add(new ValidationResult("This discount is not for order.", new[] { "Discount" }));
-                }
-            }
+            Validator.TryValidateProperty(OrderId,
+                new ValidationContext(this, null, null) { MemberName = "OrderId" },
+                results); 
             return results;
         }
     }

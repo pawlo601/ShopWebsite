@@ -6,10 +6,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    [Table("Discounts",Schema = "Discount")]
-    [XmlInclude(typeof(PercantageDiscount))]
-    [XmlInclude(typeof(ConstantDiscount))]
-    public abstract class Discount : IValidatableObject
+    [Table("Discounts", Schema = "Discount")]
+    public class Discount : IValidatableObject
     {
         #region variables
         [Key]
@@ -29,7 +27,27 @@ namespace ShopWebsite.Model.Entities.Discount
         [XmlAttribute("is_for_product")]//for xml
         [Required(ErrorMessage = "IsForProduct cannot be empty.")]
         public bool IsForProduct { get; set; }
-        
+
+        [Column("is_for_customer")]
+        [XmlAttribute("is_for_customer")]//for xml
+        [Required(ErrorMessage = "IsForCustomer cannot be empty.")]
+        public bool IsForCustomer { get; set; }
+
+        [Column("is_for_order")]
+        [XmlAttribute("is_for_order")]//for xml
+        [Required(ErrorMessage = "IsForOrder cannot be empty.")]
+        public bool IsForOrder { get; set; }
+
+        [Column("is_percentage")]
+        [XmlAttribute("is_percentage")]//for xml
+        [Required(ErrorMessage = "IsPercentage cannot be empty.")]
+        public bool IsPercentage { get; set; }
+
+        [Column("value_of_discount")]
+        [XmlAttribute("value_of_discount")]//for xml
+        [Required(ErrorMessage = "Value should be given.")]
+        public double Value { get; set; }
+
         [Column("start_discount")]
         [XmlAttribute("start_discount")]
         [Required(ErrorMessage = "Time of start of discount cannot be empty.")]
@@ -41,7 +59,25 @@ namespace ShopWebsite.Model.Entities.Discount
         public DateTime EndDisscount { get; set; }
         #endregion
 
-        public abstract decimal CountDiscount(decimal value);
+        public Discount(int id, string name, bool isForProduct, bool isForCustomer, bool isForOrder, bool isPercentage, double value, DateTime startDiscount, DateTime endDisscount)
+        {
+            Id = id;
+            Name = name;
+            IsForProduct = isForProduct;
+            IsForCustomer = isForCustomer;
+            IsForOrder = isForOrder;
+            IsPercentage = isPercentage;
+            Value = value;
+            StartDiscount = startDiscount;
+            EndDisscount = endDisscount;
+        }
+
+        public decimal CountDiscount(decimal value)
+        {
+            if (IsPercentage)
+                return (decimal)((double)value * (1.0 - Value));
+            return value - (decimal)Value;
+        }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
@@ -52,6 +88,19 @@ namespace ShopWebsite.Model.Entities.Discount
             Validator.TryValidateProperty(IsForProduct,
                 new ValidationContext(this, null, null) { MemberName = "IsForProduct" },
                 results);
+            Validator.TryValidateProperty(IsForCustomer,
+                new ValidationContext(this, null, null) { MemberName = "IsForCustomer" },
+                results);
+            Validator.TryValidateProperty(IsForOrder,
+                new ValidationContext(this, null, null) { MemberName = "IsForOrder" },
+                results);
+            Validator.TryValidateProperty(Value,
+                new ValidationContext(this, null, null) { MemberName = "Value" },
+                results);
+            if (Value < 0.0)
+            {
+                results.Add(new ValidationResult("Value of discount should be greater than or equal to 0.", new[] { "Value" }));
+            }
             if (StartDiscount.CompareTo(EndDisscount) > 0)
             {
                 results.Add(new ValidationResult("Time of start should be earlier than end.", new[] { "StartDiscount", "EndDisscount" }));

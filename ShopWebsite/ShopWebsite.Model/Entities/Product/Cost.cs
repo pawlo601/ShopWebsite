@@ -19,28 +19,14 @@ namespace ShopWebsite.Model.Entities.Product
         [Column("tax")]
         [XmlAttribute("tax")]//for xml
         [Required(ErrorMessage = "Tax cannot be empty.")]
-        public double Tax { get; set; }
+        public decimal Tax { get; set; }
 
         [XmlArray(ElementName = "prices")]//for xml
         [XmlArrayItem("price", Type = typeof(Price))]//for xml
         public List<Price> Prices { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Cost()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            Tax = rand.Next(1000)/1000.0;
-            int p = rand.Next(1,4);
-            Prices = new List<Price>();
-            for (int i = 0; i < p; i++)
-            {
-                Prices.Add(new Price());
-            }
-        }
-
-        public Cost(int id, double tax, List<Price> prices)
+        public Cost(int id, decimal tax, List<Price> prices)
         {
             Id = id;
             Tax = tax;
@@ -53,11 +39,11 @@ namespace ShopWebsite.Model.Entities.Product
             Validator.TryValidateProperty(Tax,
                 new ValidationContext(this, null, null) {MemberName = "Tax"},
                 results);
-            if (Tax < 0.0)
+            if (Tax < 0.0M)
             {
                 results.Add(new ValidationResult("Tax must be greater than or equal 0%.", new[] {"Tax"}));
             }
-            if (Tax > 1.0)
+            if (Tax > 1.0M)
             {
                 results.Add(new ValidationResult("Tax must be smaller than or equal 100%.", new[] { "Tax" }));
             }

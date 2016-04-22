@@ -38,17 +38,6 @@ namespace ShopWebsite.Model.Entities.Customer
         #endregion
 
         [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Password()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            UserId = -1;
-            HashedPassword = "HP"+rand.Next(10000);
-            PasswordSalt = "SP"+rand.Next(10000);
-            CreateTime = DateTime.Now;
-        }
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
         public Password(int userId, string hashedPassword, string passwordSalt, DateTime createTime)
         {
             Id = -1;

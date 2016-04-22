@@ -26,15 +26,6 @@ namespace ShopWebsite.Model.Entities.Product
         public Unit Unit { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Quantity()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            Value = rand.Next(10000)/100.0M;
-            Unit = Unit.GetOneUnit();
-        }
-
         public Quantity(int id, decimal value, Unit unit)
         {
             Id = id;

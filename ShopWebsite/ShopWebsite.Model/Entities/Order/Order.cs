@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
@@ -34,26 +33,6 @@ namespace ShopWebsite.Model.Entities.Order
         [XmlArrayItem("status_order", Type = typeof(StatusOrder))]//for xml
         public List<StatusOrder> ListOfStatusOrder { get; set; }
         #endregion
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Order()
-        {
-            Id = -1;
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            int nitems = rand.Next(1,5);
-            Items=new List<ItemInOrder>();
-            for(int i=0;i<nitems;i++)
-                Items.Add(new ItemInOrder());
-            int norder = rand.Next(1,4);
-            OrderDiscounts=new List<OrderDiscount>();
-            for(int i=0;i<norder;i++)
-                OrderDiscounts.Add(new OrderDiscount());
-            int nstatus = rand.Next(1,5);
-            ListOfStatusOrder=new List<StatusOrder>();
-            for(int i=0;i<nstatus;i++)
-                ListOfStatusOrder.Add(new StatusOrder());
-            Value = rand.Next(1000000)/100.0M;
-        }
 
         public Order(int id, decimal value, List<ItemInOrder> items, List<OrderDiscount> orderDiscounts, List<StatusOrder> listOfStatusOrder)
         {

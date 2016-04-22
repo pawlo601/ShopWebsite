@@ -5,19 +5,19 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    public class ProductDiscount : MainDiscount
+    public class CustomerDiscount : MainDiscount
     {
         #region variables
-        [Column("product_id")]
-        [XmlAttribute("product_id")]//for xml
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Product id cannot be empty.")]
-        public int ProductId { get; set; }
+        [Column("customer_id")]
+        [XmlAttribute("customer_id")]//for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Customer id cannot be empty.")]
+        public int CustomerId { get; set; }
         #endregion
 
-        public ProductDiscount(int id, int productId, Discount discount)
+        public CustomerDiscount(int id, int customerId, Discount discount)
         {
             Id = id;
-            ProductId = productId;
+            CustomerId = customerId;
             Discount = discount;
         }
 
@@ -25,8 +25,8 @@ namespace ShopWebsite.Model.Entities.Discount
         {
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
-            Validator.TryValidateProperty(ProductId,
-                new ValidationContext(this, null, null) { MemberName = "ProductId" },
+            Validator.TryValidateProperty(CustomerId,
+                new ValidationContext(this, null, null) { MemberName = "CustomerId" },
                 results);
             return results;
         }

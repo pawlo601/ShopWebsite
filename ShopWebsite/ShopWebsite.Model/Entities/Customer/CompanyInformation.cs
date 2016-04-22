@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Customer
@@ -40,16 +36,6 @@ namespace ShopWebsite.Model.Entities.Customer
         [MaxLength(15, ErrorMessage = "Length of tax id should be less than or equal to 15.")]
         public string TaxId { get; set; }
         #endregion
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public CompanyInformation()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            CompanyName = "CompanyName" + rand.Next(1000);
-            Regon = "Regon" + rand.Next(1000);
-            TaxId = "TaxId" + rand.Next(1000);
-        }
 
         public CompanyInformation(int id, string companyName, string regon, string taxId)
         {

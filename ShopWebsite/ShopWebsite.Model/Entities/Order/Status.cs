@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
@@ -25,39 +23,10 @@ namespace ShopWebsite.Model.Entities.Order
         public string Name { get; set; }
         #endregion
 
-        private static Status[] _tableStatus { get; set; }
-
-        private Status() { }
-
-        public static Status GetOneStatus()
+        public Status(int id, string name)
         {
-            Random rand = new Random();
-            if (_tableStatus != null)
-            {
-                int rr = rand.Next()%_tableStatus.Length;
-                return _tableStatus[rr];
-            }
-            int r = rand.Next()%4;
-            _tableStatus=new Status[4];
-            _tableStatus[0] = new Status() {Id = -1, Name = "Ok"};
-            _tableStatus[1] = new Status() { Id = -1, Name = "Nie Ok" };
-            _tableStatus[2] = new Status() { Id = -1, Name = "Prawie Ok" };
-            _tableStatus[3] = new Status() { Id = -1, Name = "Zle" };
-            return _tableStatus[r];
-        }
-
-        public static Status GetOneStatus(int id)
-        {
-            if (_tableStatus == null)
-                return GetOneStatus();
-            foreach (Status status in _tableStatus.Where(status => status.Id == id))
-                return status;
-            return GetOneStatus();
-        }
-
-        public static void SetTable(Status[] table)
-        {
-            _tableStatus = table;
+            Id = id;
+            Name = name;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

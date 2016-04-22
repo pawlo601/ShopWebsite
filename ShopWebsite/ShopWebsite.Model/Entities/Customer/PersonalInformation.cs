@@ -36,16 +36,6 @@ namespace ShopWebsite.Model.Entities.Customer
         public DateTime Birthday { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public PersonalInformation()
-        {
-            Random rand=new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            Name = "Name"+rand.Next(1000);
-            Surname = "Surname"+rand.Next(1000);
-            Birthday = DateTime.Now.AddYears(-rand.Next(70)).AddDays(-rand.Next(365));
-        }
-
         public PersonalInformation(int id, string name, string surname, DateTime birthday)
         {
             Id = id;

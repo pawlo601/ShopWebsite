@@ -11,47 +11,47 @@ namespace ShopWebsite.Tests
     [TestClass]
     public class SaveToXML
     {
-        [TestMethod]
-        public void SaveListOfProductsToXML()
-        {
-            var a = new Product();
-            List<Product> list = new List<Product> { a };
-            XmlSerializer serialiser = new XmlSerializer(typeof(List<Product>));
-            TextWriter Filestream = new StreamWriter(@"D:\SaveListOfProductsToXML.xml");
-            serialiser.Serialize(Filestream, list);
-            Filestream.Close();
-        }
+        //[TestMethod]
+        //public void SaveListOfProductsToXML()
+        //{
+        //    var a = new Product();
+        //    List<Product> list = new List<Product> { a };
+        //    XmlSerializer serialiser = new XmlSerializer(typeof(List<Product>));
+        //    TextWriter Filestream = new StreamWriter(@"D:\SaveListOfProductsToXML.xml");
+        //    serialiser.Serialize(Filestream, list);
+        //    Filestream.Close();
+        //}
 
-        [TestMethod]
-        public void ReadListOfProductsFromXml()
-        {
-            XmlSerializer deserializer = new XmlSerializer(typeof(List<Product>));
-            TextReader reader = new StreamReader(@"D:\SaveListOfProductsToXML.xml");
-            object obj = deserializer.Deserialize(reader);
-            List<Product> XmlData = (List<Product>)obj;
-            reader.Close();
-        }
+        //[TestMethod]
+        //public void ReadListOfProductsFromXml()
+        //{
+        //    XmlSerializer deserializer = new XmlSerializer(typeof(List<Product>));
+        //    TextReader reader = new StreamReader(@"D:\SaveListOfProductsToXML.xml");
+        //    object obj = deserializer.Deserialize(reader);
+        //    List<Product> XmlData = (List<Product>)obj;
+        //    reader.Close();
+        //}
 
-        [TestMethod]
-        public void SaveListOfCustomersToXML()
-        {
-            var a = new IndividualClient();
-            List<IndividualClient> list = new List<IndividualClient> { a };
-            XmlSerializer serialiser = new XmlSerializer(typeof(List<IndividualClient>));
-            TextWriter Filestream = new StreamWriter(@"D:\SaveListOfIndividualClientsToXML.xml");
-            serialiser.Serialize(Filestream, list);
-            Filestream.Close();
-        }
+        //[TestMethod]
+        //public void SaveListOfCustomersToXML()
+        //{
+        //    var a = new IndividualClient();
+        //    List<IndividualClient> list = new List<IndividualClient> { a };
+        //    XmlSerializer serialiser = new XmlSerializer(typeof(List<IndividualClient>));
+        //    TextWriter Filestream = new StreamWriter(@"D:\SaveListOfIndividualClientsToXML.xml");
+        //    serialiser.Serialize(Filestream, list);
+        //    Filestream.Close();
+        //}
 
-        [TestMethod]
-        public void ReadListOfCustomersFromXml()
-        {
-            XmlSerializer deserializer = new XmlSerializer(typeof(List<IndividualClient>));
-            TextReader reader = new StreamReader(@"D:\SaveListOfIndividualClientsToXML.xml");
-            object obj = deserializer.Deserialize(reader);
-            List<IndividualClient> XmlData = (List<IndividualClient>)obj;
-            reader.Close();
-        }
+        //[TestMethod]
+        //public void ReadListOfCustomersFromXml()
+        //{
+        //    XmlSerializer deserializer = new XmlSerializer(typeof(List<IndividualClient>));
+        //    TextReader reader = new StreamReader(@"D:\SaveListOfIndividualClientsToXML.xml");
+        //    object obj = deserializer.Deserialize(reader);
+        //    List<IndividualClient> XmlData = (List<IndividualClient>)obj;
+        //    reader.Close();
+        //}
 
         //[TestMethod]
         //public void SaveListOfCompaniesToXML()

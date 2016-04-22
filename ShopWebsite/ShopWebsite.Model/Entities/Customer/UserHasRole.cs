@@ -27,21 +27,6 @@ namespace ShopWebsite.Model.Entities.Customer
         public int RoleId { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public UserHasRole()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            UserId = rand.Next(100000);
-            RoleId = rand.Next(100000);
-        }
-
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public UserHasRole(int userId, int roleId)
-        {
-            UserId = userId;
-            RoleId = roleId;
-        }
-
         public UserHasRole(int id, int userId, int roleId)
         {
             Id = id;

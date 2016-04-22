@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    [Table("ToDiscount", Schema = "Discount")]
-    public abstract class SomeDiscount : IValidatableObject
+    [Table("Main_discounts", Schema = "Discount")]
+    public abstract class MainDiscount : IValidatableObject
     {
         #region variables
         [Key]
@@ -16,13 +16,16 @@ namespace ShopWebsite.Model.Entities.Discount
         public int Id { get; set; }
 
         [XmlElement(ElementName = "discount")]//for xml
-        [Required(ErrorMessage = "Discount has to be given.")]
+        [Required(ErrorMessage = "Discount for customer has to be given.")]
         public Discount Discount { get; set; }
         #endregion
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
+            Validator.TryValidateProperty(Discount,
+                new ValidationContext(this, null, null) { MemberName = "Discount" },
+                results);
             if (Discount != null)
             {
                 results.AddRange(Discount.Validate(validationContext));

@@ -32,39 +32,11 @@ namespace ShopWebsite.Model.Entities.Product
         public string Shortcut { get; set; }
         #endregion
 
-        private static Unit[] _tableUnits { get; set; }
-
-        private Unit() { }
-
-        public static Unit GetOneUnit()
+        public Unit(int id, string name, string shortcut)
         {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            if (_tableUnits != null)
-            {
-                int r1 = rand.Next()%_tableUnits.Length;
-                return _tableUnits[r1];
-            }
-            int r = rand.Next()%4;
-            _tableUnits = new Unit[4];
-            _tableUnits[0] = new Unit() {Id = -1, Name = "Kilogram", Shortcut = "KG"};
-            _tableUnits[1] = new Unit() {Id = -1, Name = "Sztuka", Shortcut = "SZT"};
-            _tableUnits[2] = new Unit() {Id = -1, Name = "Litr", Shortcut = "L"};
-            _tableUnits[3] = new Unit() {Id = -1, Name = "Para", Shortcut = "Para"};
-            return _tableUnits[r];
-        }
-
-        public static Unit GetOneUnit(int id)
-        {
-            if (_tableUnits == null)
-                GetOneUnit();
-            foreach (Unit unit in _tableUnits.Where(unit => unit.Id == id))
-                return unit;
-            return GetOneUnit();
-        }
-
-        public static void SetTableUnits(Unit[] table)
-        {
-            _tableUnits = table;
+            Id = id;
+            Name = name;
+            Shortcut = shortcut;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

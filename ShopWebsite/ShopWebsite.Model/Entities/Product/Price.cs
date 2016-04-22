@@ -26,15 +26,6 @@ namespace ShopWebsite.Model.Entities.Product
         public Currency Currency { get; set; }
         #endregion
 
-        [Obsolete("This constructor is only for tests, please use constructor with all variables as parameters.")]
-        public Price()
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            Id = -1;
-            Value = rand.Next(10000)/100.0M;
-            Currency = Currency.GetOneCurrency();
-        }
-
         public Price(int id, decimal value, Currency currency)
         {
             Id = id;
