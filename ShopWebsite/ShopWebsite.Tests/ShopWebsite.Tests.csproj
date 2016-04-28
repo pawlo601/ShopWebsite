@@ -52,17 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryTests\ProductRepositoryTests.cs" />
-    <Compile Include="TestOfSavingEntitiesToXML.cs" />
-    <Compile Include="ValidationTests\AddressValidationTests.cs" />
-    <Compile Include="ValidationTests\ProductValidationTests.cs" />
-    <Compile Include="ValidationTests\OrderValidationTests.cs" />
-    <Compile Include="ValidationTests\CompanyValidationTests.cs" />
-    <Compile Include="ValidationTests\CustomerValidationTests.cs" />
-    <Compile Include="ValidationTests\PositionInTheOrderValidationTests.cs" />
-    <Compile Include="ValidationTests\IndividualClientValidationTests.cs" />
+    <Compile Include="CreateNewAndSaveToXml.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShopWebsite.Configuration\ShopWebsite.Configuration.csproj">
+      <Project>{e631a3fe-68aa-4f4c-8799-314bb34619e9}</Project>
+      <Name>ShopWebsite.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShopWebsite.Data\ShopWebsite.Data.csproj">
       <Project>{39e92048-cca4-4f33-821a-c189d5e96610}</Project>
       <Name>ShopWebsite.Data</Name>

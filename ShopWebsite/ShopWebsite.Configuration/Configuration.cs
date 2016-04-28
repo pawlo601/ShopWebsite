@@ -1,18 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 using System.Xml;
 
-namespace ShopWebsite.Data.Common
+namespace ShopWebsite.Configuration
 {
-    public static class GetDataFromXml
+    public static class Configuration
     {
         public static string ConnectionString { get; set; }
         public static bool ReloadDatabase { get; set; }
-        static GetDataFromXml()
+        public static bool CreateNewObjects { get; set; }
+
+        static Configuration()
         {
+            var _assembly = Assembly.GetExecutingAssembly();
             using (Stream stream =
-                typeof(GetDataFromXml).Assembly.GetManifestResourceStream(
-                    "ShopWebsite.Data.ConfigFile.xml"))
+                _assembly.GetManifestResourceStream(
+                    "ShopWebsite.Configuration.configuration.xml"))
                 if (stream != null)
                 {
                     using (StreamReader sr = new StreamReader(stream))
@@ -36,12 +44,24 @@ namespace ShopWebsite.Data.Common
                                     ReloadDatabase = false;
                                     break;
                             }
+                            reader.ReadToFollowing("createNewObjects");
+                            reader.MoveToAttribute("value");
+                            cs = reader.Value;
+                            switch (cs)
+                            {
+                                case "true":
+                                    CreateNewObjects = true;
+                                    break;
+                                default:
+                                    CreateNewObjects = false;
+                                    break;
+                            }
                         }
                     }
                 }
                 else
                 {
-                    throw new Exception("Something is wrong with ConfigFile.xml and GetDataFromXml class.");
+                    throw new Exception("Something is wrong with ConfigFile.xml and Configuration class.");
                 }
         }
     }

@@ -50,7 +50,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common\DynamicQueryable.cs" />
-    <Compile Include="Common\GetDataFromXML.cs" />
     <Compile Include="Common\Utilities.cs" />
     <Compile Include="Common\Validation.cs" />
     <Compile Include="DbContextConfiguration.cs" />
@@ -64,8 +63,6 @@
     <Compile Include="MyInitizlizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\Implementations\ProductRepository.cs" />
-    <Compile Include="Repositories\Interfaces\ICompanyReposioty.cs" />
-    <Compile Include="Repositories\Interfaces\IIndividualClientRepository.cs" />
     <Compile Include="Repositories\Interfaces\IProductRepository.cs" />
     <Compile Include="Services\Implementations\DatabaseService.cs" />
     <Compile Include="Services\Implementations\ProductService.cs" />
@@ -78,28 +75,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShopWebsite.Configuration\ShopWebsite.Configuration.csproj">
+      <Project>{e631a3fe-68aa-4f4c-8799-314bb34619e9}</Project>
+      <Name>ShopWebsite.Configuration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShopWebsite.Model\ShopWebsite.Model.csproj">
       <Project>{eeb3c584-f30a-4abc-9e2b-15290c338312}</Project>
       <Name>ShopWebsite.Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="DataFromXML\Products.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="DataFromXML\Companies.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DataFromXML\IndividualClients.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ConfigFile.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

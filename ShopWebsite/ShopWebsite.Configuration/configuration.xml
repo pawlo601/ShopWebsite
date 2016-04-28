@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <database>
+    <connectionString value="Data Source=(localdb)\ProjectsV12;Initial Catalog=dat1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"/>
+    <reloadDatabase value="true"/>
+  </database>
+  <tests>
+    <CreateNewAndSave value="false">
+
+    </CreateNewAndSave>
+
+  </tests>
+</configuration>
+
