@@ -16,7 +16,7 @@ namespace ShopWebsite.Model.Entities.User
 
         public Company() { }
 
-        public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders)
+        public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders, List<Discount.CustomerDiscount> discounts)
         {
             Id = id;
             Email = email;
@@ -30,6 +30,7 @@ namespace ShopWebsite.Model.Entities.User
             Information = information;
             ContactTitle = contactTitle;
             Orders = orders;
+            Discounts = discounts;
         }
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

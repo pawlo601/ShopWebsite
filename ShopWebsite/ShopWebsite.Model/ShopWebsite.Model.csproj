@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ReadFromXml.cs" />
+    <Compile Include="Entities\SaveToXml.cs" />
     <Compile Include="Entities\User\Address.cs" />
     <Compile Include="Entities\User\Company.cs" />
     <Compile Include="Entities\User\CompanyInformation.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

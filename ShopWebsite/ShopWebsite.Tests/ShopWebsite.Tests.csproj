@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CreateNewAndSaveToXml.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopWebsite.Configuration\ShopWebsite.Configuration.csproj">

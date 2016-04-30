@@ -19,6 +19,10 @@ namespace ShopWebsite.Model.Entities.User
         [XmlArray(ElementName = "orders")]//for xml
         [XmlArrayItem("order", Type = typeof(Order.Order))]//for xml
         public List<Order.Order> Orders { get; set; }
+
+        [XmlArray(ElementName = "discounts")]//for xml
+        [XmlArrayItem("discount", Type = typeof(Discount.CustomerDiscount))]//for xml
+        public List<Discount.CustomerDiscount> Discounts { get; set; } 
         #endregion
 
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -33,6 +37,13 @@ namespace ShopWebsite.Model.Entities.User
                 foreach (Order.Order order in Orders)
                 {
                     results.AddRange(order.Validate(validationContext));
+                }
+            }
+            if (Discounts != null)
+            {
+                foreach (Discount.CustomerDiscount discount in Discounts)
+                {
+                    results.AddRange(discount.Validate(validationContext));
                 }
             }
             return results;

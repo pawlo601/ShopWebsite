@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ShopWebsite.Model.Entities.Customer;
+using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Model.Entities.Generators
@@ -164,8 +165,14 @@ namespace ShopWebsite.Model.Entities.Generators
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
+            List<CustomerDiscount> discounts = new List<CustomerDiscount>();
+            int r4 = rand.Next() % 5 + 1;
+            for (int i = 0; i < r4; i++)
+            {
+                discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
+            }
             CompanyInformation Information = GetNextCompanyInformation();
-            return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders);
+            return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
         }
 
         public IndividualClient GetNextIndividualClient()
@@ -201,8 +208,14 @@ namespace ShopWebsite.Model.Entities.Generators
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
+            List<CustomerDiscount> discounts = new List<CustomerDiscount>();
+            int r4 = rand.Next() % 5 + 1;
+            for (int i = 0; i < r4; i++)
+            {
+                discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
+            }
             PersonalInformation Information = GetNextPersonalInformation();
-            return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders);
+            return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
         }
     }
 }
