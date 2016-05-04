@@ -1,9 +1,9 @@
 ﻿using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.Entities.Discount;
 
 namespace ShopWebsite.Data.Repositories.Interfaces
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IDiscountRepository : IRepository<Discount>
     {
     }
 }

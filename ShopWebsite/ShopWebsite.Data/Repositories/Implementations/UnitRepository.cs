@@ -5,8 +5,8 @@ using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Repositories.Implementations
 {
-    public class ProductRepository : RepositoryBase<Product>, IProductRepository
+    public class UnitRepository : RepositoryBase<Unit>, IUnitRepository
     {
-        public ProductRepository(IDbFactory dbFactory): base(dbFactory) { }
+        public UnitRepository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

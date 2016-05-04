@@ -1,12 +1,12 @@
 ﻿using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces;
-using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.Entities.Order;
 
 namespace ShopWebsite.Data.Repositories.Implementations
 {
-    public class ProductRepository : RepositoryBase<Product>, IProductRepository
+    public class OrderRepository : RepositoryBase<Order>, IOrderRepository
     {
-        public ProductRepository(IDbFactory dbFactory): base(dbFactory) { }
+        public OrderRepository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

@@ -3,13 +3,6 @@ namespace ShopWebsite.Data.Common
 {
     public static class Utilities
     {
-        private static Random Rand { get; }
-
-        static Utilities()
-        {
-            Rand = new Random();
-        }
-
         public static int CalculateTotalPages(long numberOfRecords, int pageSize)
         {
             long result;

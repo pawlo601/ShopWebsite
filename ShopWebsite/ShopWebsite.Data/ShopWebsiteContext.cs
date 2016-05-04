@@ -1,9 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using ShopWebsite.Data.Common;
-using ShopWebsite.Model.Entities.Customer;
-using ShopWebsite.Model.Entities.Product;
-using ShopWebsite.Model.Entities.User;
 
 
 namespace ShopWebsite.Data

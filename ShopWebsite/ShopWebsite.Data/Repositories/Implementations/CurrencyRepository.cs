@@ -5,8 +5,8 @@ using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Repositories.Implementations
 {
-    public class ProductRepository : RepositoryBase<Product>, IProductRepository
+    public class CurrencyRepository : RepositoryBase<Currency>, ICurrencyRepository
     {
-        public ProductRepository(IDbFactory dbFactory): base(dbFactory) { }
+        public CurrencyRepository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

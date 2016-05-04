@@ -1,7 +1,6 @@
 ﻿using ShopWebsite.Data.Services.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using ShopWebsite.Model.Entities;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
@@ -53,7 +52,7 @@ namespace ShopWebsite.Data.Services.Implementations
             }
             if (sortExpression.Equals("name") || sortExpression.Equals("description"))
             {
-                Expression<Func<Product, string>> sortExpressionFunc = a => a.Name;
+                Expression<Func<Product, IComparable>> sortExpressionFunc = a => a.Name;
                 if (sortExpression.Equals("description"))
                 {
                     sortExpressionFunc = a => a.Description;
@@ -71,7 +70,7 @@ namespace ShopWebsite.Data.Services.Implementations
             //}
             else
             {
-                Expression<Func<Product, int>> sortExpressionFunc = a => a.Id;
+                Expression<Func<Product, IComparable>> sortExpressionFunc = a => a.Id;
                 return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
             }
         }

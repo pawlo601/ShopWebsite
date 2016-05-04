@@ -58,21 +58,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             }
         }
 
-        public virtual void DeleteEntity(T entity, out TransactionalInformation transaction)
-        {
-            transaction = new TransactionalInformation();
-            try
-            {
-                _dbSet.Remove(entity);
-                transaction.ReturnStatus = true;
-            }
-            catch (Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-            }
-        }
-
-        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, int>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
+        public virtual IEnumerable<T> GetAllEntities(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, IComparable>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
         {
             totalRows = 0;
             transaction = new TransactionalInformation();
@@ -90,59 +76,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             }
         }
 
-        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, string>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
-        {
-            totalRows = 0;
-            transaction = new TransactionalInformation();
-            try
-            {
-                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                totalRows = _dbSet.Where(where).Count();
-                transaction.ReturnStatus = true;
-                return items;
-            }
-            catch (Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-                return new List<T>();
-            }
-        }
-
-        public virtual IEnumerable<T> GetAll(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, decimal>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
-        {
-            totalRows = 0;
-            transaction = new TransactionalInformation();
-            try
-            {
-                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                totalRows = _dbSet.Where(where).Count();
-                transaction.ReturnStatus = true;
-                return items;
-            }
-            catch (Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-                return new List<T>();
-            }
-        }
-
-        public virtual T GetById(int id, out TransactionalInformation transaction)
-        {
-            transaction = new TransactionalInformation();
-            try
-            {
-                T item = _dbSet.Find(id);
-                transaction.ReturnStatus = item != null;
-                return item;
-            }
-            catch (Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-                return null;
-            }
-        }
-
-        public virtual T GetIf(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
+        public virtual T GetEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation();
             try

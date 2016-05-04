@@ -3,7 +3,7 @@ using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Repositories.Interfaces
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface IUnitRepository : IRepository<Unit>
     {
     }
 }
