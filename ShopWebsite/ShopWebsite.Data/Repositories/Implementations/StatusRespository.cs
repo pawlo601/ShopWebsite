@@ -6,7 +6,7 @@ using ShopWebsite.Model.Entities.Order;
 namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class StatusRespository : RepositoryBase<Status>, IStatusRespository
-    {
+    {//ok
         public StatusRespository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

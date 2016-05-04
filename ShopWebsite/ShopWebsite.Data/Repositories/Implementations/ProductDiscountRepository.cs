@@ -5,8 +5,8 @@ using ShopWebsite.Model.Entities.Discount;
 
 namespace ShopWebsite.Data.Repositories.Implementations
 {
-    public class DiscountRepository : RepositoryBase<Discount>, IDiscountRepository
+    public class ProductDiscountRepository : RepositoryBase<ProductDiscount>, IProductDiscountRepository
     {//ok
-        public DiscountRepository(IDbFactory dbFactory): base(dbFactory) { }
+        public ProductDiscountRepository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

@@ -6,7 +6,7 @@ using ShopWebsite.Model.Entities.Order;
 namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class OrderRepository : RepositoryBase<Order>, IOrderRepository
-    {
+    {//ok
         public OrderRepository(IDbFactory dbFactory): base(dbFactory) { }
     }
 }

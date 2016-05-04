@@ -20,19 +20,18 @@ namespace ShopWebsite.Model.Entities.User
         [Required(ErrorMessage = "User id cannot be empty.")]
         public int UserId { get; set; }
 
-        [Column("role_id")]
-        [XmlAttribute("role_id")]//for xml
-        [Required(ErrorMessage = "Role id cannot be empty.")]
-        public int RoleId { get; set; }
+        [XmlElement(ElementName = "role")]//for xml
+        [Required(ErrorMessage = "Role has to be given.")]
+        public Role Role { get; set; }
         #endregion
 
         public UserHasRole() { }
 
-        public UserHasRole(int id, int userId, int roleId)
+        public UserHasRole(int id, int userId, Role role)
         {
             Id = id;
             UserId = userId;
-            RoleId = roleId;
+            Role = role;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -45,12 +44,9 @@ namespace ShopWebsite.Model.Entities.User
             {
                 results.Add(new ValidationResult("UserId should be given.", new[] { "UserId" }));
             }
-            Validator.TryValidateProperty(RoleId,
-                new ValidationContext(this, null, null) { MemberName = "RoleId" },
-                results);
-            if (RoleId < 1)
+            if (Role !=null)
             {
-                results.Add(new ValidationResult("RoleId should be given.", new[] { "RoleId" }));
+                results.AddRange(Role.Validate(validationContext));
             }
             return results;
         }

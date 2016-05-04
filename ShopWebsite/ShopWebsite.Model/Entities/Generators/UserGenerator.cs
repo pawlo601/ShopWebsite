@@ -80,14 +80,15 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = UserHasRoleId;
             UserHasRoleId++;
-            int roleId;
+            int i;
+            var roles = GetAllRoles();
             while (true)
             {
-                roleId = rand.Next() % NumberOfRoles + 1;
-                if (!notThisRoleId.Contains(roleId))
+                i = rand.Next() % roles.Length;
+                if (!notThisRoleId.Contains(roles[i].Id))
                     break;
             }
-            return new UserHasRole(Id, userId, roleId);
+            return new UserHasRole(Id, userId, roles[i]);
         }
 
         public Password GetNextPassword(int userId)
@@ -124,7 +125,7 @@ namespace ShopWebsite.Model.Entities.Generators
             for (int i = 0; i < r2; i++)
             {
                 UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.RoleId);
+                notThisRoleId.Add(a.Role.Id);
                 UserRoles.Add(a);
             }
             string Position = "Position" + rand.Next(1000);
@@ -155,7 +156,7 @@ namespace ShopWebsite.Model.Entities.Generators
             for (int i = 0; i < r2; i++)
             {
                 UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.RoleId);
+                notThisRoleId.Add(a.Role.Id);
                 UserRoles.Add(a);
             }
             string ContactTitle = "CT" + rand.Next(1000);
@@ -198,7 +199,7 @@ namespace ShopWebsite.Model.Entities.Generators
             for (int i = 0; i < r2; i++)
             {
                 UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.RoleId);
+                notThisRoleId.Add(a.Role.Id);
                 UserRoles.Add(a);
             }
             string ContactTitle = "CT" + rand.Next(1000);

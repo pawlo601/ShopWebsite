@@ -32,7 +32,8 @@ namespace ShopWebsite.Data.Services.Implementations
 
         public void DeleteProduct(Product product, out TransactionalInformation transaction)
         {
-            _productRepository.DeleteEntity(product, out transaction);
+            throw new NotImplementedException();
+            //_productRepository.DeleteEntity(product, out transaction);
         }
 
         public IEnumerable<Product> GetAllProducts(int currentPageNumber, int pageSize, string sortExpression, bool ifDesc, string filter, out int totalRows, out TransactionalInformation transaction)
@@ -57,7 +58,8 @@ namespace ShopWebsite.Data.Services.Implementations
                 {
                     sortExpressionFunc = a => a.Description;
                 }
-                return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
+                throw new NotImplementedException();
+                //return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
             }
             //else if (sortExpression.Equals("quantity") || sortExpression.Equals("price"))
             //{
@@ -71,18 +73,21 @@ namespace ShopWebsite.Data.Services.Implementations
             else
             {
                 Expression<Func<Product, IComparable>> sortExpressionFunc = a => a.Id;
-                return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
+                throw new NotImplementedException();
+                //return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
             }
         }
 
         public Product GetProduct(int id, out TransactionalInformation transaction)
         {
-            return _productRepository.GetById(id, out transaction);
+            throw new NotImplementedException();
+            //return _productRepository.GetById(id, out transaction);
         }
 
-        public Product GetIf(Expression<Func<Product, bool>> where, out TransactionalInformation transaction)
+        public Product GetProduct(Expression<Func<Product, bool>> where, out TransactionalInformation transaction)
         {
-            return _productRepository.GetIf(where, out transaction);
+            throw new NotImplementedException();
+            //return _productRepository.GetIf(where, out transaction);
         }
 
         public void SaveProduct()
@@ -90,9 +95,9 @@ namespace ShopWebsite.Data.Services.Implementations
             UnitOfWork.Commit();
         }
 
-        public void UpdateEntity(Product entity, out TransactionalInformation transaction)
+        public void UpdateProduct(Product product, out TransactionalInformation transaction)
         {
-            _productRepository.UpdateEntity(entity, out transaction);
+            _productRepository.UpdateEntity(product, out transaction);
         }
     }
 }
