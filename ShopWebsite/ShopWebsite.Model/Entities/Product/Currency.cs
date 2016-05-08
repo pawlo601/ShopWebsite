@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Product
 {
     [Table("Curriencies", Schema = "Product")]
-    public class Currency : IValidatableObject
+    public class Currency : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -62,6 +62,11 @@ namespace ShopWebsite.Model.Entities.Product
                 results.Add(new ValidationResult("Exchange should be greater than 0.", new[] { "ExchangeToDolar" }));
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

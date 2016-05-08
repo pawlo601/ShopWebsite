@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    [Table("Passwords", Schema = "Customer")]
+    [Table("Passwords", Schema = "User")]
     public class Password : IValidatableObject
     {
         #region variables

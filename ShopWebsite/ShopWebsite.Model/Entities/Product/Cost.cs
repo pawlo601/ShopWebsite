@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Product
 {
     [Table("Costs", Schema = "Product")]
-    public class Cost : IValidatableObject
+    public class Cost : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -56,6 +56,11 @@ namespace ShopWebsite.Model.Entities.Product
                 }
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

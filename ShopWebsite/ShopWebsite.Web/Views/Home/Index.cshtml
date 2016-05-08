@@ -3,10 +3,11 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>Test2</h2>
+@Model.Count
 @foreach (var item in Model)
 {
-    <div>@item.ProductName</div><br>
+    <div>@item.Name   @item.Description</div><br>
+
 }
 

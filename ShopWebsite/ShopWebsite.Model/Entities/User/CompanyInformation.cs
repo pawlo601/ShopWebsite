@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
-namespace ShopWebsite.Model.Entities.Customer
+namespace ShopWebsite.Model.Entities.User
 {
-    [Table("Company_Information", Schema = "Customer")]
+    [Table("Company_Information", Schema = "User")]
     public class CompanyInformation : IValidatableObject
     {
         #region variables

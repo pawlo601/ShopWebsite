@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using System.Xml;
+using static System.Int32;
 
 namespace ShopWebsite.Configuration
 {
@@ -9,6 +10,7 @@ namespace ShopWebsite.Configuration
     {
         public static string ConnectionString { get; set; }
         public static bool ReloadDatabase { get; set; }
+        public static int HowManyProductsCreateInInitialize { get; set; }
 
         static Configuration()
         {
@@ -39,6 +41,10 @@ namespace ShopWebsite.Configuration
                                     ReloadDatabase = false;
                                     break;
                             }
+                            reader.ReadToFollowing("initializeProduct");
+                            reader.MoveToAttribute("value");
+                            string a = reader.Value;
+                            HowManyProductsCreateInInitialize = Parse(a);
                         }
                     }
                 }

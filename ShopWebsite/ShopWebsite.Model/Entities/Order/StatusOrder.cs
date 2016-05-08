@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Order
 {
     [Table("StatusOrder", Schema = "Order")]
-    public class StatusOrder : IValidatableObject
+    public class StatusOrder : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -46,6 +46,11 @@ namespace ShopWebsite.Model.Entities.Order
                 results.AddRange(Status.Validate(validationContext));
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

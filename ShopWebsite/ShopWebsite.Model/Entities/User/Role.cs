@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    [Table("Roles", Schema = "Customer")]
-    public class Role : IValidatableObject
+    [Table("Roles", Schema = "User")]
+    public class Role : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -38,6 +38,11 @@ namespace ShopWebsite.Model.Entities.User
                 new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

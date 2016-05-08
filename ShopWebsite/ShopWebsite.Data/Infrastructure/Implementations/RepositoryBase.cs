@@ -10,7 +10,7 @@ using ShopWebsite.Data.Common;
 
 namespace ShopWebsite.Data.Infrastructure.Implementations
 {
-    public abstract class RepositoryBase<T> : IRepository<T> where T : class, IValidatableObject
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class, IValidatableObject, IIntroduceable
     {
         private ShopWebsiteContext _dataContext;
         private readonly IDbSet<T> _dbSet;
@@ -41,48 +41,63 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
             return entity;
-        }   
+        }
 
         public virtual void DeleteEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
             try
             {
                 IEnumerable<T> objects = _dbSet.Where(where).AsEnumerable();
+                // ReSharper disable once NotAccessedVariable
+                int count = 0;
                 foreach (T obj in objects)
+                {
                     _dbSet.Remove(obj);
-            }
-            catch(Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-            }
-        }
-
-        public virtual IEnumerable<T> GetAllEntities(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, IComparable>> sortExpression, bool ifDesc, out int totalRows, out TransactionalInformation transaction)
-        {
-            totalRows = 0;
-            transaction = new TransactionalInformation();
-            try
-            {
-                List<T> items = ifDesc ? _dbSet.Where(@where).OrderByDescending(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList() : _dbSet.Where(@where).OrderBy(sortExpression).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                totalRows = _dbSet.Where(where).Count();
-                transaction.ReturnStatus = true;
-                return items;
+                    count++;
+                }
+                transaction = new TransactionalInformation
+                {
+                    ReturnStatus = true,
+                    ReturnMessage = new List<string> {$"All items({count}) have been removed."}
+                };
             }
             catch (Exception exc)
             {
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
-                return new List<T>();
             }
         }
 
         public virtual T GetEntity(Expression<Func<T, bool>> where, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
             try
             {
                 T item = _dbSet.Where(where).FirstOrDefault();
-                transaction.ReturnStatus = item != null;
+                transaction = new TransactionalInformation
+                {
+                    ReturnStatus = true,
+                    ReturnMessage =
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
+                };
+                return item;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return null;
+            }
+        }
+
+        public T GetEntityById(int id, out TransactionalInformation transaction)
+        {
+            try
+            {
+                T item = _dbSet.FirstOrDefault(a => a.GetId()==id);
+                transaction = new TransactionalInformation
+                {
+                    ReturnStatus = true,
+                    ReturnMessage =
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
+                };
                 return item;
             }
             catch (Exception exc)
@@ -94,17 +109,47 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 
         public virtual void UpdateEntity(T entity, out TransactionalInformation transaction)
         {
-            transaction = new TransactionalInformation();
             try
             {
                 _dbSet.Attach(entity);
                 _dataContext.Entry(entity).State = EntityState.Modified;
-                transaction.ReturnStatus = true;
+                transaction = new TransactionalInformation
+                {
+                    ReturnStatus = true,
+                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
+                };
             }
             catch (Exception exc)
             {
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
         }
+
+        public virtual IList<T> GetAllEntities(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction)
+        {
+            try
+            {
+                List<T> items =
+                    ifDesc
+                    ?
+                    _dbSet.Where(@where).OrderByDescending(arg => 1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
+                    :
+                    _dbSet.Where(@where).OrderBy(arg => 1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                int a = _dbSet.Where(@where).Count();
+                transaction = new TransactionalInformation
+                {
+                    TotalRows = a,
+                    ReturnStatus = true,
+                    ReturnMessage = new List<string> { a != 0 ? "Znaleziono." : "Nie znaleziono, ale wyszukiwanie przebiegło pomyślnie." }
+                };
+                return items;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<T>();
+            }
+        }
+
     }
 }

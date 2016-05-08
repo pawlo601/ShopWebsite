@@ -17,15 +17,21 @@ namespace ShopWebsite.Model.Entities
         public string Filter { get; set; }
         public int CurrentPageNumber { get; set; }
 
-        public TransactionalInformation()
+        public TransactionalInformation() : this(false, new List<string>(), new Hashtable(), 0, 0, 0, false, "", "", "", 0) { }
+
+        public TransactionalInformation(bool returnStatus, List<string> returnMessage, Hashtable validationErrors, int totalPages, int totalRows, int pageSize, bool isAuthenicated, string sortExpression, string sortDirection, string filter, int currentPageNumber)
         {
-            ReturnMessage = new List<string>();
-            ReturnStatus = true;
-            ValidationErrors = new Hashtable();
-            TotalPages = 0;
-            TotalPages = 0;
-            PageSize = 0;
-            IsAuthenicated = false;
+            ReturnStatus = returnStatus;
+            ReturnMessage = returnMessage;
+            ValidationErrors = validationErrors;
+            TotalPages = totalPages;
+            TotalRows = totalRows;
+            PageSize = pageSize;
+            IsAuthenicated = isAuthenicated;
+            SortExpression = sortExpression;
+            SortDirection = sortDirection;
+            Filter = filter;
+            CurrentPageNumber = currentPageNumber;
         }
     }
 }

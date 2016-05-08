@@ -3,6 +3,8 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Linq;
+using ShopWebsite.Model.Entities.Generators;
 
 namespace ShopWebsite.Data
 {
@@ -13,6 +15,12 @@ namespace ShopWebsite.Data
             try
             {
                 SqlConnection.ClearAllPools();
+                context.Units.AddRange(ProductGenerator.Instatnce.GetAllUnits());
+                context.Curriencies.AddRange(ProductGenerator.Instatnce.GetAllCurrencies());
+                for (int i = 0; i < Configuration.Configuration.HowManyProductsCreateInInitialize; i++)
+                {
+                    context.Products.Add(ProductGenerator.Instatnce.GetNextProduct());
+                }
                 context.SaveChanges();
             }catch(DbEntityValidationException e)
             {

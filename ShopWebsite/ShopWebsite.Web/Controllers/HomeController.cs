@@ -12,20 +12,23 @@ namespace ShopWebsite.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IProductService _productService;
+        private readonly IUnitService _unitService;
+        private readonly ICurrencyService _currencyService;
 
-        public HomeController(IProductService productService)
+        public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService)
         {
-            this._productService = productService;
+            _productService = productService;
+            _unitService = unitService;
+            _currencyService = currencyService;
         }
 
         // GET: Home
         public ActionResult Index()
         {
-            int total;
-            TransactionalInformation ti;
-            List<Product> all = _productService.GetAllProducts(1, 12, "quantity", true, "", out total, out ti).ToList();
-
-            return View(all);
+            TransactionalInformation tr = new TransactionalInformation();
+            List<Product> list = _productService.GetAllProducts(product => true, 1, 10, product =>  (IComparable)(product.Id), true,
+                out tr).ToList();
+            return View(list);
         }
     }
 }

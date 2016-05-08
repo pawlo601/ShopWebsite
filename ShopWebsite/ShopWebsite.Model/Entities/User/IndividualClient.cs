@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
+    [Table("IndividualClient", Schema = "User")]
     public class IndividualClient : Customer
     {
         #region variables

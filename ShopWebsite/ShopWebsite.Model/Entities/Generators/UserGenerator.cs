@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using ShopWebsite.Model.Entities.Customer;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.User;
 

@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Product
 {
     [Table("Units", Schema = "Product")]
-    public class Unit : IValidatableObject
+    public class Unit : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -49,6 +49,11 @@ namespace ShopWebsite.Model.Entities.Product
                 new ValidationContext(this, null, null) { MemberName = "Shortcut" },
                 results);
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

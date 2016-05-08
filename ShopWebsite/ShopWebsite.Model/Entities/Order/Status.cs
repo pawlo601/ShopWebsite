@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Order
 {
     [Table("Status", Schema = "Order")]
-    public class Status : IValidatableObject
+    public class Status : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -38,6 +38,11 @@ namespace ShopWebsite.Model.Entities.Order
                 new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

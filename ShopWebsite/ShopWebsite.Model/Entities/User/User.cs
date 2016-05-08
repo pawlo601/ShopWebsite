@@ -6,8 +6,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    [Table("Users", Schema = "Customer")]
-    public abstract class User : IValidatableObject
+    [Table("Users", Schema = "User")]
+    public abstract class User : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -40,7 +40,7 @@ namespace ShopWebsite.Model.Entities.User
 
         [Column("residential_address")]
         [XmlElement("residential_address")]//for xml
-        [Required(ErrorMessage = "Residential address has to be given.")]
+        //[Required(ErrorMessage = "Residential address has to be given.")]
         public Address ResidentialAddress { get; set; }
 
         [Column("phone_number")]
@@ -97,6 +97,11 @@ namespace ShopWebsite.Model.Entities.User
                 }
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

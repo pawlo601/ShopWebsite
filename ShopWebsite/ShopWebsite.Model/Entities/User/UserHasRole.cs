@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    [Table("user_has_roles", Schema = "Customer")]
+    [Table("user_has_roles", Schema = "User")]
     public class UserHasRole : IValidatableObject
     {
         #region variables

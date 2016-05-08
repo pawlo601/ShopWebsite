@@ -5,8 +5,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
 {
-    [Table("Items_in_orders")]
-    public class ItemInOrder : IValidatableObject
+    [Table("Items_in_orders", Schema = "Order")]
+    public class ItemInOrder : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -43,6 +43,11 @@ namespace ShopWebsite.Model.Entities.Order
                 results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new[] { "Quantity" }));
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

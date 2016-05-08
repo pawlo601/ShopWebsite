@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Product
 {
     [Table("Prices", Schema = "Product")]
-    public class Price : IValidatableObject
+    public class Price : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -46,6 +46,11 @@ namespace ShopWebsite.Model.Entities.Product
                 results.Add(new ValidationResult("Value of price should be greater than or equal to 0.", new[] { "Value" }));
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

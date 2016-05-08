@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
+    [Table("Order_discounts", Schema = "Discount")]
     public class OrderDiscount : MainDiscount
     {
         #region variables

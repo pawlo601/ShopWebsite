@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Discount
 {
     [Table("Discounts", Schema = "Discount")]
-    public class Discount : IValidatableObject
+    public class Discount : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -118,6 +118,11 @@ namespace ShopWebsite.Model.Entities.Discount
                 results.Add(new ValidationResult("Time of start should be earlier than end.", new[] { "StartDiscount", "EndDisscount" }));
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

@@ -9,15 +9,13 @@ using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Services.Implementations
 {
-    public class ProductService : IProductService
+    public class ProductService : MainService, IProductService
     {
         private readonly IProductRepository _productRepository;
-        public readonly IUnitOfWork UnitOfWork;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork):base(unitOfWork)
         {
             _productRepository = productRepository;
-            UnitOfWork = unitOfWork;
         }
 
         public Product CreateProduct(Product product, out TransactionalInformation transaction)
@@ -32,67 +30,24 @@ namespace ShopWebsite.Data.Services.Implementations
 
         public void DeleteProduct(Product product, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
-            //_productRepository.DeleteEntity(product, out transaction);
-        }
-
-        public IEnumerable<Product> GetAllProducts(int currentPageNumber, int pageSize, string sortExpression, bool ifDesc, string filter, out int totalRows, out TransactionalInformation transaction)
-        {
-            Expression<Func<Product, bool>> filterExpression;
-            if (filter.Equals(""))
-            {
-                filterExpression = a => true;
-            }
-            else
-            {
-                filterExpression = a =>
-                    a.Id.ToString().Contains(filter) ||
-                    a.Name.Contains(filter) ||
-                    a.Description.Contains(filter);
-
-            }
-            if (sortExpression.Equals("name") || sortExpression.Equals("description"))
-            {
-                Expression<Func<Product, IComparable>> sortExpressionFunc = a => a.Name;
-                if (sortExpression.Equals("description"))
-                {
-                    sortExpressionFunc = a => a.Description;
-                }
-                throw new NotImplementedException();
-                //return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
-            }
-            //else if (sortExpression.Equals("quantity") || sortExpression.Equals("price"))
-            //{
-            //    Expression<Func<Product, decimal>> sortExpressionFunc = a => a.QuantityPerUnit;
-            //    if (sortExpression.Equals("price"))
-            //    {
-            //        sortExpressionFunc = a => a.PricePerUnit;
-            //    }
-            //    return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
-            //}
-            else
-            {
-                Expression<Func<Product, IComparable>> sortExpressionFunc = a => a.Id;
-                throw new NotImplementedException();
-                //return _productRepository.GetAll(filterExpression, currentPageNumber, pageSize, sortExpressionFunc, ifDesc, out totalRows, out transaction);
-            }
+            _productRepository.DeleteEntity(product1 => product.Id == product1.Id, out transaction);
         }
 
         public Product GetProduct(int id, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
-            //return _productRepository.GetById(id, out transaction);
+            return _productRepository.GetEntityById(id, out transaction);
         }
 
         public Product GetProduct(Expression<Func<Product, bool>> where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
-            //return _productRepository.GetIf(where, out transaction);
+            return _productRepository.GetEntity(where, out transaction);
         }
 
-        public void SaveProduct()
+        public IList<Product> GetAllProducts(Expression<Func<Product, bool>> @where, int currentPageNumber,
+            int pageSize, Expression<Func<Product, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction)
         {
-            UnitOfWork.Commit();
+            return _productRepository.GetAllEntities(where, currentPageNumber, pageSize, sortExpression, ifDesc,
+                out transaction);
         }
 
         public void UpdateProduct(Product product, out TransactionalInformation transaction)

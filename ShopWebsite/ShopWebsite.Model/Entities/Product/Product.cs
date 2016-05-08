@@ -7,7 +7,7 @@ using ShopWebsite.Model.Entities.Discount;
 namespace ShopWebsite.Model.Entities.Product
 {
     [Table("Products", Schema = "Product")]
-    public class Product : IValidatableObject
+    public class Product : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
@@ -93,6 +93,11 @@ namespace ShopWebsite.Model.Entities.Product
                 }
             }
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

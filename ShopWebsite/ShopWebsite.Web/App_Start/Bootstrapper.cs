@@ -1,16 +1,12 @@
-﻿using Autofac;
+﻿using System.Reflection;
+using System.Web.Mvc;
+using Autofac;
 using Autofac.Integration.Mvc;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Implementations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using System.Web.Mvc;
 
-namespace ShopWebsite.Web.App_Start
+namespace ShopWebsite.Web
 {
     public static class Bootstrapper
     {
