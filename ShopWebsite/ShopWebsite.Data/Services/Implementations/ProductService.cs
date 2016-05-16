@@ -13,7 +13,7 @@ namespace ShopWebsite.Data.Services.Implementations
     {
         private readonly IProductRepository _productRepository;
 
-        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork):base(unitOfWork)
+        public ProductService(IProductRepository productRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _productRepository = productRepository;
         }
@@ -43,10 +43,43 @@ namespace ShopWebsite.Data.Services.Implementations
             return _productRepository.GetEntity(where, out transaction);
         }
 
-        public IList<Product> GetAllProducts(Expression<Func<Product, bool>> @where, int currentPageNumber,
-            int pageSize, Expression<Func<Product, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction)
+        public IList<Product> GetAllProductsById(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
         {
-            return _productRepository.GetAllEntities(where, currentPageNumber, pageSize, sortExpression, ifDesc,
+            return _productRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
+        }
+
+        public IList<Product> GetAllProductsByName(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _productRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
+        }
+
+        public IList<Product> GetAllProductsByDescription(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _productRepository.GetAllEntitiesByDescription(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
+        }
+
+        public IList<Product> GetAllProductsByDiscount(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _productRepository.GetAllEntitiesByDiscount(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
+        }
+
+        public IList<Product> GetAllProductsByQuantityValue(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _productRepository.GetAllEntitiesByQuantityValue(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
+        }
+
+        public IList<Product> GetAllProductsByCostValue(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, Currency currency, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _productRepository.GetAllEntitiesByCostValue(where, currentPageNumber, pageSize, currency, ifDesc,
                 out transaction);
         }
 
@@ -54,5 +87,7 @@ namespace ShopWebsite.Data.Services.Implementations
         {
             _productRepository.UpdateEntity(product, out transaction);
         }
+
+
     }
 }

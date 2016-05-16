@@ -25,9 +25,27 @@ namespace ShopWebsite.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            TransactionalInformation tr = new TransactionalInformation();
-            List<Product> list = _productService.GetAllProducts(product => true, 1, 10, product =>  (IComparable)(product.Id), true,
-                out tr).ToList();
+            return View();
+        }
+
+        public ActionResult Units()
+        {
+            TransactionalInformation tr;
+            List<Unit> list = _unitService.GetAllUnitsById(a => true, 1, 10, true, out tr).ToList();
+            return View(list);
+        }
+
+        public ActionResult Products()
+        {
+            TransactionalInformation tr;
+            List<Product> list = _productService.GetAllProductsById(product => true, 1, 5, false, out tr).ToList();
+            return View(list);
+        }
+
+        public ActionResult Curriencies()
+        {
+            TransactionalInformation tr;
+            List<Currency> list = _currencyService.GetAllCurrenciesById(currency => true, 1, 10, true, out tr).ToList();
             return View(list);
         }
     }

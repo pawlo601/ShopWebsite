@@ -8,7 +8,7 @@ using ShopWebsite.Model.Entities.Generators;
 
 namespace ShopWebsite.Data
 {
-    public class MyInitizlizer : DropCreateDatabaseAlways<ShopWebsiteContext>
+    public class MyInitizlizer : DropCreateDatabaseIfModelChanges<ShopWebsiteContext>
     {
         protected override void Seed(ShopWebsiteContext context)
         {

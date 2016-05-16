@@ -20,7 +20,14 @@ namespace ShopWebsite.Data.Services.Interfaces
 
         Unit GetUnit(Expression<Func<Unit, bool>> where, out TransactionalInformation transaction);
 
-        IList<Unit> GetAllUnits(Expression<Func<Unit, bool>> where, int currentPageNumber, int pageSize, Expression<Func<Unit, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction);
+        IList<Unit> GetAllUnitsById(Expression<Func<Unit, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Unit> GetAllUnitsByName(Expression<Func<Unit, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Unit> GetAllUnitsByShortcut(Expression<Func<Unit, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
 
         void SaveProduct();
     }

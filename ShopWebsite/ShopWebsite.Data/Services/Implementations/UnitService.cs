@@ -9,11 +9,11 @@ using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Services.Implementations
 {
-    public class UnitService:MainService, IUnitService
+    public class UnitService : MainService, IUnitService
     {
         private readonly IUnitRepository _unitRepository;
 
-        public UnitService(IUnitRepository unitRepository, IUnitOfWork unitOfWork):base(unitOfWork)
+        public UnitService(IUnitRepository unitRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitRepository = unitRepository;
         }
@@ -30,7 +30,7 @@ namespace ShopWebsite.Data.Services.Implementations
 
         public void DeleteUnit(Unit unit, out TransactionalInformation transaction)
         {
-            _unitRepository.DeleteEntity(unit1 => unit1.Id==unit.Id,out transaction);
+            _unitRepository.DeleteEntity(unit1 => unit1.Id == unit.Id, out transaction);
         }
 
         public void DeleteUnit(Expression<Func<Unit, bool>> @where, out TransactionalInformation transaction)
@@ -40,7 +40,7 @@ namespace ShopWebsite.Data.Services.Implementations
 
         public void UpdateUnit(Unit unit, out TransactionalInformation transaction)
         {
-            _unitRepository.UpdateEntity(unit,out transaction);
+            _unitRepository.UpdateEntity(unit, out transaction);
         }
 
         public Unit GetUnit(Expression<Func<Unit, bool>> @where, out TransactionalInformation transaction)
@@ -48,11 +48,22 @@ namespace ShopWebsite.Data.Services.Implementations
             return _unitRepository.GetEntity(@where, out transaction);
         }
 
-        public IList<Unit> GetAllUnits(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, 
-            Expression<Func<Unit, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction)
+        public IList<Unit> GetAllUnitsById(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
         {
-            return _unitRepository.GetAllEntities(@where, currentPageNumber, pageSize, sortExpression, ifDesc,
-                out transaction);
+            return _unitRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
+        }
+
+        public IList<Unit> GetAllUnitsByName(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _unitRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
+        }
+
+        public IList<Unit> GetAllUnitsByShortcut(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
+            out TransactionalInformation transaction)
+        {
+            return _unitRepository.GetAllEntitiesByShortcut(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Units";
+}
+
+<a href="/Home/Index">BACK</a>
+<h2>Units</h2>
+
+@Model.Count
+@foreach (var item in Model)
+{
+    <div>@item.Name @item.Shortcut</div>
+}
+

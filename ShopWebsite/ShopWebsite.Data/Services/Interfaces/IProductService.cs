@@ -20,7 +20,23 @@ namespace ShopWebsite.Data.Services.Interfaces
 
         Product GetProduct(Expression<Func<Product, bool>> where, out TransactionalInformation transaction);
 
-        IList<Product> GetAllProducts(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize, Expression<Func<Product, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction);
+        IList<Product> GetAllProductsById(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Product> GetAllProductsByName(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Product> GetAllProductsByDescription(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Product> GetAllProductsByDiscount(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Product> GetAllProductsByQuantityValue(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Product> GetAllProductsByCostValue(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
+            Currency currency, bool ifDesc, out TransactionalInformation transaction);
 
         void SaveProduct();
     }

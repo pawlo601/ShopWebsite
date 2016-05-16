@@ -12,8 +12,8 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
 {
     public abstract class RepositoryBase<T> : IRepository<T> where T : class, IValidatableObject, IIntroduceable
     {
-        private ShopWebsiteContext _dataContext;
-        private readonly IDbSet<T> _dbSet;
+        protected ShopWebsiteContext _dataContext;
+        protected readonly IDbSet<T> _dbSet;
         protected IDbFactory DbFactory { get; }
         protected ShopWebsiteContext DbContext => _dataContext ?? (_dataContext = DbFactory.Init());
 
@@ -124,32 +124,5 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
         }
-
-        public virtual IList<T> GetAllEntities(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize, Expression<Func<T, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction)
-        {
-            try
-            {
-                List<T> items =
-                    ifDesc
-                    ?
-                    _dbSet.Where(@where).OrderByDescending(arg => 1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
-                    :
-                    _dbSet.Where(@where).OrderBy(arg => 1).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
-                int a = _dbSet.Where(@where).Count();
-                transaction = new TransactionalInformation
-                {
-                    TotalRows = a,
-                    ReturnStatus = true,
-                    ReturnMessage = new List<string> { a != 0 ? "Znaleziono." : "Nie znaleziono, ale wyszukiwanie przebiegło pomyślnie." }
-                };
-                return items;
-            }
-            catch (Exception exc)
-            {
-                Validation.BuildTransactionalInformationFromException(exc, out transaction);
-                return new List<T>();
-            }
-        }
-
     }
 }

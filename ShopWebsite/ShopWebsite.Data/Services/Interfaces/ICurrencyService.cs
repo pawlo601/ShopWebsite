@@ -20,7 +20,17 @@ namespace ShopWebsite.Data.Services.Interfaces
 
         Currency GetCurrency(Expression<Func<Currency, bool>> where, out TransactionalInformation transaction);
 
-        IList<Currency> GetAllCurrencies(Expression<Func<Currency, bool>> where, int currentPageNumber, int pageSize, Expression<Func<Currency, IComparable>> sortExpression, bool ifDesc, out TransactionalInformation transaction);
+        IList<Currency> GetAllCurrenciesById(Expression<Func<Currency, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Currency> GetAllCurrenciesByName(Expression<Func<Currency, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Currency> GetAllCurrenciesByShortcut(Expression<Func<Currency, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
+
+        IList<Currency> GetAllCurrenciesByExchange(Expression<Func<Currency, bool>> where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction);
 
         void SaveProduct();
     }

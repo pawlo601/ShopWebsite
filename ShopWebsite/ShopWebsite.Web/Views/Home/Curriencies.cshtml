@@ -1,0 +1,14 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Curriencies";
+}
+
+<a href="/Home/Index">BACK</a>
+<h2>Curriencies</h2>
+
+@Model.Count
+@foreach (var item in Model)
+{
+    <div>@item.Name |  @item.Shortcut |  @item.ExchangeToDolar</div>
+}
