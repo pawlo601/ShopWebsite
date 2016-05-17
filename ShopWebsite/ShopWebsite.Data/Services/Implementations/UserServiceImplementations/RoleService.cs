@@ -10,7 +10,7 @@ using ShopWebsite.Model.Entities.User;
 namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 {
     public class RoleService : MainService, IRoleService
-    {//todo implements RoleService
+    {
         private readonly IRoleRepository _roleRepository;
 
         public RoleService(IRoleRepository roleRepository, IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -20,44 +20,44 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 
         public Role GetRole(int id, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetEntityById(id, out transaction);
         }
 
         public Role CreateRole(Role role, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _roleRepository.AddNewEntity(role, out transaction);
         }
 
         public void DeleteRole(Role role, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _roleRepository.DeleteEntity(role1 => role.Id == role1.Id, out transaction);
         }
 
         public void DeleteRole(Expression<Func<Role, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _roleRepository.DeleteEntity(where, out transaction);
         }
 
         public void UpdateRole(Role role, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _roleRepository.UpdateEntity(role, out transaction);
         }
 
         public Role GetRole(Expression<Func<Role, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetEntity(where, out transaction);
         }
 
         public IList<Role> GetAllRolesById(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Role> GetAllRolesByName(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _roleRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
     }
 }

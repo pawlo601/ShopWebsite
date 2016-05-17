@@ -15,9 +15,9 @@ namespace ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces
 
         void DeleteMan(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
 
-        void Update(T man, out TransactionalInformation transaction);
+        void UpdateMan(T man, out TransactionalInformation transaction);
 
-        T GetProduct(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
+        T GetMan(Expression<Func<T, bool>> where, out TransactionalInformation transaction);
 
         IList<T> GetAllMenById(Expression<Func<T, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);

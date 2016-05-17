@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.User;
 
@@ -8,6 +9,16 @@ namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
 {
     public interface ICompanyRespository
     {
+        Company AddNewCompany(Company entity, out TransactionalInformation transaction);
+
+        void UpdateCompany(Company entity, out TransactionalInformation transaction);
+
+        void DeleteCompany(Expression<Func<Company, bool>> where, out TransactionalInformation transaction);
+
+        Company GetCompany(Expression<Func<Company, bool>> where, out TransactionalInformation transaction);
+
+        Company GetCompanyById(int id, out TransactionalInformation transaction);
+
         IList<Company> GetAllCompaniesByName(Expression<Func<Company, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
 

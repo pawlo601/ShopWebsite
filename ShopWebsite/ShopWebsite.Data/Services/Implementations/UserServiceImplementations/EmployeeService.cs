@@ -10,7 +10,7 @@ using ShopWebsite.Model.Entities.User;
 namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 {
     public class EmployeeService : MainService, IEmployeeService
-    {//todo implements EmployeeService
+    {
         private readonly IUserRespository _userRepository;
 
         public EmployeeService(IUserRespository userRespository, IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -20,74 +20,75 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 
         public Employee GetMan(int id, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetEmployeeById(id, out transaction);
         }
 
         public Employee CreateMan(Employee man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.AddNewEmployee(man, out transaction);
         }
 
         public void DeleteMan(Employee man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.DeleteEmployee(employee => employee.Id==man.Id, out transaction);
         }
 
         public void DeleteMan(Expression<Func<Employee, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.DeleteEmployee(where, out transaction);
         }
 
-        public void Update(Employee man, out TransactionalInformation transaction)
+        public void UpdateMan(Employee man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.UpdateEmployee(man, out transaction);
         }
 
-        public Employee GetProduct(Expression<Func<Employee, bool>> @where, out TransactionalInformation transaction)
+        public Employee GetMan(Expression<Func<Employee, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetEmployee(where, out transaction);
         }
 
         public IList<Employee> GetAllMenById(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Employee> GetAllMenByEmail(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesByEmail(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Employee> GetAllMenByPhoneNumber(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesByPhoneNumber(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<Employee> GetAllEmployeesByPosition(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesByPosition(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Employee> GetAllEmployeesByName(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Employee> GetAllEmployeesBySurname(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesBySurname(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
         public IList<Employee> GetAllEmployeesByBirtday(Expression<Func<Employee, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllEmployeesByBirtday(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
     }
 }

@@ -12,7 +12,7 @@ using ShopWebsite.Model.Entities.Product;
 namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementations
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
-    {//ok
+    {
         public ProductRepository(IDbFactory dbFactory) : base(dbFactory) { }
 
 
@@ -41,7 +41,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
             }
         }
 
-        public IList<Product> GetAllEntitiesByName(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, 
+        public IList<Product> GetAllEntitiesByName(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction)
         {
             try
@@ -66,7 +66,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
             }
         }
 
-        public IList<Product> GetAllEntitiesByDescription(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, 
+        public IList<Product> GetAllEntitiesByDescription(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction)
         {
             try
@@ -141,14 +141,14 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
             }
         }
 
-        public IList<Product> GetAllEntitiesByCostValue(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize, 
+        public IList<Product> GetAllEntitiesByCostValue(Expression<Func<Product, bool>> @where, int currentPageNumber, int pageSize,
             Currency currency, bool ifDesc, out TransactionalInformation transaction)
         {
             try
             {
                 List<Product> items =
                     ifDesc
-                    ? _dbSet.Where(@where).Where(g=>g.Cost.Prices.Any(f=>f.Currency.Equals(currency))).OrderByDescending(arg => arg.Cost.Prices.First(w => w.Currency.Equals(currency)).Value).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
+                    ? _dbSet.Where(@where).Where(g => g.Cost.Prices.Any(f => f.Currency.Equals(currency))).OrderByDescending(arg => arg.Cost.Prices.First(w => w.Currency.Equals(currency)).Value).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
                     : _dbSet.Where(@where).OrderBy(arg => arg.Quantity.Value).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
                 int a = _dbSet.Where(@where).Count();
                 transaction = new TransactionalInformation

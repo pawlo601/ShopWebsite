@@ -10,7 +10,7 @@ using ShopWebsite.Model.Entities.User;
 namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 {
     public class IndividualClientService : MainService, IIndividualClientService
-    {//todo implements IndividualClientService
+    {
         private readonly IUserRespository _userRepository;
 
         public IndividualClientService(IUserRespository userRespository, IUnitOfWork unitOfWork) : base(unitOfWork)
@@ -20,68 +20,75 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
 
         public IndividualClient GetMan(int id, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetIndividualClientById(id, out transaction);
         }
 
         public IndividualClient CreateMan(IndividualClient man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.AddNewIndividualClient(man, out transaction);
         }
 
         public void DeleteMan(IndividualClient man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.DeleteIndividualClient(client => client.Id == man.Id, out transaction);
         }
 
         public void DeleteMan(Expression<Func<IndividualClient, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.DeleteIndividualClient(where, out transaction);
         }
 
-        public void Update(IndividualClient man, out TransactionalInformation transaction)
+        public void UpdateMan(IndividualClient man, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            _userRepository.UpdateIndividualClient(man, out transaction);
         }
 
-        public IndividualClient GetProduct(Expression<Func<IndividualClient, bool>> @where, out TransactionalInformation transaction)
+        public IndividualClient GetMan(Expression<Func<IndividualClient, bool>> @where, out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetIndividualClient(where, out transaction);
         }
+
 
         public IList<IndividualClient> GetAllMenById(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsById(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<IndividualClient> GetAllMenByEmail(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsByEmail(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<IndividualClient> GetAllMenByPhoneNumber(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsByPhoneNumber(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<IndividualClient> GetAllIndividualClientsByName(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsByName(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<IndividualClient> GetAllIndividualClientsBySurname(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsBySurname(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
 
         public IList<IndividualClient> GetAllIndividualClientsByBirtday(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
             out TransactionalInformation transaction)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetAllIndividualClientsByBirtday(where, currentPageNumber, pageSize, ifDesc,
+                out transaction);
         }
     }
 }
