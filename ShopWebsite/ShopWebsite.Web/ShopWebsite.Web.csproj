@@ -192,6 +192,7 @@
     <Content Include="Views\Home\Units.cshtml" />
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\Curriencies.cshtml" />
+    <Content Include="Views\Home\Employees.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

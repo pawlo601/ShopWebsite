@@ -4,6 +4,7 @@
     <connectionString value="Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"/>
     <reloadDatabase value="false"/>
     <initializeProduct value="10"/>
+    <initializeEmployees value="20"/>
   </database>
   
 </configuration>

@@ -14,11 +14,10 @@ using ShopWebsite.Model.Entities.User;
 namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
 {
     public class UserRepository : RepositoryBase<User>, IUserRespository
-    {
+    {//todo lazy/eager loading and how?
         public UserRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
-
 
         public Company AddNewCompany(Company entity, out TransactionalInformation transaction)
         {
@@ -697,12 +696,18 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 List<Employee> items =
                     ifDesc
                         ? _dbSet.OfType<Employee>()
+                            .Include(x => x.Information)
+                            .Include(x => x.ContactAddress)
+                            .Include(x => x.ResidentialAddress)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
                             .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet.OfType<Employee>()
+                            .Include(x => x.Information)
+                            .Include(x => x.ContactAddress)
+                            .Include(x => x.ResidentialAddress)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
                             .Skip((currentPageNumber - 1) * pageSize)

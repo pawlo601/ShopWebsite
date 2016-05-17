@@ -11,13 +11,14 @@ namespace ShopWebsite.Configuration
         public static string ConnectionString { get; set; }
         public static bool ReloadDatabase { get; set; }
         public static int HowManyProductsCreateInInitialize { get; set; }
+        public static int HowManyEmployeesCreateInInitialize { get; set; }
 
         static Configuration()
         {
             var _assembly = Assembly.GetExecutingAssembly();
             using (Stream stream =
-                _assembly.GetManifestResourceStream(
-                    "ShopWebsite.Configuration.configuration.xml"))
+                  _assembly.GetManifestResourceStream(
+                      "ShopWebsite.Configuration.configuration.xml"))
                 if (stream != null)
                 {
                     using (StreamReader sr = new StreamReader(stream))
@@ -45,6 +46,10 @@ namespace ShopWebsite.Configuration
                             reader.MoveToAttribute("value");
                             string a = reader.Value;
                             HowManyProductsCreateInInitialize = Parse(a);
+                            reader.ReadToFollowing("initializeEmployees");
+                            reader.MoveToAttribute("value");
+                            string b = reader.Value;
+                            HowManyEmployeesCreateInInitialize = Parse(b);
                         }
                     }
                 }

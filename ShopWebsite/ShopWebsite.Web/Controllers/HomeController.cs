@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
 using ShopWebsite.Model.Entities.Product;
+using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Web.Controllers
 {
@@ -12,12 +14,14 @@ namespace ShopWebsite.Web.Controllers
         private readonly IProductService _productService;
         private readonly IUnitService _unitService;
         private readonly ICurrencyService _currencyService;
+        private readonly IEmployeeService _employeeService;
 
-        public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService)
+        public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService, IEmployeeService employeeService)
         {
             _productService = productService;
             _unitService = unitService;
             _currencyService = currencyService;
+            _employeeService = employeeService;
         }
 
         // GET: Home
@@ -46,5 +50,13 @@ namespace ShopWebsite.Web.Controllers
             List<Currency> list = _currencyService.GetAllCurrenciesById(currency => true, 1, 10, true, out tr).ToList();
             return View(list);
         }
+
+        public ActionResult Employees()
+        {
+            TransactionalInformation tr;
+            List<Employee> list = _employeeService.GetAllMenById(employee => true, 1, 10, false, out tr).ToList();
+            return View(list);
+        }
+
     }
 }

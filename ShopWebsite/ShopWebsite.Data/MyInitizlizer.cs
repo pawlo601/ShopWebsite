@@ -20,6 +20,10 @@ namespace ShopWebsite.Data
                 {
                     context.Products.Add(ProductGenerator.Instatnce.GetNextProduct());
                 }
+                for (int i = 0; i < Configuration.Configuration.HowManyEmployeesCreateInInitialize; i++)
+                {
+                    context.Users.Add(UserGenerator.Instatnce.GetNextEmployee());
+                }
                 context.SaveChanges();
             }catch(DbEntityValidationException e)
             {
