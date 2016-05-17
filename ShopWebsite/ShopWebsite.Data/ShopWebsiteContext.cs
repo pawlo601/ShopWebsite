@@ -13,10 +13,6 @@ namespace ShopWebsite.Data
     {
         public DbSet<Currency> Curriencies { get; set; }
         public DbSet<Discount> Discounts { get; set; }
-        public DbSet<ProductDiscount> ProductDiscounts { get; set; }
-        public DbSet<OrderDiscount> OrderDiscounts { get; set; }
-        public DbSet<CustomerDiscount> CustomerDiscounts { get; set; }
-        public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Status> Statuses { get; set; }

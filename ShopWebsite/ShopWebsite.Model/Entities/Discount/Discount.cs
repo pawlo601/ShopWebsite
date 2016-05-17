@@ -56,7 +56,7 @@ namespace ShopWebsite.Model.Entities.Discount
         [Column("end_discount")]
         [XmlAttribute("end_discount")]
         [Required(ErrorMessage = "Time of end of discount cannot be empty.")]
-        public DateTime EndDisscount { get; set; }
+        public DateTime EndDiscount { get; set; }
         #endregion
 
         public Discount() { }
@@ -81,7 +81,7 @@ namespace ShopWebsite.Model.Entities.Discount
             IsPercentage = isPercentage;
             Value = value;
             StartDiscount = startDiscount;
-            EndDisscount = endDisscount;
+            EndDiscount = endDisscount;
         }
 
         public decimal CountDiscount(decimal value)
@@ -113,7 +113,7 @@ namespace ShopWebsite.Model.Entities.Discount
             {
                 results.Add(new ValidationResult("Value of discount should be greater than or equal to 0.", new[] { "Value" }));
             }
-            if (StartDiscount.CompareTo(EndDisscount) > 0)
+            if (StartDiscount.CompareTo(EndDiscount) > 0)
             {
                 results.Add(new ValidationResult("Time of start should be earlier than end.", new[] { "StartDiscount", "EndDisscount" }));
             }

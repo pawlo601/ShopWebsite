@@ -25,5 +25,7 @@ namespace ShopWebsite.Data.Services.Interfaces
 
         IList<Status> GetAllStatusesByName(Expression<Func<Status, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
+
+        void SaveProduct();
     }
 }

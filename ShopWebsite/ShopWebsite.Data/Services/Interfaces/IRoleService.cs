@@ -25,5 +25,7 @@ namespace ShopWebsite.Data.Services.Interfaces
 
         IList<Role> GetAllRolesByName(Expression<Func<Role, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
+
+        void SaveProduct();
     }
 }

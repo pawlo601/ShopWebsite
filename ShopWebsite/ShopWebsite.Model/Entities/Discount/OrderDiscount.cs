@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Discount
 {
     [Table("Order_discounts", Schema = "Discount")]
-    public class OrderDiscount : MainDiscount
+    public class OrderDiscount : MainDiscount, IIntroduceable
     {
         #region variables
         [Column("order_id")]
@@ -32,6 +32,11 @@ namespace ShopWebsite.Model.Entities.Discount
                 new ValidationContext(this, null, null) { MemberName = "OrderId" },
                 results);
             return results;
+        }
+
+        public int GetId()
+        {
+            return Id;
         }
     }
 }

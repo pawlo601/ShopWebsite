@@ -5,7 +5,6 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    //[Table("Customers", Schema = "Customer")]
     public abstract class Customer : User
     {
         #region variables
