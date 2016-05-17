@@ -1,8 +1,8 @@
-﻿using ShopWebsite.Data.Services.Interfaces;
-using ShopWebsite.Model.Entities;
+﻿using ShopWebsite.Model.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces;
 using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Web.Controllers

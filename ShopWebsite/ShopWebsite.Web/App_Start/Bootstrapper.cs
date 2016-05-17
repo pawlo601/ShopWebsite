@@ -4,7 +4,7 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Implementations;
+using ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementations;
 
 namespace ShopWebsite.Web
 {
