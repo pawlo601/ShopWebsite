@@ -84,14 +84,24 @@
     <Compile Include="Repositories\Interfaces\IStatusRespository.cs" />
     <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUserRespository.cs" />
+    <Compile Include="Services\Implementations\CompanyService.cs" />
     <Compile Include="Services\Implementations\CurrencyService.cs" />
+    <Compile Include="Services\Implementations\IndividualClientService.cs" />
     <Compile Include="Services\Implementations\MainService.cs" />
     <Compile Include="Services\Implementations\ProductService.cs" />
+    <Compile Include="Services\Implementations\RoleService.cs" />
+    <Compile Include="Services\Implementations\StatusService.cs" />
     <Compile Include="Services\Implementations\UnitService.cs" />
+    <Compile Include="Services\Implementations\EmployeeService.cs" />
+    <Compile Include="Services\Interfaces\ICompanyService.cs" />
     <Compile Include="Services\Interfaces\ICurrencyService.cs" />
+    <Compile Include="Services\Interfaces\IEmployeeService.cs" />
+    <Compile Include="Services\Interfaces\IIndividualClientService.cs" />
+    <Compile Include="Services\Interfaces\IManService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\Interfaces\IRoleService.cs" />
+    <Compile Include="Services\Interfaces\IStatusService.cs" />
     <Compile Include="Services\Interfaces\IUnitService.cs" />
-    <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="ShopWebsiteContext.cs" />
   </ItemGroup>
   <ItemGroup>

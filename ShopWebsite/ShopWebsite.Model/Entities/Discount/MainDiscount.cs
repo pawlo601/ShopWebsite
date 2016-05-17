@@ -6,7 +6,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.Discount
 {
     //[Table("Main_discounts", Schema = "Discount")]
-    public abstract class MainDiscount : IValidatableObject, IIntroduceable
+    public abstract class MainDiscount : IValidatableObject
     {
         #region variables
         [Key]
@@ -31,11 +31,6 @@ namespace ShopWebsite.Model.Entities.Discount
                 results.AddRange(Discount.Validate(validationContext));
             }
             return results;
-        }
-
-        public int GetId()
-        {
-            return Id;
         }
     }
 }
