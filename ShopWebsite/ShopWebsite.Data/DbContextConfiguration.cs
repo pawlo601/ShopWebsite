@@ -8,7 +8,7 @@ namespace ShopWebsite.Data
         public DbContextConfiguration()
         {
             //SetDatabaseInitializer(new DropCreateDatabaseAlways<WebSiteDatabase>());// drop all table and information
-            SetDatabaseInitializer(new MyInitizlizer());//drop table and add start values
+            SetDatabaseInitializer(new MyInitizlizer()); //drop table and add start values
             SetProviderServices(SqlProviderServices.ProviderInvariantName, SqlProviderServices.Instance);
         }
     }

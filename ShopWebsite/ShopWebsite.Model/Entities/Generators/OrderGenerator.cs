@@ -19,7 +19,7 @@ namespace ShopWebsite.Model.Entities.Generators
         private OrderGenerator()
         {
             _statuses = new Status[NumberOfStatuses];
-            List<string> names = new List<string>() { "Zlozone", "Anulowane", "Wstrzymane", "Zrealizowane" };
+            List<string> names = new List<string>() {"Zlozone", "Anulowane", "Wstrzymane", "Zrealizowane"};
             foreach (string name in names)
             {
                 _statuses[StatusId - 1] = new Status(StatusId, name);
@@ -37,7 +37,7 @@ namespace ShopWebsite.Model.Entities.Generators
         public List<StatusOrder> GetRandomListOfStatusesOrder()
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
-            int r = rand.Next() % 4 + 1;
+            int r = rand.Next()%4 + 1;
             List<StatusOrder> list = new List<StatusOrder>();
             for (int i = 0; i < r; i++)
             {
@@ -52,7 +52,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int ProductId = rand.Next()%ProductGenerator.ProductId + 1;
             int Quantity = rand.Next()%100 + 1;
-            ItemInOrder a = new ItemInOrder(ItemInOrderId,ProductId,Quantity);
+            ItemInOrder a = new ItemInOrder(ItemInOrderId, ProductId, Quantity);
             ItemInOrderId++;
             return a;
         }
@@ -75,7 +75,7 @@ namespace ShopWebsite.Model.Entities.Generators
             {
                 items2.Add(DiscountGenerator.Intance.GetNextOrderDiscount(Id));
             }
-            return new Order.Order(Id, Value,items,items2,GetRandomListOfStatusesOrder());
+            return new Order.Order(Id, Value, items, items2, GetRandomListOfStatusesOrder());
         }
     }
 }

@@ -48,14 +48,14 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
             return _roleRepository.GetEntity(where, out transaction);
         }
 
-        public IList<Role> GetAllRolesById(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Role> GetAllRolesById(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction)
         {
             return _roleRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Role> GetAllRolesByName(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Role> GetAllRolesByName(Expression<Func<Role, bool>> @where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction)
         {
             return _roleRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }

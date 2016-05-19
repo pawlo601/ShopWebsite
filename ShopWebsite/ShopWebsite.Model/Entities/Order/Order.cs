@@ -10,33 +10,38 @@ namespace ShopWebsite.Model.Entities.Order
     public class Order : IValidatableObject, IIntroduceable
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("value_of_order")]
-        [XmlAttribute("value_of_order")]//for xml
+        [XmlAttribute("value_of_order")] //for xml
         [Required(ErrorMessage = "Value of order should be given.")]
         public decimal Value { get; set; }
 
-        [XmlArray(ElementName = "items")]//for xml
-        [XmlArrayItem("item", Type = typeof(ItemInOrder))]//for xml
+        [XmlArray(ElementName = "items")] //for xml
+        [XmlArrayItem("item", Type = typeof (ItemInOrder))] //for xml
         public List<ItemInOrder> Items { get; set; }
 
-        [XmlArray(ElementName = "order_discounts")]//for xml
-        [XmlArrayItem("discount", Type = typeof(OrderDiscount))]//for xml
+        [XmlArray(ElementName = "order_discounts")] //for xml
+        [XmlArrayItem("discount", Type = typeof (OrderDiscount))] //for xml
         public List<OrderDiscount> OrderDiscounts { get; set; }
 
-        [XmlArray(ElementName = "order_statuses")]//for xml
-        [XmlArrayItem("status_order", Type = typeof(StatusOrder))]//for xml
+        [XmlArray(ElementName = "order_statuses")] //for xml
+        [XmlArrayItem("status_order", Type = typeof (StatusOrder))] //for xml
         public List<StatusOrder> ListOfStatusOrder { get; set; }
+
         #endregion
 
-        public Order() { }
+        public Order()
+        {
+        }
 
-        public Order(int id, decimal value, List<ItemInOrder> items, List<OrderDiscount> orderDiscounts, List<StatusOrder> listOfStatusOrder)
+        public Order(int id, decimal value, List<ItemInOrder> items, List<OrderDiscount> orderDiscounts,
+            List<StatusOrder> listOfStatusOrder)
         {
             Id = id;
             Value = value;
@@ -49,11 +54,11 @@ namespace ShopWebsite.Model.Entities.Order
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Value,
-                new ValidationContext(this, null, null) { MemberName = "Value" },
+                new ValidationContext(this, null, null) {MemberName = "Value"},
                 results);
             if (Value < 0.0M)
             {
-                results.Add(new ValidationResult("Value of order shouldn't be less than 0.0.", new[] { "Value" }));
+                results.Add(new ValidationResult("Value of order shouldn't be less than 0.0.", new[] {"Value"}));
             }
             if (Items != null)
             {

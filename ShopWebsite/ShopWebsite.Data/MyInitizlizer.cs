@@ -25,7 +25,8 @@ namespace ShopWebsite.Data
                     context.Users.Add(UserGenerator.Instatnce.GetNextEmployee());
                 }
                 context.SaveChanges();
-            }catch(DbEntityValidationException e)
+            }
+            catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
                 {
@@ -37,7 +38,8 @@ namespace ShopWebsite.Data
                             ve.PropertyName, ve.ErrorMessage);
                     }
                 }
-            }catch(DbUpdateException)
+            }
+            catch (DbUpdateException)
             {
             }
         }

@@ -42,45 +42,38 @@ namespace ShopWebsite.Model.Entities
             }
         }
              */
+
         public static void SaveToXmlProducts(string path, string fileName, List<Product.Product> products)
         {
-
         }
 
         public static void SaveToXmlUnits(string path, string fileName, List<Unit> units)
         {
-
         }
 
         public static void SaveToXmlCurriencies(string path, string fileName, List<Currency> curriencies)
         {
-
         }
 
         public static void SaveToXmlOrders(string path, string fileName, List<Order.Order> orders)
         {
-
         }
 
         public static void SaveToXmlCompanies(string path, string fileName, List<Company> companies)
         {
-
         }
 
         public static void SaveToXmlIndividualClients(string path, string fileName,
             List<IndividualClient> individualClients)
         {
-
         }
 
         public static void SaveToXmlRoles(string path, string fielName, List<Role> roles)
         {
-
         }
 
         public static void SaveToXmlEmployees(string path, string fileName, List<Employee> employees)
         {
-
         }
     }
 }

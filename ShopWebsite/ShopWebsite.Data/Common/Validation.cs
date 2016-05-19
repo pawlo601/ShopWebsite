@@ -8,16 +8,21 @@ namespace ShopWebsite.Data.Common
 {
     public static class Validation
     {
-        public static void TransformValidationResultsToTransactionalInformation(List<ValidationResult> results, out TransactionalInformation transaction)
+        public static void TransformValidationResultsToTransactionalInformation(List<ValidationResult> results,
+            out TransactionalInformation transaction)
         {
             if (results == null)
             {
                 // ReSharper disable once RedundantAssignment
-                transaction = new TransactionalInformation { ReturnMessage = new List<string> { "Something wrong with transactioanlInformation" } };
+                transaction = new TransactionalInformation
+                {
+                    ReturnMessage = new List<string> {"Something wrong with transactioanlInformation"}
+                };
             }
             if (results.Capacity == 0)
             {
-                transaction = new TransactionalInformation(true, new List<string> { "All is good" }, new Hashtable(), 0, 0, 0, false, "",
+                transaction = new TransactionalInformation(true, new List<string> {"All is good"}, new Hashtable(), 0, 0,
+                    0, false, "",
                     "", "", 0);
             }
             else
@@ -35,7 +40,8 @@ namespace ShopWebsite.Data.Common
             }
         }
 
-        public static void BuildTransactionalInformationFromException(Exception exc, out TransactionalInformation transaction)
+        public static void BuildTransactionalInformationFromException(Exception exc,
+            out TransactionalInformation transaction)
         {
             transaction = new TransactionalInformation
             {

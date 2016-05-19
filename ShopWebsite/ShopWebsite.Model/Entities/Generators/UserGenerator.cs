@@ -26,7 +26,7 @@ namespace ShopWebsite.Model.Entities.Generators
         private UserGenerator()
         {
             _roles = new Role[NumberOfRoles];
-            List<string> names = new List<string>() { "ADMIN", "EMPLOYEE", "CUSTOMER" };
+            List<string> names = new List<string>() {"ADMIN", "EMPLOYEE", "CUSTOMER"};
             foreach (string name in names)
             {
                 _roles[RoleId - 1] = new Role(RoleId, name);
@@ -83,7 +83,7 @@ namespace ShopWebsite.Model.Entities.Generators
             var roles = GetAllRoles();
             while (true)
             {
-                i = rand.Next() % roles.Length;
+                i = rand.Next()%roles.Length;
                 if (!notThisRoleId.Contains(roles[i].Id))
                     break;
             }
@@ -113,13 +113,13 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next() % 5 + 1;
+            int r1 = rand.Next()%5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
             List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next() % NumberOfRoles + 1;
+            int r2 = rand.Next()%NumberOfRoles + 1;
             List<int> notThisRoleId = new List<int>();
             for (int i = 0; i < r2; i++)
             {
@@ -129,7 +129,8 @@ namespace ShopWebsite.Model.Entities.Generators
             }
             string Position = "Position" + rand.Next(1000);
             PersonalInformation Information = GetNextPersonalInformation();
-            return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Passwords, UserRoles);
+            return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
+                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, UserRoles);
         }
 
         public Company GetNextCompany()
@@ -144,13 +145,13 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next() % 5 + 1;
+            int r1 = rand.Next()%5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
             List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next() % NumberOfRoles + 1;
+            int r2 = rand.Next()%NumberOfRoles + 1;
             List<int> notThisRoleId = new List<int>();
             for (int i = 0; i < r2; i++)
             {
@@ -160,19 +161,20 @@ namespace ShopWebsite.Model.Entities.Generators
             }
             string ContactTitle = "CT" + rand.Next(1000);
             List<Order.Order> Orders = new List<Order.Order>();
-            int r3 = rand.Next() % 5 + 1;
+            int r3 = rand.Next()%5 + 1;
             for (int i = 0; i < r3; i++)
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
             List<CustomerDiscount> discounts = new List<CustomerDiscount>();
-            int r4 = rand.Next() % 5 + 1;
+            int r4 = rand.Next()%5 + 1;
             for (int i = 0; i < r4; i++)
             {
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             CompanyInformation Information = GetNextCompanyInformation();
-            return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
+            return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress,
+                PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
         }
 
         public IndividualClient GetNextIndividualClient()
@@ -187,13 +189,13 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next() % 5 + 1;
+            int r1 = rand.Next()%5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
             List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next() % NumberOfRoles + 1;
+            int r2 = rand.Next()%NumberOfRoles + 1;
             List<int> notThisRoleId = new List<int>();
             for (int i = 0; i < r2; i++)
             {
@@ -203,19 +205,20 @@ namespace ShopWebsite.Model.Entities.Generators
             }
             string ContactTitle = "CT" + rand.Next(1000);
             List<Order.Order> Orders = new List<Order.Order>();
-            int r3 = rand.Next() % 5 + 1;
+            int r3 = rand.Next()%5 + 1;
             for (int i = 0; i < r3; i++)
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
             List<CustomerDiscount> discounts = new List<CustomerDiscount>();
-            int r4 = rand.Next() % 5 + 1;
+            int r4 = rand.Next()%5 + 1;
             for (int i = 0; i < r4; i++)
             {
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             PersonalInformation Information = GetNextPersonalInformation();
-            return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
+            return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress,
+                ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
         }
     }
 }

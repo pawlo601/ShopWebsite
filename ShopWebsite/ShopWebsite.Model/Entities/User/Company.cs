@@ -10,14 +10,21 @@ namespace ShopWebsite.Model.Entities.User
     public class Company : Customer
     {
         #region variables
-        [XmlElement(ElementName = "company_information")]//for xml
+
+        [XmlElement(ElementName = "company_information")] //for xml
         [Required(ErrorMessage = "Information has to be given.")]
         public CompanyInformation Information { get; set; }
+
         #endregion
 
-        public Company() { }
+        public Company()
+        {
+        }
 
-        public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information, string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders, List<Discount.CustomerDiscount> discounts)
+        public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc,
+            Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information,
+            string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders,
+            List<Discount.CustomerDiscount> discounts)
         {
             Id = id;
             Email = email;

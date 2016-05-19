@@ -9,23 +9,27 @@ namespace ShopWebsite.Model.Entities.Product
     public class Quantity : IValidatableObject, IIntroduceable
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("quantity_value")]
-        [XmlAttribute("quantity_value")]//for xml
+        [XmlAttribute("quantity_value")] //for xml
         [Required(ErrorMessage = "Value of quantity has to be given.")]
         public decimal Value { get; set; }
 
-        [XmlElement(ElementName = "unit")]//for xml
+        [XmlElement(ElementName = "unit")] //for xml
         [Required(ErrorMessage = "Unit has to be given.")]
         public Unit Unit { get; set; }
+
         #endregion
 
-        public Quantity() { }
+        public Quantity()
+        {
+        }
 
         public Quantity(int id, decimal value, Unit unit)
         {
@@ -43,7 +47,7 @@ namespace ShopWebsite.Model.Entities.Product
             }
             if (Value <= 0.0M)
             {
-                results.Add(new ValidationResult("Value of quantity has to be greater 0.", new[] { "Value" }));
+                results.Add(new ValidationResult("Value of quantity has to be greater 0.", new[] {"Value"}));
             }
             return results;
         }

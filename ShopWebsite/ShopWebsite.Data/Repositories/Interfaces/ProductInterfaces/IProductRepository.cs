@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 
 namespace ShopWebsite.Data.Repositories.Interfaces.ProductInterfaces
 {
     public interface IProductRepository : IRepository<Product>
     {
+        Cost GetCostOfProduct(int id, out TransactionalInformation transaction);
+
+        IList<ProductDiscount> GetAllDiscountsOfProduct(int id, out TransactionalInformation transaction);
+
         IList<Product> GetAllEntitiesById(Expression<Func<Product, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
 

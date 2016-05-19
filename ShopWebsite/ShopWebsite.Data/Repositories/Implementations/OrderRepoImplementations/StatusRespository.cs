@@ -13,24 +13,31 @@ namespace ShopWebsite.Data.Repositories.Implementations.OrderRepoImplementations
 {
     public class StatusRespository : RepositoryBase<Status>, IStatusRespository
     {
-        public StatusRespository(IDbFactory dbFactory) : base(dbFactory) { }
+        public StatusRespository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
 
-        public IList<Status> GetAllEntitiesById(Expression<Func<Status, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Status> GetAllEntitiesById(Expression<Func<Status, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             try
             {
                 List<Status> items =
                     ifDesc
-                    ? _dbSet.Where(@where).OrderByDescending(arg => arg.Id).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
-                    : _dbSet.Where(@where).OrderBy(arg => arg.Id).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                        ? _dbSet
+                            .Where(@where)
+                            .OrderByDescending(arg => arg.Id)
+                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Take(pageSize)
+                            .ToList()
+                        : _dbSet
+                            .Where(@where)
+                            .OrderBy(arg => arg.Id)
+                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Take(pageSize)
+                            .ToList();
                 int a = _dbSet.Where(@where).Count();
-                transaction = new TransactionalInformation
-                {
-                    TotalRows = a,
-                    ReturnStatus = true,
-                    ReturnMessage = new List<string> { a != 0 ? "Znaleziono." : "Nie znaleziono, ale wyszukiwanie przebiegło pomyślnie." }
-                };
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a);
                 return items;
             }
             catch (Exception exc)
@@ -40,22 +47,27 @@ namespace ShopWebsite.Data.Repositories.Implementations.OrderRepoImplementations
             }
         }
 
-        public IList<Status> GetAllEntitiesByName(Expression<Func<Status, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Status> GetAllEntitiesByName(Expression<Func<Status, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             try
             {
                 List<Status> items =
                     ifDesc
-                    ? _dbSet.Where(@where).OrderByDescending(arg => arg.Name).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList()
-                    : _dbSet.Where(@where).OrderBy(arg => arg.Name).Skip((currentPageNumber - 1) * pageSize).Take(pageSize).ToList();
+                        ? _dbSet
+                            .Where(@where)
+                            .OrderByDescending(arg => arg.Name)
+                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Take(pageSize)
+                            .ToList()
+                        : _dbSet
+                            .Where(@where)
+                            .OrderBy(arg => arg.Name)
+                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Take(pageSize)
+                            .ToList();
                 int a = _dbSet.Where(@where).Count();
-                transaction = new TransactionalInformation
-                {
-                    TotalRows = a,
-                    ReturnStatus = true,
-                    ReturnMessage = new List<string> { a != 0 ? "Znaleziono." : "Nie znaleziono, ale wyszukiwanie przebiegło pomyślnie." }
-                };
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a);
                 return items;
             }
             catch (Exception exc)

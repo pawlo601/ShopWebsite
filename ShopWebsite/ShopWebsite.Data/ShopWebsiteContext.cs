@@ -8,7 +8,7 @@ using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Data
 {
-    [DbConfigurationType(typeof(DbContextConfiguration))]
+    [DbConfigurationType(typeof (DbContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
         public DbSet<Currency> Curriencies { get; set; }
@@ -23,9 +23,10 @@ namespace ShopWebsite.Data
 
         public DbSet<Unit> Units { get; set; }
 
-        public DbSet<User> Users { get; set; }   
-              
-        public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)//@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//
+        public DbSet<User> Users { get; set; }
+
+        public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
+            //@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//
         {
             Configuration.LazyLoadingEnabled = false;
             if (ShopWebsite.Configuration.Configuration.ReloadDatabase)

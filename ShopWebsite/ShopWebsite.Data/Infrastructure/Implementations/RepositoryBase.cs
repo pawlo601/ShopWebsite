@@ -13,6 +13,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
     public abstract class RepositoryBase<T> : IRepository<T> where T : class, IValidatableObject, IIntroduceable
     {
         protected ShopWebsiteContext _dataContext;
+
         protected readonly IDbSet<T> _dbSet;
         protected IDbFactory DbFactory { get; }
         protected ShopWebsiteContext DbContext => _dataContext ?? (_dataContext = DbFactory.Init());
@@ -76,7 +77,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
+                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
                 };
                 return item;
             }
@@ -91,12 +92,12 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
         {
             try
             {
-                T item = _dbSet.FirstOrDefault(a => a.GetId()==id);
+                T item = _dbSet.FirstOrDefault(a => a.GetId() == id);
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
+                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
                 };
                 return item;
             }
@@ -116,7 +117,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
+                    ReturnMessage = new List<string> {"Uaktualniono baze danych."}
                 };
             }
             catch (Exception exc)

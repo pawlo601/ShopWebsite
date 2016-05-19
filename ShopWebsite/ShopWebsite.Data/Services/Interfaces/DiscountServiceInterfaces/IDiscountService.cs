@@ -23,29 +23,29 @@ namespace ShopWebsite.Data.Services.Interfaces.DiscountServiceInterfaces
         IList<Discount> GetAllDiscountsById(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByName(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByName(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByIsForProduct(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByIsForProduct(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByIsForCustomer(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByIsForCustomer(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByIsForOrder(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByIsForOrder(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByIsPercentage(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByIsPercentage(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByValue(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByValue(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByTimeOfStartDiscount(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByTimeOfStartDiscount(Expression<Func<Discount, bool>> where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
-        IList<Discount> GetAllDiscountsByTimeOfEndDiscount(Expression<Func<Discount, bool>> where, int currentPageNumber, int pageSize,
-            bool ifDesc, out TransactionalInformation transaction);
+        IList<Discount> GetAllDiscountsByTimeOfEndDiscount(Expression<Func<Discount, bool>> where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction);
 
         void SaveProduct();
     }

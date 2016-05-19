@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace ShopWebsite.Data.Common
 {
     public static class Utilities
@@ -10,11 +11,11 @@ namespace ShopWebsite.Data.Common
             Math.DivRem(numberOfRecords, pageSize, out result);
             if (result > 0)
             {
-                totalPages = (int)((numberOfRecords / pageSize)) + 1;
+                totalPages = (int) ((numberOfRecords/pageSize)) + 1;
             }
             else
             {
-                totalPages = (int)(numberOfRecords / pageSize);
+                totalPages = (int) (numberOfRecords/pageSize);
             }
             return totalPages;
         }

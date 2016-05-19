@@ -17,8 +17,8 @@ namespace ShopWebsite.Configuration
         {
             var _assembly = Assembly.GetExecutingAssembly();
             using (Stream stream =
-                  _assembly.GetManifestResourceStream(
-                      "ShopWebsite.Configuration.configuration.xml"))
+                _assembly.GetManifestResourceStream(
+                    "ShopWebsite.Configuration.configuration.xml"))
                 if (stream != null)
                 {
                     using (StreamReader sr = new StreamReader(stream))

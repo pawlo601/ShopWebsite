@@ -5,6 +5,8 @@ using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces.UserInterfaces;
 using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
 using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Discount;
+using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
@@ -43,52 +45,69 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
             _userRepository.UpdateIndividualClient(man, out transaction);
         }
 
-        public IndividualClient GetMan(Expression<Func<IndividualClient, bool>> @where, out TransactionalInformation transaction)
+        public IndividualClient GetMan(Expression<Func<IndividualClient, bool>> @where,
+            out TransactionalInformation transaction)
         {
             return _userRepository.GetIndividualClient(where, out transaction);
         }
 
 
-        public IList<IndividualClient> GetAllMenById(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllMenById(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsById(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<IndividualClient> GetAllMenByEmail(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllMenByEmail(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsByEmail(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<IndividualClient> GetAllMenByPhoneNumber(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllMenByPhoneNumber(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsByPhoneNumber(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<IndividualClient> GetAllIndividualClientsByName(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllIndividualClientsByName(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsByName(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<IndividualClient> GetAllIndividualClientsBySurname(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllIndividualClientsBySurname(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsBySurname(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<IndividualClient> GetAllIndividualClientsByBirtday(Expression<Func<IndividualClient, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<IndividualClient> GetAllIndividualClientsByBirtday(Expression<Func<IndividualClient, bool>> @where,
+            int currentPageNumber, int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllIndividualClientsByBirtday(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
+        }
+
+        public IList<CustomerDiscount> GetAllIndividualClientDiscounts(int id, out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAllIndividualClientDiscounts(id, out transaction);
+        }
+
+        public IList<Order> GetAllIndividualClientOrders(int id, out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAllIndividualClientOrders(id, out transaction);
+        }
+
+        public IDictionary<string, Address> GetAddressesOfIndividualClient(int id,
+            out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAddressesOfIndividualClient(id, out transaction);
         }
     }
 }

@@ -10,41 +10,42 @@ namespace ShopWebsite.Model.Entities.Discount
     public class Discount : IValidatableObject, IIntroduceable
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("name_of_discount")]
-        [XmlAttribute("name_of_discount")]//for xml
+        [XmlAttribute("name_of_discount")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Discount name cannot be empty.")]
         [MinLength(5, ErrorMessage = "Discount of product name should be greater than or equal to 5.")]
         [MaxLength(20, ErrorMessage = "Discount of product name should be less than or equal to 20.")]
         public string Name { get; set; }
 
         [Column("is_for_product")]
-        [XmlAttribute("is_for_product")]//for xml
+        [XmlAttribute("is_for_product")] //for xml
         [Required(ErrorMessage = "IsForProduct cannot be empty.")]
         public bool IsForProduct { get; set; }
 
         [Column("is_for_customer")]
-        [XmlAttribute("is_for_customer")]//for xml
+        [XmlAttribute("is_for_customer")] //for xml
         [Required(ErrorMessage = "IsForCustomer cannot be empty.")]
         public bool IsForCustomer { get; set; }
 
         [Column("is_for_order")]
-        [XmlAttribute("is_for_order")]//for xml
+        [XmlAttribute("is_for_order")] //for xml
         [Required(ErrorMessage = "IsForOrder cannot be empty.")]
         public bool IsForOrder { get; set; }
 
         [Column("is_percentage")]
-        [XmlAttribute("is_percentage")]//for xml
+        [XmlAttribute("is_percentage")] //for xml
         [Required(ErrorMessage = "IsPercentage cannot be empty.")]
         public bool IsPercentage { get; set; }
 
         [Column("value_of_discount")]
-        [XmlAttribute("value_of_discount")]//for xml
+        [XmlAttribute("value_of_discount")] //for xml
         [Required(ErrorMessage = "Value should be given.")]
         public double Value { get; set; }
 
@@ -57,12 +58,17 @@ namespace ShopWebsite.Model.Entities.Discount
         [XmlAttribute("end_discount")]
         [Required(ErrorMessage = "Time of end of discount cannot be empty.")]
         public DateTime EndDiscount { get; set; }
+
         #endregion
 
-        public Discount() { }
-
-        public Discount(int id, string name, bool isForProduct, bool isForCustomer, bool isForOrder, bool isPercentage, double value, DateTime startDiscount, DateTime endDisscount)
+        public Discount()
         {
+        }
+
+        public Discount(int id, string name, bool isForProduct, bool isForCustomer, bool isForOrder, bool isPercentage,
+            double value, DateTime startDiscount, DateTime endDisscount)
+        {
+//todo better implementation-not important
             if (isForProduct && isForCustomer && isForOrder)
                 throw new Exception();
             if (!(isForProduct || isForCustomer || isForOrder))
@@ -87,35 +93,37 @@ namespace ShopWebsite.Model.Entities.Discount
         public decimal CountDiscount(decimal value)
         {
             if (IsPercentage)
-                return (decimal)((double)value * (1.0 - Value));
-            return value - (decimal)Value;
+                return (decimal) ((double) value*(1.0 - Value));
+            return value - (decimal) Value;
         }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) { MemberName = "Name" },
+                new ValidationContext(this, null, null) {MemberName = "Name"},
                 results);
             Validator.TryValidateProperty(IsForProduct,
-                new ValidationContext(this, null, null) { MemberName = "IsForProduct" },
+                new ValidationContext(this, null, null) {MemberName = "IsForProduct"},
                 results);
             Validator.TryValidateProperty(IsForCustomer,
-                new ValidationContext(this, null, null) { MemberName = "IsForCustomer" },
+                new ValidationContext(this, null, null) {MemberName = "IsForCustomer"},
                 results);
             Validator.TryValidateProperty(IsForOrder,
-                new ValidationContext(this, null, null) { MemberName = "IsForOrder" },
+                new ValidationContext(this, null, null) {MemberName = "IsForOrder"},
                 results);
             Validator.TryValidateProperty(Value,
-                new ValidationContext(this, null, null) { MemberName = "Value" },
+                new ValidationContext(this, null, null) {MemberName = "Value"},
                 results);
             if (Value < 0.0)
             {
-                results.Add(new ValidationResult("Value of discount should be greater than or equal to 0.", new[] { "Value" }));
+                results.Add(new ValidationResult("Value of discount should be greater than or equal to 0.",
+                    new[] {"Value"}));
             }
             if (StartDiscount.CompareTo(EndDiscount) > 0)
             {
-                results.Add(new ValidationResult("Time of start should be earlier than end.", new[] { "StartDiscount", "EndDisscount" }));
+                results.Add(new ValidationResult("Time of start should be earlier than end.",
+                    new[] {"StartDiscount", "EndDisscount"}));
             }
             return results;
         }

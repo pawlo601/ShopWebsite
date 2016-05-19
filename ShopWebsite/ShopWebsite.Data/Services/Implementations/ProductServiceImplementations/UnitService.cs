@@ -48,20 +48,20 @@ namespace ShopWebsite.Data.Services.Implementations.ProductServiceImplementation
             return _unitRepository.GetEntity(@where, out transaction);
         }
 
-        public IList<Unit> GetAllUnitsById(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Unit> GetAllUnitsById(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction)
         {
             return _unitRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Unit> GetAllUnitsByName(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Unit> GetAllUnitsByName(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction)
         {
             return _unitRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Unit> GetAllUnitsByShortcut(Expression<Func<Unit, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Unit> GetAllUnitsByShortcut(Expression<Func<Unit, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _unitRepository.GetAllEntitiesByShortcut(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }

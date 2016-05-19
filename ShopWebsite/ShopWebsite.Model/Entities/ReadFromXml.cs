@@ -7,6 +7,7 @@ namespace ShopWebsite.Model.Entities
 {
     public class ReadFromXml
     {
+//todo implements-not important
         public static List<Product.Product> ReadFromXmlProducts(string path, string fileName)
         {
             throw new NotImplementedException();

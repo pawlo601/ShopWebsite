@@ -17,9 +17,14 @@ namespace ShopWebsite.Model.Entities
         public string Filter { get; set; }
         public int CurrentPageNumber { get; set; }
 
-        public TransactionalInformation() : this(false, new List<string>(), new Hashtable(), 0, 0, 0, false, "", "", "", 0) { }
+        public TransactionalInformation()
+            : this(false, new List<string>(), new Hashtable(), 0, 0, 0, false, "", "", "", 0)
+        {
+        }
 
-        public TransactionalInformation(bool returnStatus, List<string> returnMessage, Hashtable validationErrors, int totalPages, int totalRows, int pageSize, bool isAuthenicated, string sortExpression, string sortDirection, string filter, int currentPageNumber)
+        public TransactionalInformation(bool returnStatus, List<string> returnMessage, Hashtable validationErrors,
+            int totalPages, int totalRows, int pageSize, bool isAuthenicated, string sortExpression,
+            string sortDirection, string filter, int currentPageNumber)
         {
             ReturnStatus = returnStatus;
             ReturnMessage = returnMessage;
@@ -32,6 +37,20 @@ namespace ShopWebsite.Model.Entities
             SortDirection = sortDirection;
             Filter = filter;
             CurrentPageNumber = currentPageNumber;
+        }
+
+        public static TransactionalInformation CreateTransactionInforamtionHowManyResults(int howManyResults)
+        {
+            return new TransactionalInformation
+            {
+                TotalRows = howManyResults,
+                ReturnStatus = true,
+                ReturnMessage =
+                    new List<string>
+                    {
+                        howManyResults != 0 ? "Znaleziono." : "Nie znaleziono, ale wyszukiwanie przebiegło pomyślnie."
+                    }
+            };
         }
     }
 }

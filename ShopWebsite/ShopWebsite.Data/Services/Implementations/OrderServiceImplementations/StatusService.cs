@@ -48,14 +48,14 @@ namespace ShopWebsite.Data.Services.Implementations.OrderServiceImplementations
             return _statusRespository.GetEntity(where, out transaction);
         }
 
-        public IList<Status> GetAllStatusesById(Expression<Func<Status, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Status> GetAllStatusesById(Expression<Func<Status, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _statusRespository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Status> GetAllStatusesByName(Expression<Func<Status, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Status> GetAllStatusesByName(Expression<Func<Status, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _statusRespository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }

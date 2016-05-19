@@ -9,21 +9,25 @@ namespace ShopWebsite.Model.Entities.Order
     public class Status : IValidatableObject, IIntroduceable
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("status_name")]
-        [XmlAttribute("status_name")]//for xml
+        [XmlAttribute("status_name")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unit name cannot be empty.")]
         [MinLength(3, ErrorMessage = "Length of status name should be greater than or equal to 3.")]
         [MaxLength(10, ErrorMessage = "Length of status name should be less than or equal to 10.")]
         public string Name { get; set; }
+
         #endregion
 
-        public Status() { }
+        public Status()
+        {
+        }
 
         public Status(int id, string name)
         {
@@ -35,7 +39,7 @@ namespace ShopWebsite.Model.Entities.Order
         {
             List<ValidationResult> results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) { MemberName = "Name" },
+                new ValidationContext(this, null, null) {MemberName = "Name"},
                 results);
             return results;
         }

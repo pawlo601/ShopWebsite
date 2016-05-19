@@ -48,27 +48,27 @@ namespace ShopWebsite.Data.Services.Implementations.ProductServiceImplementation
             return _currencyRepository.GetEntity(where, out transaction);
         }
 
-        public IList<Currency> GetAllCurrenciesById(Expression<Func<Currency, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Currency> GetAllCurrenciesById(Expression<Func<Currency, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _currencyRepository.GetAllEntitiesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Currency> GetAllCurrenciesByName(Expression<Func<Currency, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Currency> GetAllCurrenciesByName(Expression<Func<Currency, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _currencyRepository.GetAllEntitiesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Currency> GetAllCurrenciesByShortcut(Expression<Func<Currency, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Currency> GetAllCurrenciesByShortcut(Expression<Func<Currency, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _currencyRepository.GetAllEntitiesByShortcut(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<Currency> GetAllCurrenciesByExchange(Expression<Func<Currency, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Currency> GetAllCurrenciesByExchange(Expression<Func<Currency, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _currencyRepository.GetAllEntitiesByExchange(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);

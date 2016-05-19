@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Mvc;
 using ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces;
 using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
+using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.Entities.User;
 
@@ -16,7 +17,8 @@ namespace ShopWebsite.Web.Controllers
         private readonly ICurrencyService _currencyService;
         private readonly IEmployeeService _employeeService;
 
-        public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService, IEmployeeService employeeService)
+        public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService,
+            IEmployeeService employeeService)
         {
             _productService = productService;
             _unitService = unitService;
@@ -58,5 +60,11 @@ namespace ShopWebsite.Web.Controllers
             return View(list);
         }
 
+        public ActionResult Dis()
+        {
+            TransactionalInformation tr;
+            List<ProductDiscount> list = _productService.GetAllDiscountsOfProduct(1, out tr).ToList();
+            return View(list);
+        }
     }
 }

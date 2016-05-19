@@ -5,6 +5,8 @@ using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces.UserInterfaces;
 using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
 using ShopWebsite.Model.Entities;
+using ShopWebsite.Model.Entities.Discount;
+using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
@@ -48,35 +50,50 @@ namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
             return _userRepository.GetCompany(where, out transaction);
         }
 
-        public IList<Company> GetAllMenById(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Company> GetAllMenById(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize,
+            bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllCompaniesById(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Company> GetAllMenByEmail(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Company> GetAllMenByEmail(Expression<Func<Company, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllCompaniesByEmail(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Company> GetAllMenByPhoneNumber(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Company> GetAllMenByPhoneNumber(Expression<Func<Company, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllCompaniesByPhoneNumber(where, currentPageNumber, pageSize, ifDesc,
                 out transaction);
         }
 
-        public IList<Company> GetAllCompaniesByName(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Company> GetAllCompaniesByName(Expression<Func<Company, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllCompaniesByName(where, currentPageNumber, pageSize, ifDesc, out transaction);
         }
 
-        public IList<Company> GetAllCompaniesByRegon(Expression<Func<Company, bool>> @where, int currentPageNumber, int pageSize, bool ifDesc,
-            out TransactionalInformation transaction)
+        public IList<Company> GetAllCompaniesByRegon(Expression<Func<Company, bool>> @where, int currentPageNumber,
+            int pageSize, bool ifDesc, out TransactionalInformation transaction)
         {
             return _userRepository.GetAllCompaniesByRegon(where, currentPageNumber, pageSize, ifDesc, out transaction);
+        }
+
+        public IDictionary<string, Address> GetAddressesOfCompany(int id, out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAddressesOfCompany(id, out transaction);
+        }
+
+        public IList<Order> GetAllCompanyOrders(int id, out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAllCompanyOrders(id, out transaction);
+        }
+
+        public IList<CustomerDiscount> GetAllCompanyDiscounts(int id, out TransactionalInformation transaction)
+        {
+            return _userRepository.GetAllCompanyDiscounts(id, out transaction);
         }
     }
 }

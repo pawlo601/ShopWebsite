@@ -10,13 +10,14 @@ namespace ShopWebsite.Model.Entities.Order
     public class StatusOrder : IValidatableObject, IIntroduceable
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [XmlElement(ElementName = "status")]//for xml
+        [XmlElement(ElementName = "status")] //for xml
         [Required(ErrorMessage = "Status has to be given.")]
         public Status Status { get; set; }
 
@@ -24,9 +25,12 @@ namespace ShopWebsite.Model.Entities.Order
         [XmlAttribute("time_of_change")]
         [Required(ErrorMessage = "Time of change of status cannot be empty.")]
         public DateTime TimeOfChange { get; set; }
+
         #endregion
 
-        public StatusOrder() { }
+        public StatusOrder()
+        {
+        }
 
         public StatusOrder(int id, Status status, DateTime timeOfChange)
         {
@@ -39,7 +43,7 @@ namespace ShopWebsite.Model.Entities.Order
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(TimeOfChange,
-                new ValidationContext(this, null, null) { MemberName = "TimeOfChange" },
+                new ValidationContext(this, null, null) {MemberName = "TimeOfChange"},
                 results);
             if (Status != null)
             {

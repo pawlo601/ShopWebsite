@@ -9,13 +9,17 @@ namespace ShopWebsite.Model.Entities.Discount
     public class OrderDiscount : MainDiscount, IIntroduceable
     {
         #region variables
+
         [Column("order_id")]
-        [XmlAttribute("order_id")]//for xml
+        [XmlAttribute("order_id")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Order id cannot be empty.")]
         public int OrderId { get; set; }
+
         #endregion
 
-        public OrderDiscount() { }
+        public OrderDiscount()
+        {
+        }
 
         public OrderDiscount(int id, int orderId, Discount discount)
         {
@@ -29,7 +33,7 @@ namespace ShopWebsite.Model.Entities.Discount
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(OrderId,
-                new ValidationContext(this, null, null) { MemberName = "OrderId" },
+                new ValidationContext(this, null, null) {MemberName = "OrderId"},
                 results);
             return results;
         }

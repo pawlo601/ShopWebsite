@@ -58,7 +58,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Tuple<string, string, decimal> c = Tuple.Create("Euro", "EUR", 0.88M);
             Tuple<string, string, decimal> d = Tuple.Create("Funt", "GBD", 0.69M);
             Tuple<string, string, decimal> e = Tuple.Create("Rubel", "RUB", 66.83M);
-            ArrayList list = new ArrayList { a, b, c, d, e };
+            ArrayList list = new ArrayList {a, b, c, d, e};
             foreach (Tuple<string, string, decimal> v in list)
             {
                 _currencies[CurrencyId - 1] = new Currency(CurrencyId, v.Item1, v.Item2, v.Item3);
@@ -73,7 +73,7 @@ namespace ShopWebsite.Model.Entities.Generators
             string Name = "Product name " + rand.Next(10000);
             string Description = "Description of product " + rand.Next(10000);
             Cost Cost = GetNextCost();
-            decimal Discount = rand.Next(100) / 100.0M;
+            decimal Discount = rand.Next(100)/100.0M;
             Quantity Quantity = GetNextQuantity();
             int p = rand.Next(1, 5);
             var ProductDiscounts = new List<ProductDiscount>();
@@ -88,7 +88,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = CostId;
             CostId++;
-            decimal Tax = rand.Next(99) / 100.0M;
+            decimal Tax = rand.Next(99)/100.0M;
             int howManyPrices = rand.Next(1, 5);
             List<Price> Prices = new List<Price>();
             List<Currency> notThisCurrencies = new List<Currency>();
@@ -106,7 +106,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = PriceId;
             PriceId++;
-            decimal Value = rand.Next(1000000) / 100.0M;
+            decimal Value = rand.Next(1000000)/100.0M;
             Currency Currency = _currencies.FirstOrDefault(currency => !notThisCurrencies.Contains(currency)) ??
                                 _currencies[0];
             return new Price(Id, Value, Currency);
@@ -118,7 +118,7 @@ namespace ShopWebsite.Model.Entities.Generators
             int Id = QuantityId;
             QuantityId++;
             decimal Value = rand.Next(10000);
-            Unit Unit = _units[rand.Next() % _units.Length];
+            Unit Unit = _units[rand.Next()%_units.Length];
             return new Quantity(Id, Value, Unit);
         }
 

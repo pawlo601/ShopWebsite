@@ -19,5 +19,7 @@ namespace ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces
 
         IList<Employee> GetAllEmployeesByBirtday(Expression<Func<Employee, bool>> where, int currentPageNumber, int pageSize,
             bool ifDesc, out TransactionalInformation transaction);
+
+        IDictionary<string, Address> GetAddressesOfEmployee(int id, out TransactionalInformation transaction);
     }
 }

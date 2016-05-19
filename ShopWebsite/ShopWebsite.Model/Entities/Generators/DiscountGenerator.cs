@@ -34,11 +34,11 @@ namespace ShopWebsite.Model.Entities.Generators
                     true,
                     false,
                     false,
-                    rand.Next(10000) % 2 == 0,
-                    rand.Next(100000) / 100.0,
+                    rand.Next(10000)%2 == 0,
+                    rand.Next(100000)/100.0,
                     DateTime.Now.AddDays(-rand.Next(365)),
                     DateTime.Now.AddDays(rand.Next(365))
-                 );
+                    );
                 DiscountId++;
             }
             _discountForCustomers = new Discount.Discount[NumberOfDiscountsForCustomers];
@@ -50,11 +50,11 @@ namespace ShopWebsite.Model.Entities.Generators
                     false,
                     true,
                     false,
-                    rand.Next() % 2 == 0,
-                    rand.Next(100000) / 100.0,
+                    rand.Next()%2 == 0,
+                    rand.Next(100000)/100.0,
                     DateTime.Now.AddDays(-rand.Next(365)),
                     DateTime.Now.AddDays(rand.Next(365))
-                 );
+                    );
                 DiscountId++;
             }
             _discountForOrders = new Discount.Discount[NumberOfDiscountsForOrders];
@@ -66,8 +66,8 @@ namespace ShopWebsite.Model.Entities.Generators
                     false,
                     false,
                     true,
-                    rand.Next() % 2 == 0,
-                    rand.Next(100000) / 100.0,
+                    rand.Next()%2 == 0,
+                    rand.Next(100000)/100.0,
                     DateTime.Now.AddDays(-rand.Next(365)),
                     DateTime.Now.AddDays(rand.Next(365))
                     );
@@ -85,7 +85,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = MainDiscountId;
             MainDiscountId++;
-            return new OrderDiscount(Id, orderId, _discountForOrders[rand.Next() % NumberOfDiscountsForOrders]);
+            return new OrderDiscount(Id, orderId, _discountForOrders[rand.Next()%NumberOfDiscountsForOrders]);
         }
 
         public ProductDiscount GetNextProductDiscount(int productId)
@@ -93,7 +93,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = MainDiscountId;
             MainDiscountId++;
-            return new ProductDiscount(Id, productId, _discountForProducts[rand.Next() % NumberOfDiscountsForProducts]);
+            return new ProductDiscount(Id, productId, _discountForProducts[rand.Next()%NumberOfDiscountsForProducts]);
         }
 
         public CustomerDiscount GetNextCustomerDiscount(int customerId)
@@ -101,7 +101,7 @@ namespace ShopWebsite.Model.Entities.Generators
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int Id = MainDiscountId;
             MainDiscountId++;
-            return new CustomerDiscount(Id, customerId, _discountForCustomers[rand.Next() % NumberOfDiscountsForCustomers]);
+            return new CustomerDiscount(Id, customerId, _discountForCustomers[rand.Next()%NumberOfDiscountsForCustomers]);
         }
     }
 }

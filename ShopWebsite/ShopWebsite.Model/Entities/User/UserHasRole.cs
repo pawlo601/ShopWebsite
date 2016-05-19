@@ -9,23 +9,27 @@ namespace ShopWebsite.Model.Entities.User
     public class UserHasRole : IValidatableObject
     {
         #region variables
+
         [Key]
         [Column("id")]
-        [XmlAttribute("id")]//for xml
+        [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Column("user_id")]
-        [XmlAttribute("user_id")]//for xml
+        [XmlAttribute("user_id")] //for xml
         [Required(ErrorMessage = "User id cannot be empty.")]
         public int UserId { get; set; }
 
-        [XmlElement(ElementName = "role")]//for xml
+        [XmlElement(ElementName = "role")] //for xml
         [Required(ErrorMessage = "Role has to be given.")]
         public Role Role { get; set; }
+
         #endregion
 
-        public UserHasRole() { }
+        public UserHasRole()
+        {
+        }
 
         public UserHasRole(int id, int userId, Role role)
         {
@@ -38,13 +42,13 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(UserId,
-                new ValidationContext(this, null, null) { MemberName = "UserId" },
+                new ValidationContext(this, null, null) {MemberName = "UserId"},
                 results);
             if (UserId < 1)
             {
-                results.Add(new ValidationResult("UserId should be given.", new[] { "UserId" }));
+                results.Add(new ValidationResult("UserId should be given.", new[] {"UserId"}));
             }
-            if (Role !=null)
+            if (Role != null)
             {
                 results.AddRange(Role.Validate(validationContext));
             }

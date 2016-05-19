@@ -10,21 +10,27 @@ namespace ShopWebsite.Model.Entities.User
     public class Employee : User
     {
         #region variables
+
         [Column("position")]
-        [XmlAttribute("position")]//for xml
+        [XmlAttribute("position")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Position cannot be empty.")]
         [MinLength(5, ErrorMessage = "Length of position should be greater than or equal to 5.")]
         [MaxLength(15, ErrorMessage = "Length of position should be less than or equal to 15.")]
         public string Position { get; set; }
 
-        [XmlElement(ElementName = "personal_information")]//for xml
+        [XmlElement(ElementName = "personal_information")] //for xml
         [Required(ErrorMessage = "Information has to be given.")]
         public PersonalInformation Information { get; set; }
+
         #endregion
 
-        public Employee() { }
+        public Employee()
+        {
+        }
 
-        public Employee(int id, string email, string position, PersonalInformation information, int accessFailedCount, DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber, List<Password> passwords, List<UserHasRole> userRoles)
+        public Employee(int id, string email, string position, PersonalInformation information, int accessFailedCount,
+            DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber,
+            List<Password> passwords, List<UserHasRole> userRoles)
         {
             Id = id;
             Email = email;
@@ -44,7 +50,7 @@ namespace ShopWebsite.Model.Entities.User
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(Position,
-                new ValidationContext(this, null, null) { MemberName = "Position" },
+                new ValidationContext(this, null, null) {MemberName = "Position"},
                 results);
             if (Information != null)
             {
