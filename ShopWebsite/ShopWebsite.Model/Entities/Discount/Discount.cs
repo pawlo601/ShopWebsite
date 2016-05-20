@@ -68,17 +68,6 @@ namespace ShopWebsite.Model.Entities.Discount
         public Discount(int id, string name, bool isForProduct, bool isForCustomer, bool isForOrder, bool isPercentage,
             double value, DateTime startDiscount, DateTime endDisscount)
         {
-//todo better implementation-not important
-            if (isForProduct && isForCustomer && isForOrder)
-                throw new Exception();
-            if (!(isForProduct || isForCustomer || isForOrder))
-                throw new Exception();
-            if (isForCustomer && isForOrder)
-                throw new Exception();
-            if (isForProduct && isForOrder)
-                throw new Exception();
-            if (isForProduct && isForCustomer)
-                throw new Exception();
             Id = id;
             Name = name;
             IsForProduct = isForProduct;
@@ -124,6 +113,31 @@ namespace ShopWebsite.Model.Entities.Discount
             {
                 results.Add(new ValidationResult("Time of start should be earlier than end.",
                     new[] {"StartDiscount", "EndDisscount"}));
+            }
+            if (IsForProduct && IsForCustomer && IsForOrder)
+            {
+                results.Add(new ValidationResult("Discount can't be for product, customer and order in the same time.",
+                    new[] {"IsForProduct", "IsForCustomer", "IsForOrder"}));
+            }
+            if (!(IsForProduct || IsForCustomer || IsForOrder))
+            {
+                results.Add(new ValidationResult("Discount have to be for product or for customer or for order.",
+                    new[] {"IsForProduct", "IsForCustomer", "IsForOrder"}));
+            }
+            if (IsForCustomer && IsForOrder)
+            {
+                results.Add(new ValidationResult("Discount can't be for customer and order in the same time.",
+                    new[] {"IsForCustomer", "IsForOrder"}));
+            }
+            if (IsForProduct && IsForOrder)
+            {
+                results.Add(new ValidationResult("Discount can't be for product and order in the same time.",
+                    new[] {"IsForProduct", "IsForOrder"}));
+            }
+            if (IsForProduct && IsForCustomer)
+            {
+                results.Add(new ValidationResult("Discount can't be for product and customer in the same time.",
+                    new[] {"IsForProduct", "IsForCustomer"}));
             }
             return results;
         }

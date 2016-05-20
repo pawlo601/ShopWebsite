@@ -15,6 +15,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
+//todo correct namespace in repo and service
         public ProductRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }

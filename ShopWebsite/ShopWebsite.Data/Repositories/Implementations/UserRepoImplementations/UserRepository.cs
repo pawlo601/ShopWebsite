@@ -17,7 +17,6 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
 {
     public class UserRepository : RepositoryBase<User>, IUserRespository
     {
-//todo finish Include in all methods return something-in all files
         public UserRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
