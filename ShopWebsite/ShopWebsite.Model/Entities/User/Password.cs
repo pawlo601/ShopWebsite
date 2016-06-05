@@ -39,6 +39,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region methods
         public Password()
         {
         }
@@ -56,22 +57,23 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(UserId,
-                new ValidationContext(this, null, null) {MemberName = "UserId"},
+                new ValidationContext(this, null, null) { MemberName = "UserId" },
                 results);
             if (UserId < 1)
             {
-                results.Add(new ValidationResult("UserId should be given.", new[] {"UserId"}));
+                results.Add(new ValidationResult("UserId should be given.", new[] { "UserId" }));
             }
             Validator.TryValidateProperty(HashedPassword,
-                new ValidationContext(this, null, null) {MemberName = "HashedPassword"},
+                new ValidationContext(this, null, null) { MemberName = "HashedPassword" },
                 results);
             Validator.TryValidateProperty(PasswordSalt,
-                new ValidationContext(this, null, null) {MemberName = "PasswordSalt"},
+                new ValidationContext(this, null, null) { MemberName = "PasswordSalt" },
                 results);
             Validator.TryValidateProperty(CreateTime,
-                new ValidationContext(this, null, null) {MemberName = "CreateTime"},
+                new ValidationContext(this, null, null) { MemberName = "CreateTime" },
                 results);
             return results;
         }
+        #endregion
     }
 }

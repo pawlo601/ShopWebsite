@@ -39,6 +39,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region mehods
         public CompanyInformation()
         {
         }
@@ -55,15 +56,16 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(CompanyName,
-                new ValidationContext(this, null, null) {MemberName = "CompanyName"},
+                new ValidationContext(this, null, null) { MemberName = "CompanyName" },
                 results);
             Validator.TryValidateProperty(Regon,
-                new ValidationContext(this, null, null) {MemberName = "Regon"},
+                new ValidationContext(this, null, null) { MemberName = "Regon" },
                 results);
             Validator.TryValidateProperty(TaxId,
-                new ValidationContext(this, null, null) {MemberName = "TaxId"},
+                new ValidationContext(this, null, null) { MemberName = "TaxId" },
                 results);
             return results;
         }
+        #endregion
     }
 }

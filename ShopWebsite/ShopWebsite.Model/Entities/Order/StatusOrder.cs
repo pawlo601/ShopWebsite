@@ -28,6 +28,7 @@ namespace ShopWebsite.Model.Entities.Order
 
         #endregion
 
+        #region methods
         public StatusOrder()
         {
         }
@@ -56,5 +57,6 @@ namespace ShopWebsite.Model.Entities.Order
         {
             return Id;
         }
+        #endregion
     }
 }

@@ -21,11 +21,12 @@ namespace ShopWebsite.Model.Entities.Discount
 
         #endregion
 
+        #region methods
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Discount,
-                new ValidationContext(this, null, null) {MemberName = "Discount"},
+                new ValidationContext(this, null, null) { MemberName = "Discount" },
                 results);
             if (Discount != null)
             {
@@ -33,5 +34,6 @@ namespace ShopWebsite.Model.Entities.Discount
             }
             return results;
         }
+        #endregion
     }
 }

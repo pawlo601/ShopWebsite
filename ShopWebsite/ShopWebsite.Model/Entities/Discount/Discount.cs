@@ -61,6 +61,7 @@ namespace ShopWebsite.Model.Entities.Discount
 
         #endregion
 
+        #region methods
         public Discount()
         {
         }
@@ -82,62 +83,62 @@ namespace ShopWebsite.Model.Entities.Discount
         public decimal CountDiscount(decimal value)
         {
             if (IsPercentage)
-                return (decimal) ((double) value*(1.0 - Value));
-            return value - (decimal) Value;
+                return (decimal)((double)value * (1.0 - Value));
+            return value - (decimal)Value;
         }
 
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             Validator.TryValidateProperty(IsForProduct,
-                new ValidationContext(this, null, null) {MemberName = "IsForProduct"},
+                new ValidationContext(this, null, null) { MemberName = "IsForProduct" },
                 results);
             Validator.TryValidateProperty(IsForCustomer,
-                new ValidationContext(this, null, null) {MemberName = "IsForCustomer"},
+                new ValidationContext(this, null, null) { MemberName = "IsForCustomer" },
                 results);
             Validator.TryValidateProperty(IsForOrder,
-                new ValidationContext(this, null, null) {MemberName = "IsForOrder"},
+                new ValidationContext(this, null, null) { MemberName = "IsForOrder" },
                 results);
             Validator.TryValidateProperty(Value,
-                new ValidationContext(this, null, null) {MemberName = "Value"},
+                new ValidationContext(this, null, null) { MemberName = "Value" },
                 results);
             if (Value < 0.0)
             {
                 results.Add(new ValidationResult("Value of discount should be greater than or equal to 0.",
-                    new[] {"Value"}));
+                    new[] { "Value" }));
             }
             if (StartDiscount.CompareTo(EndDiscount) > 0)
             {
                 results.Add(new ValidationResult("Time of start should be earlier than end.",
-                    new[] {"StartDiscount", "EndDisscount"}));
+                    new[] { "StartDiscount", "EndDisscount" }));
             }
             if (IsForProduct && IsForCustomer && IsForOrder)
             {
                 results.Add(new ValidationResult("Discount can't be for product, customer and order in the same time.",
-                    new[] {"IsForProduct", "IsForCustomer", "IsForOrder"}));
+                    new[] { "IsForProduct", "IsForCustomer", "IsForOrder" }));
             }
             if (!(IsForProduct || IsForCustomer || IsForOrder))
             {
                 results.Add(new ValidationResult("Discount have to be for product or for customer or for order.",
-                    new[] {"IsForProduct", "IsForCustomer", "IsForOrder"}));
+                    new[] { "IsForProduct", "IsForCustomer", "IsForOrder" }));
             }
             if (IsForCustomer && IsForOrder)
             {
                 results.Add(new ValidationResult("Discount can't be for customer and order in the same time.",
-                    new[] {"IsForCustomer", "IsForOrder"}));
+                    new[] { "IsForCustomer", "IsForOrder" }));
             }
             if (IsForProduct && IsForOrder)
             {
                 results.Add(new ValidationResult("Discount can't be for product and order in the same time.",
-                    new[] {"IsForProduct", "IsForOrder"}));
+                    new[] { "IsForProduct", "IsForOrder" }));
             }
             if (IsForProduct && IsForCustomer)
             {
                 results.Add(new ValidationResult("Discount can't be for product and customer in the same time.",
-                    new[] {"IsForProduct", "IsForCustomer"}));
+                    new[] { "IsForProduct", "IsForCustomer" }));
             }
             return results;
         }
@@ -146,5 +147,6 @@ namespace ShopWebsite.Model.Entities.Discount
         {
             return Id;
         }
+        #endregion
     }
 }

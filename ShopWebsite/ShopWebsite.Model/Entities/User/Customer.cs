@@ -17,21 +17,22 @@ namespace ShopWebsite.Model.Entities.User
         public string ContactTitle { get; set; }
 
         [XmlArray(ElementName = "orders")] //for xml
-        [XmlArrayItem("order", Type = typeof (Order.Order))] //for xml
+        [XmlArrayItem("order", Type = typeof(Order.Order))] //for xml
         public List<Order.Order> Orders { get; set; }
 
         [XmlArray(ElementName = "discounts")] //for xml
-        [XmlArrayItem("discount", Type = typeof (Discount.CustomerDiscount))] //for xml
+        [XmlArrayItem("discount", Type = typeof(Discount.CustomerDiscount))] //for xml
         public List<Discount.CustomerDiscount> Discounts { get; set; }
 
         #endregion
 
+        #region methods
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(ContactTitle,
-                new ValidationContext(this, null, null) {MemberName = "ContactTitle"},
+                new ValidationContext(this, null, null) { MemberName = "ContactTitle" },
                 results);
             if (Orders != null)
             {
@@ -49,5 +50,6 @@ namespace ShopWebsite.Model.Entities.User
             }
             return results;
         }
+        #endregion
     }
 }

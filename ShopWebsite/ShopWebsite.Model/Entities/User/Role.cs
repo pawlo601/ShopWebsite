@@ -7,7 +7,7 @@ namespace ShopWebsite.Model.Entities.User
 {
     [Table("Roles", Schema = "User")]
     public class Role : IValidatableObject, IIntroduceable
-    {
+    {//todo implemnts
         #region variables
 
         [Key]
@@ -23,8 +23,17 @@ namespace ShopWebsite.Model.Entities.User
         [MaxLength(15, ErrorMessage = "Length of name of role should be less than or equal to 15.")]
         public string Name { get; set; }
 
+        public string Description { get; set; }
+
+        public bool IsSysAdmin { get; set; }
+
+        public ICollection<Permission> Permissions { get; set; }
+
+        public ICollection<User> Users { get; set; }
+
         #endregion
 
+        #region methods
         public Role()
         {
         }
@@ -39,7 +48,7 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             return results;
         }
@@ -48,5 +57,6 @@ namespace ShopWebsite.Model.Entities.User
         {
             return Id;
         }
+        #endregion
     }
 }

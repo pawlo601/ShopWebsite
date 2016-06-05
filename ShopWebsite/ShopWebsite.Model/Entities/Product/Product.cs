@@ -45,17 +45,18 @@ namespace ShopWebsite.Model.Entities.Product
         public Quantity Quantity { get; set; }
 
         [XmlArray(ElementName = "product_discounts")] //for xml
-        [XmlArrayItem("discount", Type = typeof (ProductDiscount))] //for xml
-        public List<ProductDiscount> ProductDiscounts { get; set; }
+        [XmlArrayItem("discount", Type = typeof(ProductDiscount))] //for xml
+        public ICollection<ProductDiscount> ProductDiscounts { get; set; }
 
         #endregion
 
+        #region methods
         public Product()
         {
         }
 
         public Product(int id, string name, string description, Cost cost, decimal discount, Quantity quantity,
-            List<ProductDiscount> productDiscounts)
+            ICollection<ProductDiscount> productDiscounts)
         {
             Id = id;
             Name = name;
@@ -70,17 +71,17 @@ namespace ShopWebsite.Model.Entities.Product
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             Validator.TryValidateProperty(Description,
-                new ValidationContext(this, null, null) {MemberName = "Description"},
+                new ValidationContext(this, null, null) { MemberName = "Description" },
                 results);
             Validator.TryValidateProperty(Discount,
-                new ValidationContext(this, null, null) {MemberName = "Discount"},
+                new ValidationContext(this, null, null) { MemberName = "Discount" },
                 results);
             if (Discount < 0.0M)
             {
-                results.Add(new ValidationResult("Discount should be greater than or equal to 0.", new[] {"Discount"}));
+                results.Add(new ValidationResult("Discount should be greater than or equal to 0.", new[] { "Discount" }));
             }
             if (Cost != null)
             {
@@ -104,5 +105,6 @@ namespace ShopWebsite.Model.Entities.Product
         {
             return Id;
         }
+        #endregion
     }
 }

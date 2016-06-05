@@ -27,6 +27,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         #endregion
 
+        #region methods
         public Quantity()
         {
         }
@@ -47,7 +48,7 @@ namespace ShopWebsite.Model.Entities.Product
             }
             if (Value <= 0.0M)
             {
-                results.Add(new ValidationResult("Value of quantity has to be greater 0.", new[] {"Value"}));
+                results.Add(new ValidationResult("Value of quantity has to be greater 0.", new[] { "Value" }));
             }
             return results;
         }
@@ -56,5 +57,6 @@ namespace ShopWebsite.Model.Entities.Product
         {
             return Id;
         }
+        #endregion
     }
 }

@@ -22,11 +22,12 @@ namespace ShopWebsite.Model.Entities.Product
         public decimal Tax { get; set; }
 
         [XmlArray(ElementName = "prices")] //for xml
-        [XmlArrayItem("price", Type = typeof (Price))] //for xml
-        public List<Price> Prices { get; set; }
+        [XmlArrayItem("price", Type = typeof(Price))] //for xml
+        public virtual ICollection<Price> Prices { get; set; }
 
         #endregion
 
+        #region methods
         public Cost()
         {
         }
@@ -42,15 +43,15 @@ namespace ShopWebsite.Model.Entities.Product
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Tax,
-                new ValidationContext(this, null, null) {MemberName = "Tax"},
+                new ValidationContext(this, null, null) { MemberName = "Tax" },
                 results);
             if (Tax < 0.0M)
             {
-                results.Add(new ValidationResult("Tax must be greater than or equal 0%.", new[] {"Tax"}));
+                results.Add(new ValidationResult("Tax must be greater than or equal 0%.", new[] { "Tax" }));
             }
             if (Tax > 1.0M)
             {
-                results.Add(new ValidationResult("Tax must be smaller than or equal 100%.", new[] {"Tax"}));
+                results.Add(new ValidationResult("Tax must be smaller than or equal 100%.", new[] { "Tax" }));
             }
             if (Prices != null)
             {
@@ -66,5 +67,6 @@ namespace ShopWebsite.Model.Entities.Product
         {
             return Id;
         }
+        #endregion
     }
 }

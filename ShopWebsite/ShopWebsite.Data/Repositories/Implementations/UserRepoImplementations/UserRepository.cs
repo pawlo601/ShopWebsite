@@ -66,7 +66,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
             try
             {
                 IEnumerable<Company> objects = _dbSet.OfType<Company>().Where(where).AsEnumerable();
-                // ReSharper disable once NotAccessedVariable
+                // ReSharper disable once NotAccessedvariables
                 var count = 0;
                 foreach (var obj in objects)
                 {
@@ -389,7 +389,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
             try
             {
                 IEnumerable<Employee> objects = _dbSet.OfType<Employee>().Where(where).AsEnumerable();
-                // ReSharper disable once NotAccessedVariable
+                // ReSharper disable once NotAccessedvariables
                 var count = 0;
                 foreach (var obj in objects)
                 {
@@ -767,7 +767,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
             try
             {
                 IEnumerable<IndividualClient> objects = _dbSet.OfType<IndividualClient>().Where(where).AsEnumerable();
-                // ReSharper disable once NotAccessedVariable
+                // ReSharper disable once NotAccessedvariables
                 var count = 0;
                 foreach (var obj in objects)
                 {

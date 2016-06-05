@@ -38,6 +38,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region methods
         public PersonalInformation()
         {
         }
@@ -54,15 +55,16 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             Validator.TryValidateProperty(Surname,
-                new ValidationContext(this, null, null) {MemberName = "Surname"},
+                new ValidationContext(this, null, null) { MemberName = "Surname" },
                 results);
             Validator.TryValidateProperty(Birthday,
-                new ValidationContext(this, null, null) {MemberName = "Birthday"},
+                new ValidationContext(this, null, null) { MemberName = "Birthday" },
                 results);
             return results;
         }
+        #endregion
     }
 }

@@ -32,6 +32,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         #endregion
 
+        #region methods
         public Unit()
         {
         }
@@ -47,10 +48,10 @@ namespace ShopWebsite.Model.Entities.Product
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             Validator.TryValidateProperty(Shortcut,
-                new ValidationContext(this, null, null) {MemberName = "Shortcut"},
+                new ValidationContext(this, null, null) { MemberName = "Shortcut" },
                 results);
             return results;
         }
@@ -59,5 +60,6 @@ namespace ShopWebsite.Model.Entities.Product
         {
             return Id;
         }
+        #endregion
     }
 }

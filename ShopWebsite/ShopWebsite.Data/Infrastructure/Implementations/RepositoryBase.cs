@@ -49,7 +49,7 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             try
             {
                 IEnumerable<T> objects = _dbSet.Where(where).AsEnumerable();
-                // ReSharper disable once NotAccessedVariable
+                // ReSharper disable once NotAccessedvariables
                 int count = 0;
                 foreach (T obj in objects)
                 {

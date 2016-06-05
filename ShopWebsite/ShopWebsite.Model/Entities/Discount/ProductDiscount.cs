@@ -17,6 +17,7 @@ namespace ShopWebsite.Model.Entities.Discount
 
         #endregion
 
+        #region methods
         public ProductDiscount()
         {
         }
@@ -42,5 +43,6 @@ namespace ShopWebsite.Model.Entities.Discount
         {
             return Id;
         }
+        #endregion
     }
 }

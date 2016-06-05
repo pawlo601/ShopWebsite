@@ -51,10 +51,10 @@
     <Compile Include="Entities\User\Employee.cs" />
     <Compile Include="Entities\User\IndividualClient.cs" />
     <Compile Include="Entities\User\Password.cs" />
+    <Compile Include="Entities\User\Permission.cs" />
     <Compile Include="Entities\User\PersonalInformation.cs" />
     <Compile Include="Entities\User\Role.cs" />
     <Compile Include="Entities\User\User.cs" />
-    <Compile Include="Entities\User\UserHasRole.cs" />
     <Compile Include="Entities\Discount\CustomerDiscount.cs" />
     <Compile Include="Entities\Discount\Discount.cs" />
     <Compile Include="Entities\Discount\MainDiscount.cs" />

@@ -24,6 +24,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region methods
         public Employee()
         {
         }
@@ -50,7 +51,7 @@ namespace ShopWebsite.Model.Entities.User
             var results = new List<ValidationResult>();
             results.AddRange(base.Validate(validationContext));
             Validator.TryValidateProperty(Position,
-                new ValidationContext(this, null, null) {MemberName = "Position"},
+                new ValidationContext(this, null, null) { MemberName = "Position" },
                 results);
             if (Information != null)
             {
@@ -58,5 +59,6 @@ namespace ShopWebsite.Model.Entities.User
             }
             return results;
         }
+        #endregion
     }
 }

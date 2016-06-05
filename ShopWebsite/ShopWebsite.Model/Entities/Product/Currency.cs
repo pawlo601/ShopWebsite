@@ -37,6 +37,7 @@ namespace ShopWebsite.Model.Entities.Product
 
         #endregion
 
+        #region methods
         public Currency()
         {
         }
@@ -53,17 +54,17 @@ namespace ShopWebsite.Model.Entities.Product
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             Validator.TryValidateProperty(Shortcut,
-                new ValidationContext(this, null, null) {MemberName = "Shortcut"},
+                new ValidationContext(this, null, null) { MemberName = "Shortcut" },
                 results);
             Validator.TryValidateProperty(ExchangeToDolar,
-                new ValidationContext(this, null, null) {MemberName = "ExchangeToDolar"},
+                new ValidationContext(this, null, null) { MemberName = "ExchangeToDolar" },
                 results);
             if (ExchangeToDolar <= 0)
             {
-                results.Add(new ValidationResult("Exchange should be greater than 0.", new[] {"ExchangeToDolar"}));
+                results.Add(new ValidationResult("Exchange should be greater than 0.", new[] { "ExchangeToDolar" }));
             }
             return results;
         }
@@ -72,5 +73,6 @@ namespace ShopWebsite.Model.Entities.Product
         {
             return Id;
         }
+        #endregion
     }
 }

@@ -22,9 +22,9 @@ namespace ShopWebsite.Model.Entities.Order
         [MinLength(3, ErrorMessage = "Length of status name should be greater than or equal to 3.")]
         [MaxLength(10, ErrorMessage = "Length of status name should be less than or equal to 10.")]
         public string Name { get; set; }
-
         #endregion
 
+        #region methods
         public Status()
         {
         }
@@ -39,7 +39,7 @@ namespace ShopWebsite.Model.Entities.Order
         {
             List<ValidationResult> results = new List<ValidationResult>();
             Validator.TryValidateProperty(Name,
-                new ValidationContext(this, null, null) {MemberName = "Name"},
+                new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
             return results;
         }
@@ -48,5 +48,6 @@ namespace ShopWebsite.Model.Entities.Order
         {
             return Id;
         }
+        #endregion
     }
 }

@@ -8381,7 +8381,7 @@ jQuery.extend( {
 			// To know if global events are to be dispatched
 			fireGlobals,
 
-			// Loop variable
+			// Loop variables
 			i,
 
 			// Create the final options object
@@ -9155,7 +9155,7 @@ jQuery.ajaxTransport( function( options ) {
 
 							// Allow onerror to be called first,
 							// but that will not handle a native abort
-							// Also, save errorCallback to a variable
+							// Also, save errorCallback to a variables
 							// as xhr.onerror cannot be accessed
 							window.setTimeout( function() {
 								if ( callback ) {
@@ -9439,7 +9439,7 @@ jQuery.fn.load = function( url, params, callback ) {
 		jQuery.ajax( {
 			url: url,
 
-			// If "type" variable is undefined, then "GET" method will be used.
+			// If "type" variables is undefined, then "GET" method will be used.
 			// Make value of this field explicit since
 			// user can override it through ajaxSetup method
 			type: type || "GET",

@@ -8,7 +8,7 @@ namespace ShopWebsite.Model.Entities.User
     [Table("Addresses", Schema = "User")]
     public class Address : IValidatableObject
     {
-        #region variable
+        #region variables
 
         [Key]
         [Column("id")]
@@ -53,6 +53,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region methods
         public Address()
         {
         }
@@ -71,19 +72,19 @@ namespace ShopWebsite.Model.Entities.User
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Street,
-                new ValidationContext(this, null, null) {MemberName = "Street"},
+                new ValidationContext(this, null, null) { MemberName = "Street" },
                 results);
             Validator.TryValidateProperty(NumberOfBuilding,
-                new ValidationContext(this, null, null) {MemberName = "NumberOfBuilding"},
+                new ValidationContext(this, null, null) { MemberName = "NumberOfBuilding" },
                 results);
             Validator.TryValidateProperty(City,
-                new ValidationContext(this, null, null) {MemberName = "City"},
+                new ValidationContext(this, null, null) { MemberName = "City" },
                 results);
             Validator.TryValidateProperty(PostalCode,
-                new ValidationContext(this, null, null) {MemberName = "PostalCode"},
+                new ValidationContext(this, null, null) { MemberName = "PostalCode" },
                 results);
             Validator.TryValidateProperty(Country,
-                new ValidationContext(this, null, null) {MemberName = "Country"},
+                new ValidationContext(this, null, null) { MemberName = "Country" },
                 results);
             return results;
         }
@@ -92,7 +93,7 @@ namespace ShopWebsite.Model.Entities.User
         {
             if (obj == null || GetType() != obj.GetType())
                 return false;
-            Address p = (Address) obj;
+            Address p = (Address)obj;
             return p.City.Equals(City) &&
                    p.Country.Equals(Country) &&
                    p.NumberOfBuilding.Equals(NumberOfBuilding) &&
@@ -104,5 +105,6 @@ namespace ShopWebsite.Model.Entities.User
         {
             return Id;
         }
+        #endregion
     }
 }

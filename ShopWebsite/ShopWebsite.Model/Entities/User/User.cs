@@ -52,29 +52,30 @@ namespace ShopWebsite.Model.Entities.User
         public string PhoneNumber { get; set; }
 
         [XmlArray(ElementName = "passwords")] //for xml
-        [XmlArrayItem("password", Type = typeof (Password))] //for xml
-        public List<Password> Passwords { get; set; }
-
-        [XmlArray(ElementName = "user_roles")] //for xml
-        [XmlArrayItem("user_role", Type = typeof (UserHasRole))] //for xml
-        public List<UserHasRole> UserRoles { get; set; }
+        [XmlArrayItem("password", Type = typeof(Password))] //for xml
+        public ICollection<Password> Passwords { get; set; }
+        //todo ??????
+        [XmlArray(ElementName = "roles")] //for xml
+        [XmlArrayItem("role", Type = typeof(Role))] //for xml
+        public ICollection<Role> Roles { get; set; }
 
         #endregion
 
+        #region methods
         public virtual IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var results = new List<ValidationResult>();
             Validator.TryValidateProperty(Email,
-                new ValidationContext(this, null, null) {MemberName = "Email"},
+                new ValidationContext(this, null, null) { MemberName = "Email" },
                 results);
             Validator.TryValidateProperty(AccessFailedCount,
-                new ValidationContext(this, null, null) {MemberName = "AccessFailedCount"},
+                new ValidationContext(this, null, null) { MemberName = "AccessFailedCount" },
                 results);
             Validator.TryValidateProperty(LockoutEndsDateTimeUTC,
-                new ValidationContext(this, null, null) {MemberName = "LockoutEndsDateTimeUTC"},
+                new ValidationContext(this, null, null) { MemberName = "LockoutEndsDateTimeUTC" },
                 results);
             Validator.TryValidateProperty(PhoneNumber,
-                new ValidationContext(this, null, null) {MemberName = "PhoneNumber"},
+                new ValidationContext(this, null, null) { MemberName = "PhoneNumber" },
                 results);
             if (ContactAddress != null)
             {
@@ -91,11 +92,11 @@ namespace ShopWebsite.Model.Entities.User
                     results.AddRange(password.Validate(validationContext));
                 }
             }
-            if (UserRoles != null)
+            if (Roles != null)
             {
-                foreach (UserHasRole userHasRole in UserRoles)
+                foreach (Role role in Roles)
                 {
-                    results.AddRange(userHasRole.Validate(validationContext));
+                    results.AddRange(role.Validate(validationContext));
                 }
             }
             return results;
@@ -105,5 +106,6 @@ namespace ShopWebsite.Model.Entities.User
         {
             return Id;
         }
+        #endregion
     }
 }

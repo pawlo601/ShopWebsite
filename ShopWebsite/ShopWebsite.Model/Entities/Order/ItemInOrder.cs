@@ -28,6 +28,7 @@ namespace ShopWebsite.Model.Entities.Order
 
         #endregion
 
+        #region methods
         public ItemInOrder()
         {
         }
@@ -44,7 +45,7 @@ namespace ShopWebsite.Model.Entities.Order
             var results = new List<ValidationResult>();
             if (Quantity <= 0)
             {
-                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new[] {"Quantity"}));
+                results.Add(new ValidationResult("Quantity of product should be greater than 0.0", new[] { "Quantity" }));
             }
             return results;
         }
@@ -53,5 +54,6 @@ namespace ShopWebsite.Model.Entities.Order
         {
             return Id;
         }
+        #endregion
     }
 }

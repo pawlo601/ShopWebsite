@@ -17,6 +17,7 @@ namespace ShopWebsite.Model.Entities.User
 
         #endregion
 
+        #region methods
         public IndividualClient()
         {
         }
@@ -51,5 +52,6 @@ namespace ShopWebsite.Model.Entities.User
             }
             return results;
         }
+        #endregion
     }
 }
