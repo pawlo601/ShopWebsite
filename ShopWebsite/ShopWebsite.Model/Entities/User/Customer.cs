@@ -18,11 +18,11 @@ namespace ShopWebsite.Model.Entities.User
 
         [XmlArray(ElementName = "orders")] //for xml
         [XmlArrayItem("order", Type = typeof(Order.Order))] //for xml
-        public List<Order.Order> Orders { get; set; }
+        public ICollection<Order.Order> Orders { get; set; }
 
         [XmlArray(ElementName = "discounts")] //for xml
         [XmlArrayItem("discount", Type = typeof(Discount.CustomerDiscount))] //for xml
-        public List<Discount.CustomerDiscount> Discounts { get; set; }
+        public ICollection<Discount.CustomerDiscount> Discounts { get; set; }
 
         #endregion
 

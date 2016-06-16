@@ -1088,11 +1088,18 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
             return new List<Password>();
         }
 
-        public IList<UserHasRole> GetAllUserRoles(int id, out TransactionalInformation transaction)
+        public IList<Role> GetAllRoles(int id, out TransactionalInformation transaction)
         {
 //todo finish implementation 1
             transaction = null;
-            return new List<UserHasRole>();
+            return new List<Role>();
+        }
+
+        public IList<Permission> GetAllPermissions(int id, out TransactionalInformation transaction)
+        {
+            //todo finish implementation 1
+            transaction = null;
+            return new List<Permission>();
         }
     }
 }

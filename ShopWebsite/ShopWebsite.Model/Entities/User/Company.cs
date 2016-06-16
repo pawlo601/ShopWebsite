@@ -24,8 +24,8 @@ namespace ShopWebsite.Model.Entities.User
 
         public Company(int id, string email, int accessFailedCount, DateTime lockoutEndsDateTimeUtc,
             Address contactAddress, Address residentialAddress, string phoneNumber, CompanyInformation information,
-            string contactTitle, List<Password> passwords, List<UserHasRole> userRoles, List<Order.Order> orders,
-            List<Discount.CustomerDiscount> discounts)
+            string contactTitle, ICollection<Password> passwords, ICollection<Role> roles, ICollection<Order.Order> orders,
+            ICollection<Discount.CustomerDiscount> discounts)
         {
             Id = id;
             Email = email;
@@ -35,7 +35,7 @@ namespace ShopWebsite.Model.Entities.User
             ResidentialAddress = residentialAddress;
             PhoneNumber = phoneNumber;
             Passwords = passwords;
-            UserRoles = userRoles;
+            Roles = roles;
             Information = information;
             ContactTitle = contactTitle;
             Orders = orders;

@@ -54,7 +54,7 @@ namespace ShopWebsite.Model.Entities.User
         [XmlArray(ElementName = "passwords")] //for xml
         [XmlArrayItem("password", Type = typeof(Password))] //for xml
         public ICollection<Password> Passwords { get; set; }
-        //todo ??????
+
         [XmlArray(ElementName = "roles")] //for xml
         [XmlArrayItem("role", Type = typeof(Role))] //for xml
         public ICollection<Role> Roles { get; set; }

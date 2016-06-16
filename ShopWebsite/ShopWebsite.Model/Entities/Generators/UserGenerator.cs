@@ -11,27 +11,43 @@ namespace ShopWebsite.Model.Entities.Generators
         private static int AddressId = 1;
         private static int CompanyInformationId = 1;
         private static int PersonalInformationId = 1;
-        private static int UserHasRoleId = 1;
+        private static int PermissionId = 1;
         private static int PasswordId = 1;
         private static int EmployeeId = 1;
         private static int CompanyId = 1;
         private static int IndividualClientId = 1;
         private static UserGenerator _instance;
-        private readonly Role[] _roles;
+        private readonly Dictionary<string, Role> _roles;
+        private readonly Permission[] _permissions;
 
         public static int NumberOfRoles => 3;
+        public static int NumberOfPermissions => 6;
 
         public static UserGenerator Instatnce => _instance ?? (_instance = new UserGenerator());
 
         private UserGenerator()
         {
-            _roles = new Role[NumberOfRoles];
-            List<string> names = new List<string>() {"ADMIN", "EMPLOYEE", "CUSTOMER"};
-            foreach (string name in names)
+            _permissions = new Permission[NumberOfPermissions];
+            List<string> permissionsNames = new List<string>() { "ALL-EDIT", "ALL-CREATE", "ALL-DELETE", "ALL-VIEW", "ALL", "OUT-VIEW" };
+            foreach (string permissionsName in permissionsNames)
             {
-                _roles[RoleId - 1] = new Role(RoleId, name);
-                RoleId++;
+                _permissions[PermissionId - 1] = new Permission(PermissionId, permissionsName);
+                PermissionId++;
             }
+            _roles = new Dictionary<string, Role>
+            {
+                ["ADMIN"] = new Role(RoleId, "ADMIN", "To jest admin", true, new List<Permission>(_permissions))
+            };
+            RoleId++;
+            _roles["USER"] = new Role(RoleId, "USER", "To jest user", false, new List<Permission>()
+            {
+                _permissions[5]
+            });
+            RoleId++;
+            _roles["EMPLOYEE"] = new Role(RoleId, "EMPLOYEE", "To jest pracownik", false, new List<Permission>()
+            {
+                _permissions[0], _permissions[1], _permissions[2], _permissions[3]
+            });
         }
 
         public Address GetNextAddress()
@@ -49,7 +65,19 @@ namespace ShopWebsite.Model.Entities.Generators
 
         public Role[] GetAllRoles()
         {
-            return _roles;
+            Role[] roles = new Role[_roles.Keys.Count];
+            int i = 0;
+            foreach (string key in _roles.Keys)
+            {
+                roles[i] = _roles[key];
+                i++;
+            }
+            return roles;
+        }
+
+        public Permission[] GetAllPermissions()
+        {
+            return _permissions;
         }
 
         public CompanyInformation GetNextCompanyInformation()
@@ -72,22 +100,6 @@ namespace ShopWebsite.Model.Entities.Generators
             string Surname = "Surname" + rand.Next(1000);
             DateTime Birthday = DateTime.Today.AddDays(-rand.Next(7300, 18250));
             return new PersonalInformation(Id, Name, Surname, Birthday);
-        }
-
-        public UserHasRole GetNextUserHasRole(int userId, List<int> notThisRoleId)
-        {
-            Random rand = new Random(Guid.NewGuid().GetHashCode());
-            int Id = UserHasRoleId;
-            UserHasRoleId++;
-            int i;
-            var roles = GetAllRoles();
-            while (true)
-            {
-                i = rand.Next()%roles.Length;
-                if (!notThisRoleId.Contains(roles[i].Id))
-                    break;
-            }
-            return new UserHasRole(Id, userId, roles[i]);
         }
 
         public Password GetNextPassword(int userId)
@@ -113,24 +125,15 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next()%5 + 1;
+            int r1 = rand.Next() % 5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
-            List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next()%NumberOfRoles + 1;
-            List<int> notThisRoleId = new List<int>();
-            for (int i = 0; i < r2; i++)
-            {
-                UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.Role.Id);
-                UserRoles.Add(a);
-            }
             string Position = "Position" + rand.Next(1000);
             PersonalInformation Information = GetNextPersonalInformation();
             return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
-                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, UserRoles);
+                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>() { _roles["EMPLOYEE"] });
         }
 
         public Company GetNextCompany()
@@ -145,36 +148,27 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next()%5 + 1;
+            int r1 = rand.Next() % 5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
-            List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next()%NumberOfRoles + 1;
-            List<int> notThisRoleId = new List<int>();
-            for (int i = 0; i < r2; i++)
-            {
-                UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.Role.Id);
-                UserRoles.Add(a);
-            }
             string ContactTitle = "CT" + rand.Next(1000);
             List<Order.Order> Orders = new List<Order.Order>();
-            int r3 = rand.Next()%5 + 1;
+            int r3 = rand.Next() % 5 + 1;
             for (int i = 0; i < r3; i++)
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
             List<CustomerDiscount> discounts = new List<CustomerDiscount>();
-            int r4 = rand.Next()%5 + 1;
+            int r4 = rand.Next() % 5 + 1;
             for (int i = 0; i < r4; i++)
             {
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             CompanyInformation Information = GetNextCompanyInformation();
             return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress,
-                PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
+                PhoneNumber, Information, ContactTitle, Passwords, new List<Role>() { _roles["USER"] }, Orders, discounts);
         }
 
         public IndividualClient GetNextIndividualClient()
@@ -189,36 +183,52 @@ namespace ShopWebsite.Model.Entities.Generators
             Address ResidentialAddress = GetNextAddress();
             string PhoneNumber = "PhoneNumber" + rand.Next(1000);
             List<Password> Passwords = new List<Password>();
-            int r1 = rand.Next()%5 + 1;
+            int r1 = rand.Next() % 5 + 1;
             for (int i = 0; i < r1; i++)
             {
                 Passwords.Add(GetNextPassword(Id));
             }
-            List<UserHasRole> UserRoles = new List<UserHasRole>();
-            int r2 = rand.Next()%NumberOfRoles + 1;
-            List<int> notThisRoleId = new List<int>();
-            for (int i = 0; i < r2; i++)
-            {
-                UserHasRole a = GetNextUserHasRole(Id, notThisRoleId);
-                notThisRoleId.Add(a.Role.Id);
-                UserRoles.Add(a);
-            }
             string ContactTitle = "CT" + rand.Next(1000);
             List<Order.Order> Orders = new List<Order.Order>();
-            int r3 = rand.Next()%5 + 1;
+            int r3 = rand.Next() % 5 + 1;
             for (int i = 0; i < r3; i++)
             {
                 Orders.Add(OrderGenerator.Instatnce.GetNextOrder());
             }
             List<CustomerDiscount> discounts = new List<CustomerDiscount>();
-            int r4 = rand.Next()%5 + 1;
+            int r4 = rand.Next() % 5 + 1;
             for (int i = 0; i < r4; i++)
             {
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             PersonalInformation Information = GetNextPersonalInformation();
             return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress,
-                ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, UserRoles, Orders, discounts);
+                ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, new List<Role>() { _roles["USER"] }, Orders, discounts);
+        }
+
+        public Employee GetAdmin()
+        {
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int Id = EmployeeId;
+            EmployeeId++;
+            string Email = "Mail" + rand.Next(1000);
+            int AccessFailedCount = 0;
+            DateTime LockoutEndsDateTimeUTC = DateTime.Now.AddDays(-1);
+            Address ContactAddress = GetNextAddress();
+            Address ResidentialAddress = GetNextAddress();
+            string PhoneNumber = "PhoneNumber" + rand.Next(1000);
+            List<Password> Passwords = new List<Password>();
+            int r1 = rand.Next() % 5 + 1;
+            for (int i = 0; i < r1; i++)
+            {
+                Passwords.Add(GetNextPassword(Id));
+            }
+            string Position = "ADMIN";
+            PersonalInformation Information = GetNextPersonalInformation();
+            Information.Name = "ADMIN";
+            Information.Surname = "ADMIN";
+            return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
+                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>() { _roles["ADMIN"] });
         }
     }
 }

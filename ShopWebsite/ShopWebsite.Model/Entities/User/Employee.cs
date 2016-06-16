@@ -31,7 +31,7 @@ namespace ShopWebsite.Model.Entities.User
 
         public Employee(int id, string email, string position, PersonalInformation information, int accessFailedCount,
             DateTime lockoutEndsDateTimeUtc, Address contactAddress, Address residentialAddress, string phoneNumber,
-            List<Password> passwords, List<UserHasRole> userRoles)
+            ICollection<Password> passwords, ICollection<Role> roles)
         {
             Id = id;
             Email = email;
@@ -41,7 +41,7 @@ namespace ShopWebsite.Model.Entities.User
             ResidentialAddress = residentialAddress;
             PhoneNumber = phoneNumber;
             Passwords = passwords;
-            UserRoles = userRoles;
+            Roles = roles;
             Position = position;
             Information = information;
         }

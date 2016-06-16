@@ -9,6 +9,8 @@ namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
     {
         IList<Password> GetAllUserPasswords(int id, out TransactionalInformation transaction);
 
-        IList<UserHasRole> GetAllUserRoles(int id, out TransactionalInformation transaction);
+        IList<Role> GetAllRoles(int id, out TransactionalInformation transaction);
+
+        IList<Permission> GetAllPermissions(int id, out TransactionalInformation transaction);
     }
 }

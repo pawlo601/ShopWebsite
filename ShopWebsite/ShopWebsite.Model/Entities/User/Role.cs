@@ -7,9 +7,8 @@ namespace ShopWebsite.Model.Entities.User
 {
     [Table("Roles", Schema = "User")]
     public class Role : IValidatableObject, IIntroduceable
-    {//todo implemnts
+    {
         #region variables
-
         [Key]
         [Column("id")]
         [XmlAttribute("id")] //for xml
@@ -23,13 +22,21 @@ namespace ShopWebsite.Model.Entities.User
         [MaxLength(15, ErrorMessage = "Length of name of role should be less than or equal to 15.")]
         public string Name { get; set; }
 
+        [Column("description")]
+        [XmlAttribute("description")] //for xml
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Description cannot be empty.")]
+        [MinLength(5, ErrorMessage = "Length of description should be greater than or equal to 5.")]
+        [MaxLength(25, ErrorMessage = "Length of description should be less than or equal to 25.")]
         public string Description { get; set; }
 
+        [Column("isSysAdmin")]
+        [XmlAttribute("isSysAdmin")] //for xml
+        [Required(ErrorMessage = "IsSysAdmin cannot be empty.")]
         public bool IsSysAdmin { get; set; }
 
+        [XmlArray(ElementName = "permissions")] //for xml
+        [XmlArrayItem("permission", Type = typeof(Permission))] //for xml
         public ICollection<Permission> Permissions { get; set; }
-
-        public ICollection<User> Users { get; set; }
 
         #endregion
 
@@ -38,10 +45,13 @@ namespace ShopWebsite.Model.Entities.User
         {
         }
 
-        public Role(int id, string name)
+        public Role(int id, string name, string description, bool isSysAdmin, ICollection<Permission> permissions)
         {
             Id = id;
             Name = name;
+            Description = description;
+            IsSysAdmin = isSysAdmin;
+            Permissions = permissions;
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -50,6 +60,19 @@ namespace ShopWebsite.Model.Entities.User
             Validator.TryValidateProperty(Name,
                 new ValidationContext(this, null, null) { MemberName = "Name" },
                 results);
+            Validator.TryValidateProperty(Description,
+                new ValidationContext(this, null, null) { MemberName = "Description" },
+                results);
+            Validator.TryValidateProperty(IsSysAdmin,
+                new ValidationContext(this, null, null) { MemberName = "IsSysAdmin" },
+                results);
+            if (Permissions != null)
+            {
+                foreach (Permission permission in Permissions)
+                {
+                    results.AddRange(permission.Validate(validationContext));
+                }
+            }
             return results;
         }
 

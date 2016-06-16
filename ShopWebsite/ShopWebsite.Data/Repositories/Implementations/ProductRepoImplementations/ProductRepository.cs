@@ -28,7 +28,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                     _dbSet
                         .Include(f => f.ProductDiscounts.Select(g => g.Discount))
                         .FirstOrDefault(a => a.Id == id)
-                        .ProductDiscounts;
+                        .ProductDiscounts.ToList();
                 int c = t.Count;
                 transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(c);
                 return t;
