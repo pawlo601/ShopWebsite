@@ -9,7 +9,6 @@ namespace ShopWebsite.Configuration
     public static class Configuration
     {
         public static string ConnectionString { get; set; }
-        public static bool ReloadDatabase { get; set; }
         public static int HowManyProductsCreateInInitialize { get; set; }
         public static int HowManyEmployeesCreateInInitialize { get; set; }
         public static int HowManyIndClientsCreateInInitialize { get; set; }
@@ -32,21 +31,11 @@ namespace ShopWebsite.Configuration
                             reader.MoveToAttribute("value");
                             string cs = reader.Value;
                             ConnectionString = cs;
-                            reader.ReadToFollowing("reloadDatabase");
-                            reader.MoveToAttribute("value");
-                            cs = reader.Value;
-                            switch (cs)
-                            {
-                                case "true":
-                                    ReloadDatabase = true;
-                                    break;
-                                default:
-                                    ReloadDatabase = false;
-                                    break;
-                            }
+
                             reader.ReadToFollowing("initializeProduct");
                             reader.MoveToAttribute("value");
                             string a = reader.Value;
+
                             HowManyProductsCreateInInitialize = Parse(a);
                             reader.ReadToFollowing("initializeEmployees");
                             reader.MoveToAttribute("value");

@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 using ShopWebsite.Data.Common;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Interfaces.DiscountInterfaces;
+using ShopWebsite.Data.Repositories.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 
-namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementations
+namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class DiscountRepository : RepositoryBase<Discount>, IDiscountRepository
     {
@@ -27,13 +27,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -57,13 +57,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -87,13 +87,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.IsForProduct)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.IsForProduct)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -117,13 +117,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.IsForCustomer)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.IsForCustomer)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -147,13 +147,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.IsForOrder)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.IsForOrder)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -177,13 +177,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.IsPercentage)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.IsPercentage)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -207,13 +207,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -237,13 +237,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.StartDiscount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.StartDiscount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -267,13 +267,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.DiscountRepoImplementati
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.EndDiscount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.EndDiscount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();

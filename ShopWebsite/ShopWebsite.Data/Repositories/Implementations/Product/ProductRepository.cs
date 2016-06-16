@@ -6,16 +6,15 @@ using System.Linq.Expressions;
 using ShopWebsite.Data.Common;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Interfaces.ProductInterfaces;
+using ShopWebsite.Data.Repositories.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementations
+namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class ProductRepository : RepositoryBase<Product>, IProductRepository
     {
-//todo correct namespace in repo and service
         public ProductRepository(IDbFactory dbFactory) : base(dbFactory)
         {
         }
@@ -72,7 +71,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -80,7 +79,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -106,7 +105,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -114,7 +113,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -140,7 +139,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Description)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -148,7 +147,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Description)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -174,7 +173,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Discount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -182,7 +181,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Discount)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -208,7 +207,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Quantity.Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -216,7 +215,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Quantity.Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -243,7 +242,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Where(@where)
                             .Where(g => g.Cost.Prices.Any(f => f.Currency.Equals(currency)))
                             .OrderByDescending(arg => arg.Cost.Prices.First(w => w.Currency.Equals(currency)).Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -251,7 +250,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.ProductRepoImplementatio
                             .Include(p => p.Quantity.Unit)
                             .Where(@where)
                             .OrderBy(arg => arg.Quantity.Value)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Interfaces.UserInterfaces;
+using ShopWebsite.Data.Repositories.Interfaces;
 using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;

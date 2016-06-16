@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
+namespace ShopWebsite.Data.Repositories.Interfaces
 {
     public interface IIndividualClientRespository
     {

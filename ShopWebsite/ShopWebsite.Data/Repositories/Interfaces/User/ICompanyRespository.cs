@@ -6,7 +6,7 @@ using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
+namespace ShopWebsite.Data.Repositories.Interfaces
 {
     public interface ICompanyRespository
     {

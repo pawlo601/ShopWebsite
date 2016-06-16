@@ -7,13 +7,13 @@ using System.Linq.Expressions;
 using ShopWebsite.Data.Common;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Interfaces.UserInterfaces;
+using ShopWebsite.Data.Repositories.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
+namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class UserRepository : RepositoryBase<User>, IUserRespository
     {
@@ -52,7 +52,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {"Uaktualniono baze danych."}
+                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
                 };
             }
             catch (Exception exc)
@@ -76,7 +76,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {$"All items({count}) have been removed."}
+                    ReturnMessage = new List<string> { $"All items({count}) have been removed." }
                 };
             }
             catch (Exception exc)
@@ -98,7 +98,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -121,7 +121,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -144,7 +144,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.CompanyName)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -152,7 +152,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.CompanyName)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Company>().Where(@where).Count();
@@ -178,7 +178,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Regon)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -186,7 +186,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Regon)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Company>().Where(@where).Count();
@@ -212,7 +212,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -220,7 +220,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Company>().Where(@where).Count();
@@ -246,7 +246,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -254,7 +254,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Company>().Where(@where).Count();
@@ -280,7 +280,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -288,7 +288,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(s => s.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Company>().Where(@where).Count();
@@ -319,7 +319,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                         .FirstOrDefault(a => a.Id == id)
                         .ResidentialAddress;
                 transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(2);
-                return new Dictionary<string, Address>() {{"ContactAddress", ct}, {"ResidentialAddress", rt}};
+                return new Dictionary<string, Address>() { { "ContactAddress", ct }, { "ResidentialAddress", rt } };
             }
             catch (Exception exc)
             {
@@ -330,14 +330,14 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
 
         public IList<Order> GetAllCompanyOrders(int id, out TransactionalInformation transaction)
         {
-//todo finish implementation 3
+            //todo finish implementation 3
             transaction = null;
             return new List<Order>();
         }
 
         public IList<CustomerDiscount> GetAllCompanyDiscounts(int id, out TransactionalInformation transaction)
         {
-//todo finish implementation 4
+            //todo finish implementation 4
             transaction = null;
             return new List<CustomerDiscount>();
         }
@@ -375,7 +375,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {"Uaktualniono baze danych."}
+                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
                 };
             }
             catch (Exception exc)
@@ -399,7 +399,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {$"All items({count}) have been removed."}
+                    ReturnMessage = new List<string> { $"All items({count}) have been removed." }
                 };
             }
             catch (Exception exc)
@@ -421,7 +421,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -444,7 +444,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -467,7 +467,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Position)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -475,7 +475,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Position)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -501,7 +501,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -509,7 +509,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -535,7 +535,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Surname)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -543,7 +543,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Surname)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -569,7 +569,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Birthday)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -577,7 +577,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Birthday)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -603,7 +603,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -611,7 +611,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -637,7 +637,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -645,7 +645,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -671,7 +671,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -679,7 +679,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<Employee>().Where(@where).Count();
@@ -710,7 +710,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                         .FirstOrDefault(a => a.Id == id)
                         .ResidentialAddress;
                 transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(2);
-                return new Dictionary<string, Address>() {{"ContactAddress", ct}, {"ResidentialAddress", rt}};
+                return new Dictionary<string, Address>() { { "ContactAddress", ct }, { "ResidentialAddress", rt } };
             }
             catch (Exception exc)
             {
@@ -752,7 +752,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {"Uaktualniono baze danych."}
+                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
                 };
             }
             catch (Exception exc)
@@ -777,7 +777,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {$"All items({count}) have been removed."}
+                    ReturnMessage = new List<string> { $"All items({count}) have been removed." }
                 };
             }
             catch (Exception exc)
@@ -799,7 +799,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -822,7 +822,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
@@ -845,7 +845,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -853,7 +853,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -879,7 +879,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Surname)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -887,7 +887,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Surname)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -913,7 +913,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Birthday)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -921,7 +921,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Information.Birthday)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -947,7 +947,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -955,7 +955,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -981,7 +981,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -989,7 +989,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.Email)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -1016,7 +1016,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
@@ -1024,7 +1024,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                             .Include(b => b.Information)
                             .Where(@where)
                             .OrderByDescending(arg => arg.PhoneNumber)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 var a = _dbSet.OfType<IndividualClient>().Where(@where).Count();
@@ -1056,7 +1056,7 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
                         .FirstOrDefault(a => a.Id == id)
                         .ResidentialAddress;
                 transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(2);
-                return new Dictionary<string, Address>() {{"ContactAddress", ct}, {"ResidentialAddress", rt}};
+                return new Dictionary<string, Address>() { { "ContactAddress", ct }, { "ResidentialAddress", rt } };
             }
             catch (Exception exc)
             {
@@ -1083,14 +1083,14 @@ namespace ShopWebsite.Data.Repositories.Implementations.UserRepoImplementations
 
         public IList<Password> GetAllUserPasswords(int id, out TransactionalInformation transaction)
         {
-//todo finish implementation 6
+            //todo finish implementation 6
             transaction = null;
             return new List<Password>();
         }
 
         public IList<Role> GetAllRoles(int id, out TransactionalInformation transaction)
         {
-//todo finish implementation 1
+            //todo finish implementation 1
             transaction = null;
             return new List<Role>();
         }

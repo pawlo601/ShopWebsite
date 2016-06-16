@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
+namespace ShopWebsite.Data.Repositories.Interfaces
 {
     public interface IEmployeeRespository
     {

@@ -6,7 +6,7 @@ using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Data.Repositories.Interfaces.ProductInterfaces
+namespace ShopWebsite.Data.Repositories.Interfaces
 {
     public interface IProductRepository : IRepository<Product>
     {

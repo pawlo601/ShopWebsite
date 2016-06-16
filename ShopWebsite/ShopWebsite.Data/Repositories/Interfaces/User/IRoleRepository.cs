@@ -5,7 +5,7 @@ using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Repositories.Interfaces.UserInterfaces
+namespace ShopWebsite.Data.Repositories.Interfaces
 {
     public interface IRoleRepository : IRepository<Role>
     {

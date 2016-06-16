@@ -5,11 +5,11 @@ using System.Linq.Expressions;
 using ShopWebsite.Data.Common;
 using ShopWebsite.Data.Infrastructure.Implementations;
 using ShopWebsite.Data.Infrastructure.Interfaces;
-using ShopWebsite.Data.Repositories.Interfaces.OrderInterfaces;
+using ShopWebsite.Data.Repositories.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Order;
 
-namespace ShopWebsite.Data.Repositories.Implementations.OrderRepoImplementations
+namespace ShopWebsite.Data.Repositories.Implementations
 {
     public class StatusRespository : RepositoryBase<Status>, IStatusRespository
     {
@@ -27,13 +27,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.OrderRepoImplementations
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.Id)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();
@@ -57,13 +57,13 @@ namespace ShopWebsite.Data.Repositories.Implementations.OrderRepoImplementations
                         ? _dbSet
                             .Where(@where)
                             .OrderByDescending(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList()
                         : _dbSet
                             .Where(@where)
                             .OrderBy(arg => arg.Name)
-                            .Skip((currentPageNumber - 1)*pageSize)
+                            .Skip((currentPageNumber - 1) * pageSize)
                             .Take(pageSize)
                             .ToList();
                 int a = _dbSet.Where(@where).Count();

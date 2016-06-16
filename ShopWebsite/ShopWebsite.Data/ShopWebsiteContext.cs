@@ -29,8 +29,6 @@ namespace ShopWebsite.Data
             //@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//
         {
             Configuration.LazyLoadingEnabled = false;
-            if (ShopWebsite.Configuration.Configuration.ReloadDatabase)
-                Database.Initialize(true); //is to innitialize every time app runs
         }
 
         public virtual void Commit()
