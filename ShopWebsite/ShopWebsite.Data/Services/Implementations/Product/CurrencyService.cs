@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces;
-using ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Data.Services.Implementations.ProductServiceImplementations
+namespace ShopWebsite.Data.Services.Implementations
 {
     public class CurrencyService : MainService, ICurrencyService
     {

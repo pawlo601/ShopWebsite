@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Order;
 
-namespace ShopWebsite.Data.Services.Interfaces.OrderServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface IStatusService
     {

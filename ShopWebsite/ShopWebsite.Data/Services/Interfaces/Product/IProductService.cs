@@ -5,7 +5,7 @@ using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface IProductService
     {

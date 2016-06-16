@@ -330,16 +330,32 @@ namespace ShopWebsite.Data.Repositories.Implementations
 
         public IList<Order> GetAllCompanyOrders(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 3
-            transaction = null;
-            return new List<Order>();
+            try
+            {
+                IList<Order> a = _dbSet.OfType<Company>().FirstOrDefault(user => user.Id == id).Orders.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<Order>();
+            }
         }
 
         public IList<CustomerDiscount> GetAllCompanyDiscounts(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 4
-            transaction = null;
-            return new List<CustomerDiscount>();
+            try
+            {
+                IList<CustomerDiscount> a = _dbSet.OfType<Company>().FirstOrDefault(user => user.Id == id).Discounts.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<CustomerDiscount>();
+            }
         }
 
         #endregion
@@ -1067,39 +1083,80 @@ namespace ShopWebsite.Data.Repositories.Implementations
 
         public IList<Order> GetAllIndividualClientOrders(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 2
-            transaction = null;
-            return new List<Order>();
+            try
+            {
+                IList<Order> a = _dbSet.OfType<IndividualClient>().FirstOrDefault(user => user.Id == id).Orders.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<Order>();
+            }
         }
 
         public IList<CustomerDiscount> GetAllIndividualClientDiscounts(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 5
-            transaction = null;
-            return new List<CustomerDiscount>();
+            try
+            {
+                IList<CustomerDiscount> a = _dbSet.OfType<IndividualClient>().FirstOrDefault(user => user.Id == id).Discounts.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<CustomerDiscount>();
+            }
         }
 
         #endregion
 
         public IList<Password> GetAllUserPasswords(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 6
-            transaction = null;
-            return new List<Password>();
+            try
+            {
+                IList<Password> a = _dbSet.FirstOrDefault(user => user.Id == id).Passwords.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<Password>();
+            }
         }
 
         public IList<Role> GetAllRoles(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 1
-            transaction = null;
-            return new List<Role>();
+            try
+            {
+                IList<Role> a = _dbSet.FirstOrDefault(user => user.Id == id).Roles.ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(a.Count);
+                return a;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<Role>();
+            }
         }
 
         public IList<Permission> GetAllPermissions(int id, out TransactionalInformation transaction)
         {
-            //todo finish implementation 1
-            transaction = null;
-            return new List<Permission>();
+            try
+            {
+                ICollection<Role> a = _dbSet.FirstOrDefault(user => user.Id == id).Roles;
+                List<Permission> b = a.SelectMany(role => role.Permissions).ToList();
+                transaction = TransactionalInformation.CreateTransactionInforamtionHowManyResults(b.Count);
+                return b;
+            }
+            catch (Exception exc)
+            {
+                Validation.BuildTransactionalInformationFromException(exc, out transaction);
+                return new List<Permission>();
+            }
         }
     }
 }

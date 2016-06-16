@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces;
-using ShopWebsite.Data.Services.Interfaces.OrderServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Order;
 
-namespace ShopWebsite.Data.Services.Implementations.OrderServiceImplementations
+namespace ShopWebsite.Data.Services.Implementations
 {
     public class StatusService : MainService, IStatusService
     {

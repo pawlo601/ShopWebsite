@@ -6,7 +6,7 @@ using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface ICompanyService : IManService<Company>
     {

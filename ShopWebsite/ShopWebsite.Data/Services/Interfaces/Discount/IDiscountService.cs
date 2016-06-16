@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 
-namespace ShopWebsite.Data.Services.Interfaces.DiscountServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface IDiscountService
     {

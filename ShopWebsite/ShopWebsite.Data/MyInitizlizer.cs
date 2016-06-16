@@ -16,6 +16,10 @@ namespace ShopWebsite.Data
                 SqlConnection.ClearAllPools();
                 context.Units.AddRange(ProductGenerator.Instatnce.GetAllUnits());
                 context.Curriencies.AddRange(ProductGenerator.Instatnce.GetAllCurrencies());
+                context.Permissions.AddRange(UserGenerator.Instatnce.GetAllPermissions());
+                context.Roles.AddRange(UserGenerator.Instatnce.GetAllRoles());
+                context.Discounts.AddRange(DiscountGenerator.Intance.GetAllDiscounts());
+                context.Statuses.AddRange(OrderGenerator.Instatnce.GetAllStatuses());
                 for (int i = 0; i < Configuration.Configuration.HowManyProductsCreateInInitialize; i++)
                 {
                     context.Products.Add(ProductGenerator.Instatnce.GetNextProduct());

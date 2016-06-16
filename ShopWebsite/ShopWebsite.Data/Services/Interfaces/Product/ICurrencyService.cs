@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Product;
 
-namespace ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface ICurrencyService
     {

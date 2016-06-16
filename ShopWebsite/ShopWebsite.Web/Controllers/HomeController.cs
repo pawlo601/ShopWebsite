@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ShopWebsite.Data.Services.Interfaces.ProductServiceInterfaces;
-using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.Entities.User;

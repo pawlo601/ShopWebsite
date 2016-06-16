@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces;
-using ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.User;
 
-namespace ShopWebsite.Data.Services.Implementations.UserServiceImplementations
+namespace ShopWebsite.Data.Services.Implementations
 {
     public class EmployeeService : MainService, IEmployeeService
     {

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Data.Infrastructure.Interfaces;
 using ShopWebsite.Data.Repositories.Interfaces;
-using ShopWebsite.Data.Services.Interfaces.DiscountServiceInterfaces;
+using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities;
 using ShopWebsite.Model.Entities.Discount;
 
-namespace ShopWebsite.Data.Services.Implementations.DiscountServiceImplementations
+namespace ShopWebsite.Data.Services.Implementations
 {
     public class DiscountService : MainService, IDiscountService
     {

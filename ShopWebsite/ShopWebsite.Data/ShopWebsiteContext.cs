@@ -19,6 +19,8 @@ namespace ShopWebsite.Data
 
         public DbSet<Role> Roles { get; set; }
 
+        public DbSet<Permission> Permissions { get; set; }
+
         public DbSet<Status> Statuses { get; set; }
 
         public DbSet<Unit> Units { get; set; }

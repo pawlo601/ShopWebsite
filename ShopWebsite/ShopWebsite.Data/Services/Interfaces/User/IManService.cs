@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using ShopWebsite.Model.Entities;
 
-namespace ShopWebsite.Data.Services.Interfaces.UserServiceInterfaces
+namespace ShopWebsite.Data.Services.Interfaces
 {
     public interface IManService<T>
     {
