@@ -12,6 +12,8 @@ namespace ShopWebsite.Configuration
         public static bool ReloadDatabase { get; set; }
         public static int HowManyProductsCreateInInitialize { get; set; }
         public static int HowManyEmployeesCreateInInitialize { get; set; }
+        public static int HowManyIndClientsCreateInInitialize { get; set; }
+        public static int HowManyComapniesCreateInInitialize { get; set; }
 
         static Configuration()
         {
@@ -50,6 +52,16 @@ namespace ShopWebsite.Configuration
                             reader.MoveToAttribute("value");
                             string b = reader.Value;
                             HowManyEmployeesCreateInInitialize = Parse(b);
+
+                            reader.ReadToFollowing("initializeCompany");
+                            reader.MoveToAttribute("value");
+                            string c = reader.Value;
+                            HowManyComapniesCreateInInitialize = Parse(c);
+
+                            reader.ReadToFollowing("initializeIndClient");
+                            reader.MoveToAttribute("value");
+                            string d = reader.Value;
+                            HowManyIndClientsCreateInInitialize = Parse(d);
                         }
                     }
                 }

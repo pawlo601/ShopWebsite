@@ -18,7 +18,7 @@ namespace ShopWebsite.Model.Entities.User
         [Column("description")]
         [XmlAttribute("description")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Description cannot be empty.")]
-        [MinLength(5, ErrorMessage = "Length of description should be greater than or equal to 5.")]
+        [MinLength(3, ErrorMessage = "Length of description should be greater than or equal to 3.")]
         [MaxLength(25, ErrorMessage = "Length of description should be less than or equal to 25.")]
         public string Description { get; set; }
         #endregion

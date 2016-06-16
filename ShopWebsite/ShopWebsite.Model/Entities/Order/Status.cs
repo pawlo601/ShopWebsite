@@ -20,7 +20,7 @@ namespace ShopWebsite.Model.Entities.Order
         [XmlAttribute("status_name")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unit name cannot be empty.")]
         [MinLength(3, ErrorMessage = "Length of status name should be greater than or equal to 3.")]
-        [MaxLength(10, ErrorMessage = "Length of status name should be less than or equal to 10.")]
+        [MaxLength(20, ErrorMessage = "Length of status name should be less than or equal to 20.")]
         public string Name { get; set; }
         #endregion
 

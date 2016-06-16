@@ -24,6 +24,15 @@ namespace ShopWebsite.Data
                 {
                     context.Users.Add(UserGenerator.Instatnce.GetNextEmployee());
                 }
+                for (int i = 0; i < Configuration.Configuration.HowManyIndClientsCreateInInitialize; i++)
+                {
+                    context.Users.Add(UserGenerator.Instatnce.GetNextIndividualClient());
+                }
+                for (int i = 0; i < Configuration.Configuration.HowManyComapniesCreateInInitialize; i++)
+                {
+                    context.Users.Add(UserGenerator.Instatnce.GetNextCompany());
+                }
+                context.Users.Add(UserGenerator.Instatnce.GetAdmin());
                 context.SaveChanges();
             }
             catch (DbEntityValidationException e)
