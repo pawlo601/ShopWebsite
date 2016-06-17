@@ -6,8 +6,8 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.User
 {
-    [Table("IndividualClient", Schema = "User")]
-    public class IndividualClient : Customer
+    [Table("Individual_Client", Schema = "User")]
+    public sealed class IndividualClient : Customer
     {
         #region variables
 

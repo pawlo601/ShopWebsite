@@ -11,7 +11,7 @@ namespace ShopWebsite.Model.Entities.User
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("company_information_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

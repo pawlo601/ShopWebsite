@@ -34,20 +34,13 @@ namespace ShopWebsite.Model.Entities.Generators
                 _permissions[PermissionId - 1] = new Permission(PermissionId, permissionsName);
                 PermissionId++;
             }
-            _roles = new Dictionary<string, Role>
-            {
-                ["ADMIN"] = new Role(RoleId, "ADMIN", "To jest admin", true, new List<Permission>(_permissions))
-            };
-            RoleId++;
-            _roles["USER"] = new Role(RoleId, "USER", "To jest user", false, new List<Permission>()
-            {
-                _permissions[5]
-            });
-            RoleId++;
-            _roles["EMPLOYEE"] = new Role(RoleId, "EMPLOYEE", "To jest pracownik", false, new List<Permission>()
-            {
-                _permissions[0], _permissions[1], _permissions[2], _permissions[3]
-            });
+            _roles = new Dictionary<string, Role>();
+            _roles["ADMIN"] = new Role(RoleId++, "ADMIN", "To jest admin", true, new List<Permission>());
+            _roles["ADMIN"].AddPermissions(_permissions);
+            _roles["USER"] = new Role(RoleId++, "USER", "To jest user", false, new List<Permission>());
+            _roles["USER"].AddPermission(_permissions[5]);
+            _roles["EMPLOYEE"] = new Role(RoleId, "EMPLOYEE", "To jest pracownik", false, new List<Permission>());
+            _roles["EMPLOYEE"].AddPermissions(new List<Permission>() { _permissions[0], _permissions[1], _permissions[2], _permissions[3] });
         }
 
         public Address GetNextAddress()
@@ -132,8 +125,10 @@ namespace ShopWebsite.Model.Entities.Generators
             }
             string Position = "Position" + rand.Next(1000);
             PersonalInformation Information = GetNextPersonalInformation();
-            return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
-                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>() { _roles["EMPLOYEE"] });
+            var p = new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
+                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>());
+            p.AddRole(_roles["EMPLOYEE"]);
+            return p;
         }
 
         public Company GetNextCompany()
@@ -167,8 +162,10 @@ namespace ShopWebsite.Model.Entities.Generators
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             CompanyInformation Information = GetNextCompanyInformation();
-            return new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress,
-                PhoneNumber, Information, ContactTitle, Passwords, new List<Role>() { _roles["USER"] }, Orders, discounts);
+            var p = new Company(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress, ResidentialAddress,
+                PhoneNumber, Information, ContactTitle, Passwords, new List<Role>(), Orders, discounts);
+            p.AddRole(_roles["USER"]);
+            return p;
         }
 
         public IndividualClient GetNextIndividualClient()
@@ -202,8 +199,10 @@ namespace ShopWebsite.Model.Entities.Generators
                 discounts.Add(DiscountGenerator.Intance.GetNextCustomerDiscount(Id));
             }
             PersonalInformation Information = GetNextPersonalInformation();
-            return new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress,
-                ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, new List<Role>() { _roles["USER"] }, Orders, discounts);
+            var p = new IndividualClient(Id, Email, AccessFailedCount, LockoutEndsDateTimeUTC, ContactAddress,
+                ResidentialAddress, PhoneNumber, Information, ContactTitle, Passwords, new List<Role>(), Orders, discounts);
+            p.AddRole(_roles["USER"]);
+            return p;
         }
 
         public Employee GetAdmin()
@@ -227,8 +226,10 @@ namespace ShopWebsite.Model.Entities.Generators
             PersonalInformation Information = GetNextPersonalInformation();
             Information.Name = "ADMIN";
             Information.Surname = "ADMIN";
-            return new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
-                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>() { _roles["ADMIN"] });
+            var p = new Employee(Id, Email, Position, Information, AccessFailedCount, LockoutEndsDateTimeUTC,
+                ContactAddress, ResidentialAddress, PhoneNumber, Passwords, new List<Role>());
+            p.AddRoles(new List<Role>() { _roles["ADMIN"], _roles["USER"], _roles["EMPLOYEE"] });
+            return p;
         }
     }
 }

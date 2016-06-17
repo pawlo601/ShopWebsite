@@ -5,13 +5,13 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
 {
-    [Table("Items_in_orders", Schema = "Order")]
-    public class ItemInOrder : IValidatableObject, IIntroduceable
+    [Table("Items", Schema = "Order")]
+    public class Item : IValidatableObject, IIntroduceable
     {
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("item_id")]
         [XmlElement(ElementName = "id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -29,11 +29,11 @@ namespace ShopWebsite.Model.Entities.Order
         #endregion
 
         #region methods
-        public ItemInOrder()
+        public Item()
         {
         }
 
-        public ItemInOrder(int id, int productId, int quantity)
+        public Item(int id, int productId, int quantity)
         {
             Id = id;
             ProductId = productId;

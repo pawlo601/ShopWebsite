@@ -41,6 +41,14 @@ namespace ShopWebsite.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<Permission>()
+                .HasMany(e => e.Roles)
+                .WithMany(e => e.Permissions)
+                .Map(m => m.ToTable("Link_Permissions_Roles", "User").MapLeftKey("permission_id").MapRightKey("role_id"));
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Roles)
+                .WithMany(e => e.Users)
+                .Map(m => m.ToTable("Link_Users_Roles", "User").MapLeftKey("user_id").MapRightKey("role_id"));
         }
     }
 }

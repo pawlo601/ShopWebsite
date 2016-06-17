@@ -34,25 +34,25 @@ namespace ShopWebsite.Model.Entities.Generators
             return _statuses;
         }
 
-        public List<StatusOrder> GetRandomListOfStatusesOrder()
+        public List<OrderStatus> GetRandomListOfStatusesOrder()
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int r = rand.Next()%4 + 1;
-            List<StatusOrder> list = new List<StatusOrder>();
+            List<OrderStatus> list = new List<OrderStatus>();
             for (int i = 0; i < r; i++)
             {
-                list.Add(new StatusOrder(StatusOrderId, _statuses[i], DateTime.Now.AddDays(rand.Next(365))));
+                list.Add(new OrderStatus(StatusOrderId, _statuses[i], DateTime.Now.AddDays(rand.Next(365))));
                 StatusOrderId++;
             }
             return list;
         }
 
-        public ItemInOrder GetNextItemInOrder()
+        public Item GetNextItemInOrder()
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int ProductId = rand.Next()%ProductGenerator.ProductId + 1;
             int Quantity = rand.Next()%100 + 1;
-            ItemInOrder a = new ItemInOrder(ItemInOrderId, ProductId, Quantity);
+            Item a = new Item(ItemInOrderId, ProductId, Quantity);
             ItemInOrderId++;
             return a;
         }
@@ -63,7 +63,7 @@ namespace ShopWebsite.Model.Entities.Generators
             int Id = OrderId;
             OrderId++;
             decimal Value = rand.Next(1000000)/100.0M;
-            List<ItemInOrder> items = new List<ItemInOrder>();
+            List<Item> items = new List<Item>();
             int r = rand.Next(4) + 1;
             for (int i = 0; i < r; i++)
             {

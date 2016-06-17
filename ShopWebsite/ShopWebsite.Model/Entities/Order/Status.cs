@@ -5,13 +5,13 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
 {
-    [Table("Status", Schema = "Order")]
+    [Table("Statuses", Schema = "Order")]
     public class Status : IValidatableObject, IIntroduceable
     {
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("status_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

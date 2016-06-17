@@ -12,7 +12,7 @@ namespace ShopWebsite.Model.Entities.Discount
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("discount_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

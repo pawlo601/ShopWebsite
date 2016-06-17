@@ -12,7 +12,7 @@ namespace ShopWebsite.Model.Entities.User
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("user_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -57,7 +57,7 @@ namespace ShopWebsite.Model.Entities.User
 
         [XmlArray(ElementName = "roles")] //for xml
         [XmlArrayItem("role", Type = typeof(Role))] //for xml
-        public ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; }
 
         #endregion
 
@@ -105,6 +105,20 @@ namespace ShopWebsite.Model.Entities.User
         public int GetId()
         {
             return Id;
+        }
+
+        public void AddRole(Role role)
+        {
+            Roles.Add(role);
+            role.Users.Add(this);
+        }
+
+        public void AddRoles(ICollection<Role> roles)
+        {
+            foreach (Role role in roles)
+            {
+                AddRole(role);
+            }
         }
         #endregion
     }

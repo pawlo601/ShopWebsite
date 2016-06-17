@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Discount
 {
-    [Table("Order_discounts", Schema = "Discount")]
+    [Table("Order_Discounts", Schema = "Discount")]
     public class OrderDiscount : MainDiscount, IIntroduceable
     {
         #region variables

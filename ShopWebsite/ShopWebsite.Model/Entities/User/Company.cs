@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.User
 {
     [Table("Company", Schema = "User")]
-    public class Company : Customer
+    public sealed class Company : Customer
     {
         #region variables
 

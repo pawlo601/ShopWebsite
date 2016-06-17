@@ -12,7 +12,7 @@ namespace ShopWebsite.Model.Entities.Order
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("order_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,16 +23,16 @@ namespace ShopWebsite.Model.Entities.Order
         public decimal Value { get; set; }
 
         [XmlArray(ElementName = "items")] //for xml
-        [XmlArrayItem("item", Type = typeof(ItemInOrder))] //for xml
-        public ICollection<ItemInOrder> Items { get; set; }
+        [XmlArrayItem("item", Type = typeof(Item))] //for xml
+        public ICollection<Item> Items { get; set; }
 
         [XmlArray(ElementName = "order_discounts")] //for xml
         [XmlArrayItem("discount", Type = typeof(OrderDiscount))] //for xml
         public ICollection<OrderDiscount> OrderDiscounts { get; set; }
 
         [XmlArray(ElementName = "order_statuses")] //for xml
-        [XmlArrayItem("status_order", Type = typeof(StatusOrder))] //for xml
-        public ICollection<StatusOrder> ListOfStatusOrder { get; set; }
+        [XmlArrayItem("status_order", Type = typeof(OrderStatus))] //for xml
+        public ICollection<OrderStatus> ListOfStatusOrder { get; set; }
 
         #endregion
 
@@ -41,8 +41,8 @@ namespace ShopWebsite.Model.Entities.Order
         {
         }
 
-        public Order(int id, decimal value, ICollection<ItemInOrder> items, ICollection<OrderDiscount> orderDiscounts,
-            ICollection<StatusOrder> listOfStatusOrder)
+        public Order(int id, decimal value, ICollection<Item> items, ICollection<OrderDiscount> orderDiscounts,
+            ICollection<OrderStatus> listOfStatusOrder)
         {
             Id = id;
             Value = value;
@@ -63,7 +63,7 @@ namespace ShopWebsite.Model.Entities.Order
             }
             if (Items != null)
             {
-                foreach (ItemInOrder item in Items)
+                foreach (Item item in Items)
                 {
                     results.AddRange(item.Validate(validationContext));
                 }
@@ -77,7 +77,7 @@ namespace ShopWebsite.Model.Entities.Order
             }
             if (ListOfStatusOrder != null)
             {
-                foreach (StatusOrder status in ListOfStatusOrder)
+                foreach (OrderStatus status in ListOfStatusOrder)
                 {
                     results.AddRange(status.Validate(validationContext));
                 }

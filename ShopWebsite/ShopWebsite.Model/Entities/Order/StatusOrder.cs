@@ -6,13 +6,13 @@ using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Order
 {
-    [Table("StatusOrder", Schema = "Order")]
-    public class StatusOrder : IValidatableObject, IIntroduceable
+    [Table("Order_Status", Schema = "Order")]
+    public class OrderStatus : IValidatableObject, IIntroduceable
     {
         #region variables
 
         [Key]
-        [Column("id")]
+        [Column("order_status_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -29,11 +29,11 @@ namespace ShopWebsite.Model.Entities.Order
         #endregion
 
         #region methods
-        public StatusOrder()
+        public OrderStatus()
         {
         }
 
-        public StatusOrder(int id, Status status, DateTime timeOfChange)
+        public OrderStatus(int id, Status status, DateTime timeOfChange)
         {
             Id = id;
             Status = status;

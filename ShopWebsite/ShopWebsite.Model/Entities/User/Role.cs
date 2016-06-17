@@ -6,11 +6,11 @@ using System.Xml.Serialization;
 namespace ShopWebsite.Model.Entities.User
 {
     [Table("Roles", Schema = "User")]
-    public class Role : IValidatableObject, IIntroduceable
+    public sealed class Role : IValidatableObject, IIntroduceable
     {
         #region variables
         [Key]
-        [Column("id")]
+        [Column("role_id")]
         [XmlAttribute("id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -38,6 +38,7 @@ namespace ShopWebsite.Model.Entities.User
         [XmlArrayItem("permission", Type = typeof(Permission))] //for xml
         public ICollection<Permission> Permissions { get; set; }
 
+        public ICollection<User> Users { get; set; }
         #endregion
 
         #region methods
@@ -52,6 +53,7 @@ namespace ShopWebsite.Model.Entities.User
             Description = description;
             IsSysAdmin = isSysAdmin;
             Permissions = permissions;
+            Users = new List<User>();
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -79,6 +81,20 @@ namespace ShopWebsite.Model.Entities.User
         public int GetId()
         {
             return Id;
+        }
+
+        public void AddPermission(Permission permission)
+        {
+            Permissions.Add(permission);
+            permission.Roles.Add(this);
+        }
+
+        public void AddPermissions(ICollection<Permission> permissions)
+        {
+            foreach (Permission permission in permissions)
+            {
+                AddPermission(permission);
+            }
         }
         #endregion
     }
