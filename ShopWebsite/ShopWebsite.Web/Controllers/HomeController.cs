@@ -1,7 +1,9 @@
-﻿using ShopWebsite.Model.Entities;
+﻿using System;
+using ShopWebsite.Model.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ShopWebsite.Data.Common;
 using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
@@ -28,6 +30,12 @@ namespace ShopWebsite.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            Logging.LogException("first", new KeyNotFoundException("exception"), DateTime.Now, "Index", 
+                new List<Tuple<string, string, object>>()
+                {
+                    new Tuple<string, string, object>("string", "Name", "Piotr"),
+                    new Tuple<string, string, object>("int", "Age", 34)
+                });
             return View();
         }
 

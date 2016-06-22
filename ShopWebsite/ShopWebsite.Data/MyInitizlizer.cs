@@ -4,6 +4,7 @@ using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using ShopWebsite.Model.Entities.Generators;
+using ShopWebsite.Model.Entities.Log;
 
 namespace ShopWebsite.Data
 {
