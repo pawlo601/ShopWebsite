@@ -28,9 +28,10 @@ namespace ShopWebsite.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Log> Logs { get; set; }
+        public DbSet<Log> Logs { get; set; } 
 
         public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
+            //@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//
         {
             Configuration.LazyLoadingEnabled = false;
         }
