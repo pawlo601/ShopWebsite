@@ -1,7 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using ShopWebsite.Model.Entities.Discount;
-using ShopWebsite.Model.Entities.Log;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.Entities.User;
@@ -27,8 +26,6 @@ namespace ShopWebsite.Data
         public DbSet<Unit> Units { get; set; }
 
         public DbSet<User> Users { get; set; }
-
-        public DbSet<Log> Logs { get; set; } 
 
         public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
             //@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//

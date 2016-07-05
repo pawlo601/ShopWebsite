@@ -30,12 +30,6 @@ namespace ShopWebsite.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            Logging.LogException("first", new KeyNotFoundException("exception"), DateTime.Now, "Index", 
-                new List<Tuple<string, string, object>>()
-                {
-                    new Tuple<string, string, object>("string", "Name", "Piotr"),
-                    new Tuple<string, string, object>("int", "Age", 34)
-                });
             return View();
         }
 
