@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Entities\IIntroduceable.cs" />
     <Compile Include="Entities\Log\Log.cs" />
-    <Compile Include="Entities\Log\OperationLog.cs" />
     <Compile Include="Entities\ReadFromXml.cs" />
     <Compile Include="Entities\SaveToXml.cs" />
     <Compile Include="Entities\User\Address.cs" />
