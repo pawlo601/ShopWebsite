@@ -36,6 +36,7 @@ namespace ShopWebsite.Data
                 {
                     context.Users.Add(UserGenerator.Instatnce.GetNextCompany());
                 }
+                
                 context.Users.Add(UserGenerator.Instatnce.GetAdmin());
                 context.SaveChanges();
             }

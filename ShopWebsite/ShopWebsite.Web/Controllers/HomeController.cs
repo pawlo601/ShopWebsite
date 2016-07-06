@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ShopWebsite.Data;
 using ShopWebsite.Data.Services.Interfaces;
+using ShopWebsite.Data.Services.Interfaces.Log;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.Entities.User;
@@ -15,19 +17,22 @@ namespace ShopWebsite.Web.Controllers
         private readonly IUnitService _unitService;
         private readonly ICurrencyService _currencyService;
         private readonly IEmployeeService _employeeService;
+        private readonly ILogService _logService;
 
         public HomeController(IProductService productService, IUnitService unitService, ICurrencyService currencyService,
-            IEmployeeService employeeService)
+            IEmployeeService employeeService, ILogService logService)
         {
             _productService = productService;
             _unitService = unitService;
             _currencyService = currencyService;
             _employeeService = employeeService;
+            _logService = logService;
         }
 
         // GET: Home
         public ActionResult Index()
         {
+            _logService.Log();
             return View();
         }
 
