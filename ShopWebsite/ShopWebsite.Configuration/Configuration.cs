@@ -8,11 +8,15 @@ namespace ShopWebsite.Configuration
 {
     public static class Configuration
     {
+        public static string DbProvider { get; set; }
         public static string ConnectionString { get; set; }
         public static int HowManyProductsCreateInInitialize { get; set; }
         public static int HowManyEmployeesCreateInInitialize { get; set; }
         public static int HowManyIndClientsCreateInInitialize { get; set; }
-        public static int HowManyComapniesCreateInInitialize { get; set; }
+        public static int HowManyCompaniesCreateInInitialize { get; set; }
+        public static string CreateTableExceptionLogsCommand { get; set; }
+        public static string InsertToTableExceptionLogsCommand { get; set; }
+        public static string CreateLogsSchema { get; set; }
 
         static Configuration()
         {
@@ -27,6 +31,11 @@ namespace ShopWebsite.Configuration
                         var xmlString = sr.ReadToEnd();
                         using (XmlReader reader = XmlReader.Create(new StringReader(xmlString)))
                         {
+                            reader.ReadToFollowing("dbProvider");
+                            reader.MoveToAttribute("value");
+                            string ab = reader.Value;
+                            DbProvider = ab;
+
                             reader.ReadToFollowing("connectionString");
                             reader.MoveToAttribute("value");
                             string cs = reader.Value;
@@ -45,18 +54,42 @@ namespace ShopWebsite.Configuration
                             reader.ReadToFollowing("initializeCompany");
                             reader.MoveToAttribute("value");
                             string c = reader.Value;
-                            HowManyComapniesCreateInInitialize = Parse(c);
+                            HowManyCompaniesCreateInInitialize = Parse(c);
 
                             reader.ReadToFollowing("initializeIndClient");
                             reader.MoveToAttribute("value");
                             string d = reader.Value;
                             HowManyIndClientsCreateInInitialize = Parse(d);
+
+                            reader.ReadToFollowing("createTable");
+                            reader.MoveToAttribute("value");
+                            string e = reader.Value;
+                            CreateTableExceptionLogsCommand = e;
+
+                            reader.ReadToFollowing("insertCommand");
+                            reader.MoveToAttribute("value");
+                            string f = reader.Value;
+                            InsertToTableExceptionLogsCommand = f;
+
+                            reader.ReadToFollowing("createLogsSchema");
+                            reader.MoveToAttribute("value");
+                            string g = reader.Value;
+                            CreateLogsSchema = g;
                         }
                     }
                 }
                 else
                 {
-                    throw new Exception("Something is wrong with ConfigFile.xml and Configuration class.");
+                    DbProvider = string.Empty;
+                    ConnectionString = string.Empty;
+                    HowManyProductsCreateInInitialize = 0;
+                    HowManyEmployeesCreateInInitialize = 0;
+                    HowManyIndClientsCreateInInitialize = 0;
+                    HowManyCompaniesCreateInInitialize = 0;
+                    CreateTableExceptionLogsCommand = string.Empty;
+                    InsertToTableExceptionLogsCommand = string.Empty;
+                    CreateLogsSchema = string.Empty;
+                    throw new Exception("Something goes wrong with configuration.xml and with Configuration class.");
                 }
         }
     }

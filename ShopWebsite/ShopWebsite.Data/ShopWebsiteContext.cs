@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Runtime.CompilerServices;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.Product;
@@ -8,7 +9,7 @@ using ShopWebsite.Model.Entities.User;
 
 namespace ShopWebsite.Data
 {
-    [DbConfigurationType(typeof (DbContextConfiguration))]
+    [DbConfigurationType(typeof(DbContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
         public DbSet<Currency> Curriencies { get; set; }
@@ -28,7 +29,6 @@ namespace ShopWebsite.Data
         public DbSet<User> Users { get; set; }
 
         public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
-            //@"Data Source=(localdb)\ProjectsV12;Initial Catalog=test1;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False")//
         {
             Configuration.LazyLoadingEnabled = false;
         }

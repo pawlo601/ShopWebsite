@@ -39,6 +39,14 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
             }
             catch (Exception exc)
             {
+                LoggingException.LogException(
+                    "RepositoryBase",
+                    "AddNewEntity",
+                    entity.ToString(),
+                    string.Empty,
+                    string.Empty,
+                    "Error in adding entity.",
+                    exc);
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
             return entity;
@@ -59,11 +67,19 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {$"All items({count}) have been removed."}
+                    ReturnMessage = new List<string> { $"All items({count}) have been removed." }
                 };
             }
             catch (Exception exc)
             {
+                LoggingException.LogException(
+                    "RepositoryBase",
+                    "DeleteEntity",
+                    where.ToString(),
+                    string.Empty,
+                    string.Empty,
+                    "Error in removal entity.",
+                    exc);
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
         }
@@ -77,12 +93,20 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
             catch (Exception exc)
             {
+                LoggingException.LogException(
+                    "RepositoryBase",
+                    "GetEntity",
+                    where.ToString(),
+                    string.Empty,
+                    string.Empty,
+                    "Error in getting entity.",
+                    exc);
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
                 return null;
             }
@@ -97,12 +121,20 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 {
                     ReturnStatus = true,
                     ReturnMessage =
-                        new List<string> {item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana."}
+                        new List<string> { item == null ? "Nie znaleziono czukanej danej." : "Znaleziono szukana dana." }
                 };
                 return item;
             }
             catch (Exception exc)
             {
+                LoggingException.LogException(
+                    "RepositoryBase",
+                    "GetEntityById",
+                    "id: " + id,
+                    string.Empty,
+                    string.Empty,
+                    "Error in getting entity by id.",
+                    exc);
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
                 return null;
             }
@@ -117,11 +149,19 @@ namespace ShopWebsite.Data.Infrastructure.Implementations
                 transaction = new TransactionalInformation
                 {
                     ReturnStatus = true,
-                    ReturnMessage = new List<string> {"Uaktualniono baze danych."}
+                    ReturnMessage = new List<string> { "Uaktualniono baze danych." }
                 };
             }
             catch (Exception exc)
             {
+                LoggingException.LogException(
+                    "RepositoryBase",
+                    "UpdateEntity",
+                    entity.ToString(),
+                    string.Empty,
+                    string.Empty,
+                    "Error in updating entity.",
+                    exc);
                 Validation.BuildTransactionalInformationFromException(exc, out transaction);
             }
         }

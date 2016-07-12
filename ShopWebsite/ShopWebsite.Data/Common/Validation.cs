@@ -27,7 +27,6 @@ namespace ShopWebsite.Data.Common
             }
             else
             {
-                // ReSharper disable once UseObjectOrCollectionInitializer
                 transaction = new TransactionalInformation();
                 transaction.ReturnStatus = false;
                 transaction.ReturnMessage = new List<string> {"Error in validation."};

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using ShopWebsite.Data.Common;
 using ShopWebsite.Model.Entities.Generators;
 
 namespace ShopWebsite.Data
@@ -14,48 +14,101 @@ namespace ShopWebsite.Data
             try
             {
                 SqlConnection.ClearAllPools();
-                context.Units.AddRange(ProductGenerator.Instatnce.GetAllUnits());
-                context.Curriencies.AddRange(ProductGenerator.Instatnce.GetAllCurrencies());
-                context.Permissions.AddRange(UserGenerator.Instatnce.GetAllPermissions());
-                context.Roles.AddRange(UserGenerator.Instatnce.GetAllRoles());
-                context.Discounts.AddRange(DiscountGenerator.Intance.GetAllDiscounts());
-                context.Statuses.AddRange(OrderGenerator.Instatnce.GetAllStatuses());
-                for (int i = 0; i < Configuration.Configuration.HowManyProductsCreateInInitialize; i++)
-                {
-                    context.Products.Add(ProductGenerator.Instatnce.GetNextProduct());
-                }
-                for (int i = 0; i < Configuration.Configuration.HowManyEmployeesCreateInInitialize; i++)
-                {
-                    context.Users.Add(UserGenerator.Instatnce.GetNextEmployee());
-                }
-                for (int i = 0; i < Configuration.Configuration.HowManyIndClientsCreateInInitialize; i++)
-                {
-                    context.Users.Add(UserGenerator.Instatnce.GetNextIndividualClient());
-                }
-                for (int i = 0; i < Configuration.Configuration.HowManyComapniesCreateInInitialize; i++)
-                {
-                    context.Users.Add(UserGenerator.Instatnce.GetNextCompany());
-                }
-                
-                context.Users.Add(UserGenerator.Instatnce.GetAdmin());
+                UnitsInitialize(context);
+                CurrienciesInitialize(context);
+                PermissionsInitialize(context);
+                RolesInitialize(context);
+                DiscountsInitialize(context);
+                StatusesInitialize(context);
+                ProductsInitialize(context);
+                EmployeesInitialize(context);
+                IndividualClientsInitialize(context);
+                CompaniesInitialize(context);
+                AdminInitialize(context);
+                ExceptionLogsInitialize(context);
                 context.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
+                LoggingException.LogException("ShopWebsite.Data.MyInitizlizer", "Seed", e);
             }
-            catch (DbUpdateException)
+            catch (Exception e)
             {
+                LoggingException.LogException("ShopWebsite.Data.MyInitizlizer", "Seed", string.Empty, string.Empty, string.Empty, string.Empty, e);
             }
+        }
+
+        private void ExceptionLogsInitialize(DbContext context)
+        {
+            context.Database.ExecuteSqlCommand(Configuration.Configuration.CreateLogsSchema);
+            context.Database.ExecuteSqlCommand(Configuration.Configuration.CreateTableExceptionLogsCommand);
+        }
+
+        private void UnitsInitialize(ShopWebsiteContext context)
+        {
+            context.Units.AddRange(ProductGenerator.Instatnce.GetAllUnits());
+        }
+
+        private void AdminInitialize(ShopWebsiteContext context)
+        {
+            context.Users.Add(UserGenerator.Instatnce.GetAdmin());
+        }
+
+        private void CompaniesInitialize(ShopWebsiteContext context)
+        {
+            for (int i = 0; i < Configuration.Configuration.HowManyCompaniesCreateInInitialize; i++)
+            {
+                context.Users.Add(UserGenerator.Instatnce.GetNextCompany());
+            }
+        }
+
+        private void IndividualClientsInitialize(ShopWebsiteContext context)
+        {
+            for (int i = 0; i < Configuration.Configuration.HowManyIndClientsCreateInInitialize; i++)
+            {
+                context.Users.Add(UserGenerator.Instatnce.GetNextIndividualClient());
+            }
+        }
+
+        private static void EmployeesInitialize(ShopWebsiteContext context)
+        {
+            for (int i = 0; i < Configuration.Configuration.HowManyEmployeesCreateInInitialize; i++)
+            {
+                context.Users.Add(UserGenerator.Instatnce.GetNextEmployee());
+            }
+        }
+
+        private void ProductsInitialize(ShopWebsiteContext context)
+        {
+            for (int i = 0; i < Configuration.Configuration.HowManyProductsCreateInInitialize; i++)
+            {
+                context.Products.Add(ProductGenerator.Instatnce.GetNextProduct());
+            }
+        }
+
+        private void StatusesInitialize(ShopWebsiteContext context)
+        {
+            context.Statuses.AddRange(OrderGenerator.Instatnce.GetAllStatuses());
+        }
+
+        private void DiscountsInitialize(ShopWebsiteContext context)
+        {
+            context.Discounts.AddRange(DiscountGenerator.Intance.GetAllDiscounts());
+        }
+
+        private void RolesInitialize(ShopWebsiteContext context)
+        {
+            context.Roles.AddRange(UserGenerator.Instatnce.GetAllRoles());
+        }
+
+        private void PermissionsInitialize(ShopWebsiteContext context)
+        {
+            context.Permissions.AddRange(UserGenerator.Instatnce.GetAllPermissions());
+        }
+
+        private void CurrienciesInitialize(ShopWebsiteContext context)
+        {
+            context.Curriencies.AddRange(ProductGenerator.Instatnce.GetAllCurrencies());
         }
     }
 }
