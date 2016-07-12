@@ -9,9 +9,9 @@
     <initializeIndClient value="2"/>
   </database>
   <logs>
-    <createLogsSchema value="CREATE SCHEMA Logs;"/>
-    <createTable value="CREATE TABLE [Logs].[Exception_Logs] ([Id] INT IDENTITY (1, 1) NOT NULL, [TimeStamp] NVARCHAR (255) NOT NULL, [Message] NVARCHAR (MAX) NOT NULL,[Variables] NVARCHAR (MAX) NOT NULL,[ErrorSource] NVARCHAR (MAX) NOT NULL, [ErrorClass] NVARCHAR (MAX) NOT NULL,[ErrorMethod] NVARCHAR (MAX) NOT NULL,[ErrorMessage] NVARCHAR (MAX) NOT NULL,[ErrorInnerMessage] NVARCHAR (MAX) NOT NULL, [ActionClass] NVARCHAR (MAX) NOT NULL, [ActionMethod] NVARCHAR (MAX) NOT NULL);"/>
-    <insertCommand value="INSERT INTO [Logs].[Exception_Logs](TimeStamp, Message, Variables, ErrorSource, ErrorClass, ErrorMethod, ErrorMessage, ErrorInnerMessage, ActionClass, ActionMethod) VALUES(@time, @msg, @variables, @error_source, @error_class, @error_method, @error_message, @error_inner_message, @action_class, @action_method)"/>
+    <createLogsSchema value="CREATE SCHEMA Log;"/>
+    <createTable value="CREATE TABLE [Log].[Exception_Logs] ([Id] INT IDENTITY (1, 1) NOT NULL, [TimeStamp] NVARCHAR (255) NOT NULL, [Message] NVARCHAR (MAX) NOT NULL,[Variables] NVARCHAR (MAX) NOT NULL,[ErrorSource] NVARCHAR (MAX) NOT NULL, [ErrorClass] NVARCHAR (MAX) NOT NULL,[ErrorMethod] NVARCHAR (MAX) NOT NULL,[ErrorMessage] NVARCHAR (MAX) NOT NULL,[ErrorInnerMessage] NVARCHAR (MAX) NOT NULL, [ActionClass] NVARCHAR (MAX) NOT NULL, [ActionMethod] NVARCHAR (MAX) NOT NULL);"/>
+    <insertCommand value="INSERT INTO [Log].[Exception_Logs](TimeStamp, Message, Variables, ErrorSource, ErrorClass, ErrorMethod, ErrorMessage, ErrorInnerMessage, ActionClass, ActionMethod) VALUES(@time, @msg, @variables, @error_source, @error_class, @error_method, @error_message, @error_inner_message, @action_class, @action_method)"/>
   </logs>
 </configuration>
 

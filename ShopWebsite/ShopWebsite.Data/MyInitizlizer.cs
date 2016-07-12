@@ -3,7 +3,9 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using ShopWebsite.Data.Common;
+using ShopWebsite.Model.Entities.Audit;
 using ShopWebsite.Model.Entities.Generators;
+using Action = ShopWebsite.Model.Entities.Audit.Action;
 
 namespace ShopWebsite.Data
 {
@@ -26,6 +28,7 @@ namespace ShopWebsite.Data
                 CompaniesInitialize(context);
                 AdminInitialize(context);
                 ExceptionLogsInitialize(context);
+                AuditsInitialize(context);
                 context.SaveChanges();
             }
             catch (DbEntityValidationException e)
@@ -36,6 +39,23 @@ namespace ShopWebsite.Data
             {
                 LoggingException.LogException("ShopWebsite.Data.MyInitizlizer", "Seed", string.Empty, string.Empty, string.Empty, string.Empty, e);
             }
+        }
+
+        private void AuditsInitialize(ShopWebsiteContext context)
+        {
+            context.Audits.Add(new Audit()
+            {
+                Id = 1,
+                SessionId = "0",
+                Action = Action.Begin,
+                AdditionalInformation = "Create database",
+                AddressIP = "1",
+                Data = string.Empty,
+                PropertyName = string.Empty,
+                TimeAccessed = DateTime.Now,
+                URLAccessed = string.Empty,
+                UserName = "Admin"
+            });
         }
 
         private void ExceptionLogsInitialize(DbContext context)

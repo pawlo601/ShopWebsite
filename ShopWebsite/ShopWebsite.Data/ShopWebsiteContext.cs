@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Runtime.CompilerServices;
+using ShopWebsite.Model.Entities.Audit;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.Product;
@@ -27,6 +28,8 @@ namespace ShopWebsite.Data
         public DbSet<Unit> Units { get; set; }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Audit> Audits { get; set; } 
 
         public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
         {

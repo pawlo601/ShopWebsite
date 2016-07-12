@@ -5,7 +5,7 @@ using System.Xml.Serialization;
 using ShopWebsite.Model.Entities.Discount;
 
 namespace ShopWebsite.Model.Entities.Product
-{
+{//todo: sprawdzić czy nigdzie static nie koliduje z tym ze bedzie to na serwerze
     [Table("Products", Schema = "Product")]
     public class Product : IValidatableObject, IIntroduceable
     {

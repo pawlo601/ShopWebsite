@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using ShopWebsite.Data;
 using ShopWebsite.Data.Services.Interfaces;
 using ShopWebsite.Data.Services.Interfaces.Log;
 using ShopWebsite.Model.Entities.Discount;
@@ -32,7 +31,6 @@ namespace ShopWebsite.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            _logService.Log();
             return View();
         }
 
