@@ -8,15 +8,15 @@ namespace ShopWebsite.Configuration
 {
     public static class Configuration
     {
-        public static string DbProvider { get; set; }
-        public static string ConnectionString { get; set; }
-        public static int HowManyProductsCreateInInitialize { get; set; }
-        public static int HowManyEmployeesCreateInInitialize { get; set; }
-        public static int HowManyIndClientsCreateInInitialize { get; set; }
-        public static int HowManyCompaniesCreateInInitialize { get; set; }
-        public static string CreateTableExceptionLogsCommand { get; set; }
-        public static string InsertToTableExceptionLogsCommand { get; set; }
-        public static string CreateLogsSchema { get; set; }
+        public static string DbProvider { get; private set; }
+        public static string ConnectionString { get; private set; }
+        public static int HowManyProductsCreateInInitialize { get; private set; }
+        public static int HowManyEmployeesCreateInInitialize { get; private set; }
+        public static int HowManyIndClientsCreateInInitialize { get; private set; }
+        public static int HowManyCompaniesCreateInInitialize { get; private set; }
+        public static string CreateTableExceptionLogsCommand { get; private set; }
+        public static string InsertToTableExceptionLogsCommand { get; private set; }
+        public static string CreateLogsSchema { get; private set; }
 
         static Configuration()
         {

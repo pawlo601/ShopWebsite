@@ -1,16 +1,15 @@
 ﻿using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Runtime.CompilerServices;
+using ShopWebsite.Data.ContextConfigurations;
 using ShopWebsite.Model.Entities.Audit;
 using ShopWebsite.Model.Entities.Discount;
 using ShopWebsite.Model.Entities.Order;
 using ShopWebsite.Model.Entities.Product;
 using ShopWebsite.Model.Entities.User;
 
-
-namespace ShopWebsite.Data
+namespace ShopWebsite.Data.DataBaseContexts
 {
-    [DbConfigurationType(typeof(DbContextConfiguration))]
+    [DbConfigurationType(typeof(ShopWebsiteContextConfiguration))]
     public class ShopWebsiteContext : DbContext
     {
         public DbSet<Currency> Curriencies { get; set; }
@@ -29,7 +28,7 @@ namespace ShopWebsite.Data
 
         public DbSet<User> Users { get; set; }
 
-        public DbSet<Audit> Audits { get; set; } 
+        public DbSet<Audit> Audits { get; set; }
 
         public ShopWebsiteContext() : base(ShopWebsite.Configuration.Configuration.ConnectionString)
         {

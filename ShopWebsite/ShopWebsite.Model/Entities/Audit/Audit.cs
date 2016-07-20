@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Serialization;
 
 namespace ShopWebsite.Model.Entities.Audit
 {
-    public enum Action { Create, Edit, Remove, Get, Begin }
+    public enum Action { Create, Edit, Remove, Get, Show, Begin }
 
     [Table("Audits", Schema = "Log")]
-    public class Audit : IIntroduceable
+    public class Audit : IIntroduceable, IValidatableObject
     {
         [Key]
         [Column("product_id")]
@@ -55,6 +56,11 @@ namespace ShopWebsite.Model.Entities.Audit
         public int GetId()
         {
             return Id;
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return new List<ValidationResult>();
         }
     }
 }

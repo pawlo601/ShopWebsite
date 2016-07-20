@@ -12,19 +12,19 @@ namespace ShopWebsite.Model.Entities.Product
 
         [Key]
         [Column("unit_id")]
-        [XmlAttribute("id")] //for xml
+        [XmlAttribute("unit_id")] //for xml
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Column("unit_name1")]
-        [XmlAttribute("unit_name1")] //for xml
+        [Column("unit_name")]
+        [XmlAttribute("unit_name")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unit name cannot be empty.")]
         [MinLength(3, ErrorMessage = "Length of unit name should be greater than or equal to 3.")]
         [MaxLength(10, ErrorMessage = "Length of unit name should be less than or equal to 10.")]
         public string Name { get; set; }
 
         [Column("unit_shortcut")]
-        [XmlAttribute("unit_name")] //for xml
+        [XmlAttribute("unit_shortcut")] //for xml
         [Required(AllowEmptyStrings = false, ErrorMessage = "Unit shortcut cannot be empty.")]
         [MinLength(1, ErrorMessage = "Length of unit shortcut should be greater than or equal to 1.")]
         [MaxLength(5, ErrorMessage = "Length of unit shortcut should be less than or equal to 5.")]

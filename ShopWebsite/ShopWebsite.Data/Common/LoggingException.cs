@@ -10,7 +10,7 @@ using NLog.Targets;
 namespace ShopWebsite.Data.Common
 {
     public class LoggingException
-    {
+    {//todo delete static 1
         private static readonly Logger logger;
         private static readonly DatabaseTarget dbT;
 

@@ -3,19 +3,21 @@ using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using ShopWebsite.Data.Common;
+using ShopWebsite.Data.DataBaseContexts;
 using ShopWebsite.Model.Entities.Audit;
 using ShopWebsite.Model.Entities.Generators;
 using Action = ShopWebsite.Model.Entities.Audit.Action;
 
-namespace ShopWebsite.Data
+namespace ShopWebsite.Data.Initizlizers
 {
-    public class MyInitizlizer : DropCreateDatabaseIfModelChanges<ShopWebsiteContext>
+    public class ShopWebsiteContextInitizlizer : DropCreateDatabaseIfModelChanges<ShopWebsiteContext>
     {
         protected override void Seed(ShopWebsiteContext context)
         {
             try
             {
                 SqlConnection.ClearAllPools();
+                ExceptionLogsInitialize(context);
                 UnitsInitialize(context);
                 CurrienciesInitialize(context);
                 PermissionsInitialize(context);
@@ -27,17 +29,16 @@ namespace ShopWebsite.Data
                 IndividualClientsInitialize(context);
                 CompaniesInitialize(context);
                 AdminInitialize(context);
-                ExceptionLogsInitialize(context);
                 AuditsInitialize(context);
                 context.SaveChanges();
             }
             catch (DbEntityValidationException e)
             {
-                LoggingException.LogException("ShopWebsite.Data.MyInitizlizer", "Seed", e);
+                LoggingException.LogException("ShopWebsite.Data.Initizlizers.ShopWebsiteContextInitizlizer", "Seed", e);
             }
             catch (Exception e)
             {
-                LoggingException.LogException("ShopWebsite.Data.MyInitizlizer", "Seed", string.Empty, string.Empty, string.Empty, string.Empty, e);
+                LoggingException.LogException("ShopWebsite.Data.Initizlizers.ShopWebsiteContextInitizlizer", "Seed", string.Empty, string.Empty, string.Empty, string.Empty, e);
             }
         }
 
@@ -60,7 +61,7 @@ namespace ShopWebsite.Data
 
         private void ExceptionLogsInitialize(DbContext context)
         {
-            context.Database.ExecuteSqlCommand(Configuration.Configuration.CreateLogsSchema);
+            //context.Database.ExecuteSqlCommand(Configuration.Configuration.CreateLogsSchema);
             context.Database.ExecuteSqlCommand(Configuration.Configuration.CreateTableExceptionLogsCommand);
         }
 

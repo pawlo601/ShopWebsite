@@ -7,6 +7,7 @@ using ShopWebsite.Model.Entities;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using ShopWebsite.Data.Common;
+using ShopWebsite.Data.DataBaseContexts;
 
 namespace ShopWebsite.Data.Infrastructure.Implementations
 {
